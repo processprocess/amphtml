@@ -53,12 +53,12 @@ amp-story-access[type=blocking]::before {
   background: #000000 !important;
   opacity: 0 !important;
   pointer-events: auto !important;
-  transition: opacity 0.15s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: opacity 0.15s var(--amp-story-ease-in-quad) !important;
 }
 
 amp-story-access[type=blocking].i-amphtml-story-access-visible::before {
   opacity: 0.55 !important;
-  transition: opacity 0.2s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: opacity 0.2s --amp-story-ease-out !important;
 }
 
 .i-amphtml-story-access-overflow {
@@ -81,12 +81,12 @@ amp-story-access[type=blocking].i-amphtml-story-access-visible::before {
   overflow: hidden !important;
   text-align: start !important;
   transform: translate3d(0, 100%, 0) !important;
-  transition: transform 0.15s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: transform 0.15s var(--amp-story-ease-in-quad) !important;
 }
 
 .i-amphtml-story-access-visible .i-amphtml-story-access-container {
   transform: translate3d(0, 0, 0) !important;
-  transition: transform 0.2s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: transform 0.2s --amp-story-ease-out !important;
 }
 
 [type=notification] .i-amphtml-story-access-container {
@@ -192,11 +192,11 @@ amp-story-access[type=blocking].i-amphtml-story-access-visible::before {
     border-radius: 0px !important;
     opacity: 0 !important;
     transform: translate3d(0, 0, 0) !important;
-    transition: opacity 0.15s cubic-bezier(0.4, 0.0, 1, 1) !important;
+    transition: opacity 0.15s var(--amp-story-ease-in-quad) !important;
   }
 
   [type="blocking"].i-amphtml-story-access-visible .i-amphtml-story-access-container {
     opacity: 1 !important;
-    transition: opacity 0.2s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+    transition: opacity 0.2s --amp-story-ease-out !important;
   }
 }

@@ -24,7 +24,7 @@
   overflow: hidden !important;
   z-index: 4 !important; /** Over amp-story-cta-layer. */
   transform: translate3d(0, 100%, 0) !important;
-  transition: transform 0.25s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: transform 0.25s var(--amp-story-ease-in-quad) !important;
 }
 
 .amp-story-draggable-drawer-root[hidden] {
@@ -33,7 +33,7 @@
 
 .amp-story-draggable-drawer-root.i-amphtml-story-draggable-drawer-open {
   transform: translate3d(0, 0, 0) !important;
-  transition: transform 0.4s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: transform 0.4s --amp-story-ease-out !important;
 }
 
 .i-amphtml-story-draggable-drawer {
@@ -45,7 +45,7 @@
   background: rgba(255, 255, 255, 1) !important;
   overflow-y: auto !important;
   -webkit-overflow-scrolling: touch !important;
-  transition: background 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+  transition: background 0.3s --amp-story-ease-in-out !important;
 }
 
 .i-amphtml-story-draggable-drawer-theme-dark .i-amphtml-story-draggable-drawer-container {
@@ -63,7 +63,7 @@
 
 .i-amphtml-story-draggable-drawer-content {
   opacity: 1 !important;
-  transition: opacity 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: opacity 0.3s --amp-story-ease-out !important;
 }
 
 
@@ -81,12 +81,12 @@
   justify-content: center !important;
   background: rgba(0, 0, 0, 0.55) !important;
   opacity: 0 !important;
-  transition: opacity 0.15s cubic-bezier(0.4, 0.0, 1, 1), transform 0s linear 0.15s !important;
+  transition: opacity 0.15s var(--amp-story-ease-in-quad), transform 0s linear 0.15s !important;
 }
 
 [desktop] .amp-story-draggable-drawer-root.i-amphtml-story-draggable-drawer-open {
   opacity: 1 !important;
-  transition: opacity 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: opacity 0.3s --amp-story-ease-out !important;
   transform: translate3d(0, 0, 0) !important;
 }
 

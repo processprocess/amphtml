@@ -135,7 +135,7 @@
 }
 
 .i-amphtml-story-hint-tap-button:before {
-  animation: expandingBubble 1000ms infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
+  animation: expandingBubble 1000ms infinite var(--amp-story-ease-in-out) !important;
 }
 
 .i-amphtml-story-hint-tap-button:after {

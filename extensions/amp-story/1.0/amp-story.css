@@ -55,6 +55,13 @@ amp-story amp-consent {
   }
 }
 
+/** Motion curve variables */
+amp-story {
+  --amp-story-ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --amp-story-ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --amp-story-ease-in-quad: cubic-bezier(0.4, 0.0, 1, 1);
+}
+
 /**
  * amp-hidden uses visiblity: hidden that does not propagate to shadow trees
  * because of amp-story-shadow-reset.css. Use display: none instead.
@@ -225,7 +232,7 @@ amp-story-page[active] {
 }
 
 .i-amphtml-story-sidebar[open] {
-  animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  animation-timing-function: --amp-story-ease-out !important;
   animation-duration: 0.3s !important;
   animation-name: i-amphtml-sidebar-slide-in-right;
 }
@@ -238,7 +245,7 @@ amp-story-page[active] {
 .i-amphtml-story-sidebar {
   min-width: 75% !important;
   max-width: 360px !important;
-  animation-timing-function: cubic-bezier(0.4, 0.0, 1, 1)  !important;
+  animation-timing-function: var(--amp-story-ease-in-quad)  !important;
   animation-duration: 0.2s !important;
   animation-name: i-amphtml-sidebar-slide-out-right;
 }
@@ -281,7 +288,7 @@ amp-story-page [data-text-background-color] {
 
 [desktop].i-amphtml-story-bookend-active amp-story-page[active] {
   filter: blur(3px) !important;
-  transition: filter 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: filter 0.3s --amp-story-ease-out !important;
 }
 
 /* TODO(gmajoulet): move the overlay to the bookend styles. */
@@ -295,7 +302,7 @@ amp-story-page [data-text-background-color] {
   position: absolute !important;
   background: #000 !important;
   z-index: 2 !important;
-  animation: i-amphtml-bookend-overlay-opacity 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) forwards !important;
+  animation: i-amphtml-bookend-overlay-opacity 0.3s --amp-story-ease-out forwards !important;
 }
 
 @keyframes i-amphtml-bookend-overlay-opacity {
@@ -321,7 +328,7 @@ amp-story-page [data-text-background-color] {
   background-color: rgba(0, 0, 0, 0.75) !important;
   visibility: visible;
   z-index: 100003 !important;
-  transition: visibility 0.3s, opacity 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: visibility 0.3s, opacity 0.3s --amp-story-ease-out !important;
 }
 
 .i-amphtml-story-opacity-mask[hidden] {
@@ -329,7 +336,7 @@ amp-story-page [data-text-background-color] {
   pointer-events: none !important;
   display: block !important;
   visibility: hidden;
-  transition: visibility 0.2s, opacity 0.2s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: visibility 0.2s, opacity 0.2s var(--amp-story-ease-in-quad) !important;
 }
 
 .i-amphtml-sidebar-mask {
@@ -417,7 +424,7 @@ amp-story-grid-layer .i-amphtml-embedded-component::after {
 
 .i-amphtml-expanded-mode .i-amphtml-embedded-component.i-amphtml-expanded-component {
   z-index: 1 !important;
-  transition: transform 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+  transition: transform 0.225s --amp-story-ease-in-out !important;
 }
 
 .i-amphtml-story-grid-template-with-full-bleed-animation {
@@ -615,14 +622,14 @@ amp-story[standalone] .i-amphtml-story-developer-log {
 @keyframes toast {
   0% {
     transform: translateY(100px);
-    easing: cubic-bezier(0.0, 0.0, 0.2, 1);
+    easing: --amp-story-ease-out;
   }
   8% {
     transform: translateY(0);
   }
   92% {
     transform: translateY(0);
-    easing: cubic-bezier(0.4, 0.0, 1, 1);
+    easing: var(--amp-story-ease-in-quad);
   }
   100% {
     transform: translateY(100px);
@@ -699,7 +706,7 @@ amp-story .amp-video-eq,
 .i-amphtml-story-spinner[active] .i-amphtml-story-spinner-layer {
   animation-name: fill-unfill-rotate !important;
   animation-duration: 4400ms !important;
-  animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+  animation-timing-function: --amp-story-ease-in-out !important;
   animation-iteration-count: infinite !important;
   opacity: 1 !important;
   filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.25)) !important;
@@ -761,7 +768,7 @@ amp-story .amp-video-eq,
 
 .i-amphtml-story-spinner[active] .i-amphtml-story-spinner-circle-clipper::after {
   animation-duration: 1100ms !important;
-  animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+  animation-timing-function: --amp-story-ease-in-out !important;
   animation-iteration-count: infinite !important;
 }
 
@@ -796,7 +803,7 @@ amp-story .amp-video-eq,
   border: 0 !important;
   margin: 8px 0 0 8px !important; /* Making the click target 48px.*/
   padding: 0 !important;
-  animation: play-button-fly-in 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+  animation: play-button-fly-in 0.4s --amp-story-ease-in-out !important;
   background-color: transparent !important;
   z-index: 10000 !important;
 }

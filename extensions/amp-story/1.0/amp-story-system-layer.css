@@ -27,7 +27,7 @@
   opacity: 1 !important;
   z-index: 100000 !important;
   box-sizing: border-box !important;
-  transition: opacity 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: opacity 0.3s --amp-story-ease-out !important;
   pointer-events: none !important;
   font-family: 'Roboto', sans-serif !important;
 }
@@ -35,12 +35,12 @@
 .i-amphtml-story-bookend-active.i-amphtml-story-system-layer {
   opacity: 0.3 !important;
   z-index: 1 !important;
-  transition: opacity 0.15s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: opacity 0.15s var(--amp-story-ease-in-quad) !important;
 }
 
 .i-amphtml-story-hidden.i-amphtml-story-system-layer {
   opacity: 0 !important;
-  transition: opacity 0.15s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: opacity 0.15s var(--amp-story-ease-in-quad) !important;
 }
 
 .i-amphtml-story-hidden.i-amphtml-story-system-layer * {
@@ -155,7 +155,7 @@
 }
 
 [i-amphtml-story-messagedisplay="noshow"] .i-amphtml-message-container {
-  transition: opacity 0.2s cubic-bezier(0.4, 0.0, 1, 1), transform 0.0s 0.2s !important;
+  transition: opacity 0.2s var(--amp-story-ease-in-quad), transform 0.0s 0.2s !important;
   transform: translateX(10px) !important;
   opacity: 0 !important;
 }
@@ -175,7 +175,7 @@
 }
 
 [i-amphtml-story-messagedisplay="show"] .i-amphtml-message-container {
-  transition: opacity 0.2s cubic-bezier(0.0, 0.0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+  transition: opacity 0.2s --amp-story-ease-out, transform 0.2s --amp-story-ease-in-out !important;
   opacity: 1 !important;
   transform: translateX(0px) !important;
 }
@@ -341,7 +341,7 @@
 }
 
 .i-amphtml-animate-progress li {
-  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+  transition: transform 0.8s --amp-story-ease-in-out !important;
 }
 
 .i-amphtml-progress-bar-overflow.i-amphtml-story-progress-bar {

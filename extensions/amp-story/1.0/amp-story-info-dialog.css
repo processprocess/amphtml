@@ -43,12 +43,12 @@
   width: 100% !important;
   background: #000000 !important;
   opacity: 0 !important;
-  transition: opacity 0.15s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: opacity 0.15s var(--amp-story-ease-in-quad) !important;
 }
 
 .i-amphtml-story-info-dialog.i-amphtml-story-info-dialog-visible::before {
   opacity: 0.55 !important;
-  transition: opacity 0.2s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: opacity 0.2s --amp-story-ease-out !important;
 }
 
 .i-amphtml-story-info-dialog-container {
@@ -60,14 +60,14 @@
   background: #fff !important;
   border-radius: 0 0 8px 8px !important;
   transform: translate3d(0, -100%, 0) !important;
-  transition: transform 0.15s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: transform 0.15s var(--amp-story-ease-in-quad) !important;
   padding: 20px !important;
   font-family: 'Roboto', sans-serif !important;
 }
 
 .i-amphtml-story-info-dialog-visible .i-amphtml-story-info-dialog-container {
   transform: translate3d(0, 0, 0) !important;
-  transition: transform 0.2s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: transform 0.2s --amp-story-ease-out !important;
 }
 
 .i-amphtml-story-info-heading {

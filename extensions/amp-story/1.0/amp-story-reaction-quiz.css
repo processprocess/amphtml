@@ -210,12 +210,12 @@
  }
  
  .i-amphtml-story-reaction-post-selection:not(.i-amphtml-story-reaction-has-data) .i-amphtml-story-reaction-quiz-option-selected[correct].i-amphtml-story-reaction-quiz-option::before {
-     animation: option-select-correct forwards 150ms cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+     animation: option-select-correct forwards 150ms --amp-story-ease-out !important;
      border: solid 1px !important;
  }
  
  .i-amphtml-story-reaction-post-selection:not(.i-amphtml-story-reaction-has-data) .i-amphtml-story-reaction-quiz-option-selected:not([correct]).i-amphtml-story-reaction-quiz-option::before {
-     animation: option-select-incorrect forwards 150ms cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+     animation: option-select-incorrect forwards 150ms --amp-story-ease-out !important;
      border: solid 1px !important;
  }
  

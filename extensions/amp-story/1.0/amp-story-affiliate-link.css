@@ -22,7 +22,7 @@
 
 [affiliate-link-icon]:not([expanded]),
 [affiliate-link-icon]:not([expanded]) .i-amphtml-story-affiliate-link-circle {
-  animation: i-amphtml-story-affiliate-link-collapse 0.2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards !important;
+  animation: i-amphtml-story-affiliate-link-collapse 0.2s --amp-story-ease-in-out forwards !important;
 }
 
 [affiliate-link-icon][pristine], [affiliate-link-icon][pristine] .i-amphtml-story-affiliate-link-circle {
@@ -30,7 +30,7 @@
 }
 
 amp-story-page[active] [affiliate-link-icon][expanded], amp-story-page[active] [affiliate-link-icon][expanded] .i-amphtml-story-affiliate-link-circle {
-  animation: i-amphtml-story-affiliate-link-expand 0.2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards !important;
+  animation: i-amphtml-story-affiliate-link-expand 0.2s --amp-story-ease-in-out forwards !important;
   transform-origin: left !important;
 }
 
@@ -108,7 +108,7 @@ amp-story-page[active] .i-amphtml-story-affiliate-link-pulse {
   margin: 5px !important;
   width: 40px !important;
   height: 40px !important;
-  animation: pulse 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite alternate !important;
+  animation: pulse 1.5s --amp-story-ease-in-out infinite alternate !important;
 }
 
 @keyframes pulse {

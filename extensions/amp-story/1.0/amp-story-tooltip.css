@@ -27,7 +27,7 @@
   opacity: 0 !important;
   pointer-events: none !important;
   /* If duration is modified, also modify TOOLTIP_CLOSE_ANIMATION_MS in amp-story-embedded-component.js. */
-  transition: opacity 0.1s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: opacity 0.1s var(--amp-story-ease-in-quad) !important;
 }
 
 .i-amphtml-story-focused-state-layer-nav-button-container {
@@ -60,7 +60,7 @@
   border: 0 !important;
   background-color: transparent !important;
   filter: drop-shadow(0px 0px 16px rgba(0, 0, 0, 0.5)) !important;
-  transition: transform 0.2s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: transform 0.2s --amp-story-ease-out !important;
 }
 
 .i-amphtml-story-focused-state-layer-nav-button.i-amphtml-story-tooltip-nav-button-left {
@@ -108,7 +108,7 @@
   background: white !important;
   box-shadow: 0px 6px 16px rgba(0,0,0,0.16) !important;
   transform: translate3d(0, -16px, 0) !important;
-  transition: transform 0.2s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: transform 0.2s --amp-story-ease-out !important;
 }
 
 .i-amphtml-story-tooltip.i-amphtml-tooltip-arrow-on-top {

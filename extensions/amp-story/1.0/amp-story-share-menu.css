@@ -45,12 +45,12 @@
   width: 100% !important;
   background: #000000 !important;
   opacity: 0 !important;
-  transition: opacity 0.15s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: opacity 0.15s var(--amp-story-ease-in-quad) !important;
 }
 
 .i-amphtml-story-share-menu.i-amphtml-story-share-menu-visible::before {
   opacity: 0.55 !important;
-  transition: opacity 0.2s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: opacity 0.2s --amp-story-ease-out !important;
 }
 
 .i-amphtml-story-share-menu-container {
@@ -62,12 +62,12 @@
   background: #FFF !important;
   border-radius: 8px 8px 0 0 !important;
   transform: translate3d(0, 100%, 0) !important;
-  transition: transform 0.15s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: transform 0.15s var(--amp-story-ease-in-quad) !important;
 }
 
 .i-amphtml-story-share-menu-visible .i-amphtml-story-share-menu-container {
   transform: translate3d(0, 0, 0) !important;
-  transition: transform 0.2s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: transform 0.2s --amp-story-ease-out !important;
 }
 
 .i-amphtml-story-share-menu-close-button {
@@ -90,14 +90,14 @@
   max-width: 320px !important; /* Three icons. */
   opacity: 0 !important;
   transform: none !important;
-  transition: opacity 0.15s cubic-bezier(0.4, 0.0, 1, 1) !important;
+  transition: opacity 0.15s var(--amp-story-ease-in-quad) !important;
 }
 
 [desktop].i-amphtml-story-share-menu-visible .i-amphtml-story-share-menu-container {
   border-radius: 8px !important;
   opacity: 1 !important;
   transform: none !important;
-  transition: opacity 0.2s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+  transition: opacity 0.2s --amp-story-ease-out !important;
 }
 
 [desktop] .i-amphtml-story-share-menu-close-button {

@@ -52,11 +52,11 @@ amp-story[standalone].i-amphtml-story-desktop-panels {
 .i-amphtml-story-desktop-panels amp-story-page[i-amphtml-desktop-position="-1"],
 .i-amphtml-story-desktop-panels amp-story-page[i-amphtml-desktop-position="1"],
 .i-amphtml-story-desktop-panels amp-story-page[i-amphtml-desktop-position="2"] {
-  transition: opacity 350ms ease-out, transform 350ms cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+  transition: opacity 350ms --amp-story-ease-out, transform 350ms --amp-story-ease-in-out !important;
 }
 
 .i-amphtml-story-desktop-panels amp-story-page[i-amphtml-desktop-position="0"] {
-  transition: opacity 350ms cubic-bezier(0.0, 0.0, 0.2, 1), transform 350ms cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+  transition: opacity 350ms --amp-story-ease-out, transform 350ms --amp-story-ease-in-out !important;
 }
 
 .i-amphtml-story-desktop-panels amp-story-page[i-amphtml-desktop-position="-2"],
