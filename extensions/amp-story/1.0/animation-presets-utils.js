@@ -48,7 +48,7 @@ export function translate2d(startX, startY, endX, endY) {
  */
 export function rotateAndTranslate(startX, startY, endX, endY, direction) {
   return [
-    {transform: translate(startX, startY) + ' ' + rotate(direction * 360)},
+    {transform: translate(startX, startY) + ' ' + rotate(direction * 120)},
     {transform: translate(endX, endY) + ' ' + rotate(0)},
   ];
 }
@@ -70,6 +70,27 @@ export function whooshIn(startX, startY, endX, endY) {
     {
       opacity: 1,
       transform: translate(endX, endY) + ' ' + scale(1),
+    },
+  ];
+}
+
+/**
+ * Gradually shows and moves the element while translating it on the 2d plane.
+ * @param {number} startX Starting point in the abscissa.
+ * @param {number} startY Starting point in the ordinate.
+ * @param {number} endX Ending point in the abscissa.
+ * @param {number} endY Ending point in the ordinate.
+ * @return {WebKeyframesDef} Keyframes that make up the animation.
+ */
+export function moveIn(startX, startY, endX, endY) {
+  return [
+    {
+      opacity: 0,
+      transform: translate(startX, startY),
+    },
+    {
+      opacity: 1,
+      transform: translate(endX, endY),
     },
   ];
 }
