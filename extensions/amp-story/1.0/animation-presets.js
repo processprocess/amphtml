@@ -19,6 +19,7 @@ import {StoryAnimationPresetDef} from './animation-types';
 import {
   calculateTargetScalingFactor,
   rotateAndTranslate,
+  rotateAndTranslateOld,
   scaleAndTranslate,
   translate2d,
   whooshIn,
@@ -174,6 +175,22 @@ export const presets = {
       return rotateAndTranslate(offsetX, 0, 0, 0, 1);
     },
   },
+  'rotate-in-left-old': {
+    duration: 1000,
+    easing: `cubic-bezier(${DEFAULT_CURVE})`,
+    keyframes(dimensions) {
+      const offsetX = -(dimensions.targetX + dimensions.targetWidth);
+      return rotateAndTranslateOld(offsetX, 0, 0, 0, -1);
+    },
+  },
+  'rotate-in-right-old': {
+    duration: 1000,
+    easing: `cubic-bezier(${DEFAULT_CURVE})`,
+    keyframes(dimensions) {
+      const offsetX = dimensions.pageWidth - dimensions.targetX;
+      return rotateAndTranslateOld(offsetX, 0, 0, 0, 1);
+    },
+  },
   'fade-in': {
     duration: 600,
     easing: `cubic-bezier(${DEFAULT_CURVE})`,
@@ -186,6 +203,7 @@ export const presets = {
       },
     ],
   },
+
   'scale-fade-up': {
     duration: 600,
     easing: `cubic-bezier(${DEFAULT_CURVE})`,
@@ -262,6 +280,49 @@ export const presets = {
           offset: 1,
           transform: `translateY(0)`,
           easing: 'cubic-bezier(0, 0.3, 0.3, 1)',
+        },
+      ];
+    },
+  },
+  'drop-old': {
+    duration: 1600,
+    keyframes(dimensions) {
+      const maxBounceHeight = Math.max(
+        160,
+        dimensions.targetY + dimensions.targetHeight
+      );
+
+      // Adapted from easings.net/#easeOutBounce
+      return [
+        {
+          offset: 0,
+          transform: `translateY(${px(-maxBounceHeight)})`,
+          easing: 'cubic-bezier(.75,.05,.86,.08)',
+        },
+        {
+          offset: 0.3,
+          transform: 'translateY(0)',
+          easing: 'cubic-bezier(.22,.61,.35,1)',
+        },
+        {
+          offset: 0.52,
+          transform: `translateY(${px(-0.6 * maxBounceHeight)})`,
+          easing: 'cubic-bezier(.75,.05,.86,.08)',
+        },
+        {
+          offset: 0.74,
+          transform: 'translateY(0)',
+          easing: 'cubic-bezier(.22,.61,.35,1)',
+        },
+        {
+          offset: 0.83,
+          transform: `translateY(${px(-0.3 * maxBounceHeight)})`,
+          easing: 'cubic-bezier(.75,.05,.86,.08)',
+        },
+        {
+          offset: 1,
+          transform: 'translateY(0)',
+          easing: 'cubic-bezier(.22,.61,.35,1)',
         },
       ];
     },

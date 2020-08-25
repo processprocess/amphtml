@@ -54,6 +54,22 @@ export function rotateAndTranslate(startX, startY, endX, endY, direction) {
 }
 
 /**
+ * Translates and rotates the element on the 2d plane.
+ * @param {number} startX Starting point in the abscissa.
+ * @param {number} startY Starting point in the ordinate.
+ * @param {number} endX Ending point in the abscissa.
+ * @param {number} endY Ending point in the ordinate.
+ * @param {number} direction -1 for left, 1 for right
+ * @return {WebKeyframesDef} Keyframes that make up the animation.
+ */
+export function rotateAndTranslateOld(startX, startY, endX, endY, direction) {
+  return [
+    {transform: translate(startX, startY) + ' ' + rotate(direction * 360)},
+    {transform: translate(endX, endY) + ' ' + rotate(0)},
+  ];
+}
+
+/**
  * Gradually shows and grows the element while translating it on the 2d plane.
  * @param {number} startX Starting point in the abscissa.
  * @param {number} startY Starting point in the ordinate.
