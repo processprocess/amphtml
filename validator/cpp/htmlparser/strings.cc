@@ -81,11 +81,9 @@ std::pair<int, int> UnescapeEntity(std::string* b, int dst, int src,
 // the case conversion table.
 void CaseTransformInternal(bool to_upper, std::string* s);
 
-// For multi-sequence utf-8 codepoints, reads the next valid byte.
-uint8_t ReadContinuationByte(uint8_t byte);
-
-// Checks the codepoints are in range of allowed utf-8 ranges.
-void CheckScalarValue(char32_t code_point);
+// For multi-sequence utf-8 codepoints, reads the next valid byte as out
+// parameter. Returns false if next byte in the sequence is not a valid byte.
+bool ReadContinuationByte(uint8_t byte, uint8_t* out);
 
 // Checks if the character is ASCII that is in range 1-127.
 inline bool IsOneByteASCIIChar(uint8_t c);
@@ -194,10 +192,11 @@ std::optional<char32_t> Strings::DecodeUtf8Symbol(std::string_view* s) {
   if ((c & 0xe0) == 0xc0) {
     if (s->size() < 2) return std::nullopt;
     s->remove_prefix(1);
-    auto c2 = ReadContinuationByte(*(s->data()));
+    uint8_t c2;
+    bool c2_ok = ReadContinuationByte(*(s->data()), &c2);
     s->remove_prefix(1);
     // Invalid byte in the sequence.
-    if (c2 == 0) return L'\uFFFD';
+    if (!c2_ok) return L'\uFFFD';
     char32_t code_point = ((c & 0x1f) << 6) | c2;
     if (code_point < 0x80) {
       return std::nullopt;
@@ -209,17 +208,23 @@ std::optional<char32_t> Strings::DecodeUtf8Symbol(std::string_view* s) {
   if ((c &  0xf0) == 0xe0) {
     if (s->size() < 3) return std::nullopt;
     s->remove_prefix(1);
-    auto c2 = ReadContinuationByte(*(s->data()));
+    uint8_t c2;
+    bool c2_ok = ReadContinuationByte(*(s->data()), &c2);
     s->remove_prefix(1);
-    auto c3 = ReadContinuationByte(*(s->data()));
+    uint8_t c3;
+    bool c3_ok = ReadContinuationByte(*(s->data()), &c3);
     s->remove_prefix(1);
     // Invalid bytes in the sequence.
-    if (c2 == 0 || c3 == 0) return L'\uFFFD';
+    if (!(c2_ok && c3_ok)) return L'\uFFFD';
     char32_t code_point = ((c & 0x0f) << 12) | (c2 << 6) | c3;
     if (code_point < 0x0800) {
       return std::nullopt;
     }
-    CheckScalarValue(code_point);
+    // Check if this is codepoint is low surrgates.
+    if (code_point >= 0xd800 && code_point <= 0xdfff) {
+      return std::nullopt;
+    }
+
     return code_point;
   }
 
@@ -227,14 +232,17 @@ std::optional<char32_t> Strings::DecodeUtf8Symbol(std::string_view* s) {
   if ((c & 0xf8) == 0xf0) {
     if (s->size() < 4) return std::nullopt;
     s->remove_prefix(1);
-    auto c2 = ReadContinuationByte(*(s->data()) & 0xff);
+    uint8_t c2;
+    bool c2_ok = ReadContinuationByte(*(s->data()), &c2);
     s->remove_prefix(1);
-    auto c3 = ReadContinuationByte(*(s->data()) & 0xff);
+    uint8_t c3;
+    bool c3_ok = ReadContinuationByte(*(s->data()), &c3);
     s->remove_prefix(1);
-    auto c4 = ReadContinuationByte(*(s->data()) & 0xff);
+    uint8_t c4;
+    bool c4_ok = ReadContinuationByte(*(s->data()), &c4);
     s->remove_prefix(1);
     // Invalid bytes in the sequence.
-    if (c2 == 0 || c3 == 0 || c4 == 0) return L'\uFFFD';
+    if (!(c2_ok && c3_ok && c4_ok)) return L'\uFFFD';
     char32_t code_point =  ((c & 0x07) << 0x12) |
                            (c2 << 0x0c) |
                            (c3 << 0x06) | c4;
@@ -813,19 +821,16 @@ void CaseTransformInternal(bool to_upper, std::string* s) {
   }
 }
 
-uint8_t ReadContinuationByte(uint8_t byte) {
+bool ReadContinuationByte(uint8_t byte, uint8_t* out) {
+  // Checks it is valid continuation byte. 0b10xxxxxx.
   if ((byte & 0xc0) == 0x80) {
-    return byte & 0x3f;
+    // Mask last six bits 0b00xxxxxx.
+    *out = byte & 0x3f;
+    return true;
   }
 
-  // Error, return null char.
-  return 0;
-}
-
-void CheckScalarValue(char32_t code_point) {
-  CHECK((!(code_point >= 0xd800 && code_point <= 0xdfff)))
-        << "Lone surrogaate U+" + Strings::ToHexString(code_point) +
-           " is not a valid scalar value.";
+  // Invalid continuation byte.
+  return false;
 }
 
 inline bool IsOneByteASCIIChar(uint8_t c) {
