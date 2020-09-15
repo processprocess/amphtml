@@ -234,61 +234,61 @@ export const presets = {
   },
   'drop': {
     duration: 1600,
+    easing: `linear`,
     keyframes(dimensions) {
       const maxBounceHeight = Math.max(
         160,
         dimensions.targetY + dimensions.targetHeight
       );
-
       return [
         {
           offset: 0.0,
-          transform: `translateY(${-maxBounceHeight * 1.0})`,
+          transform: `translateY(${px(Number(-maxBounceHeight))})`,
           easing: 'cubic-bezier(.5, 0, 1, 1)',
         },
         {
           offset: 0.29,
-          transform: `translateY(${-maxBounceHeight * 0.0})`,
+          transform: `translateY(0)`,
           easing: 'cubic-bezier(0, 0, .5, 1)',
         },
         {
           offset: 0.45,
-          transform: `translateY(${-maxBounceHeight * 0.2812})`,
+          transform: `translateY(${px(-maxBounceHeight * 0.2812)})`,
           easing: 'cubic-bezier(.5, 0, 1, 1)',
         },
         {
           offset: 0.61,
-          transform: `translateY(${-maxBounceHeight * 0.0})`,
+          transform: `translateY(0)`,
           easing: 'cubic-bezier(0, 0, .5, 1)',
         },
         {
           offset: 0.71,
-          transform: `translateY(${-maxBounceHeight * 0.0956})`,
+          transform: `translateY(${px(-maxBounceHeight * 0.0956)})`,
           easing: 'cubic-bezier(.5, 0, 1, 1)',
         },
         {
           offset: 0.8,
-          transform: `translateY(${-maxBounceHeight * 0.0})`,
+          transform: `translateY(0)`,
           easing: 'cubic-bezier(0, 0, .5, 1)',
         },
         {
           offset: 0.85,
-          transform: `translateY(${-maxBounceHeight * 0.0359})`,
+          transform: `translateY(${px(-maxBounceHeight * 0.0359)})`,
           easing: 'cubic-bezier(.5, 0, 1, 1)',
         },
         {
           offset: 0.92,
-          transform: `translateY(${-maxBounceHeight * 0.0})`,
+          transform: `translateY(0)`,
           easing: 'cubic-bezier(0, 0, .5, 1)',
         },
         {
           offset: 0.96,
-          transform: `translateY(${-maxBounceHeight * 0.0156})`,
+          transform: `translateY(${px(-maxBounceHeight * 0.0156)})`,
           easing: 'cubic-bezier(.5, 0, 1, 1)',
         },
         {
-          offset: 0.1,
-          transform: `translateY(${-maxBounceHeight * 0.0})`,
+          offset: 1,
+          transform: `translateY(0)`,
           easing: 'cubic-bezier(0, 0, .5, 1)',
         },
       ];
@@ -301,8 +301,6 @@ export const presets = {
         160,
         dimensions.targetY + dimensions.targetHeight
       );
-
-      // Adapted from easings.net/#easeOutBounce
       return [
         {
           offset: 0,

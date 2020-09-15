@@ -34,32 +34,15 @@
       left: 8.61%;
       letter-spacing: 0.02em;
     }
-
+    a {
+      color: white;
+    }
     amp-story-page {
       color: white;
       background-color: #005AF0;
       font-size: calc(1.8 * var(--story-page-vh));
     }
-
-    .circle {
-      background-color: #2962AC;
-      position: absolute;
-      border-radius: 50%;
-    }
-
-    .blue {background-color: #2962AC}
-    .pink {background-color: #7BA4EA}
-
-    .circle-1 {
-      width: 100vw; height: 100vw; top: calc(0% - 100vw / 2); left: calc(100% - 100vw / 2);
-    }
-    .circle-2 {
-      width: 20vw; height: 20vw; top: calc(30% - 20vw / 2); left: calc(0% - 20vw / 2);
-    }
-    .circle-3 {
-      width: 150vw; height: 150vw; bottom: calc(0% - 150vw / 2); left: calc(50% - 150vw / 2);
-    }
-
+    
     .cool-grad-5 {
       background: linear-gradient(45deg, #7BA4EA 0%, #005AF0 100%);
     }
@@ -113,17 +96,18 @@
       background-image: repeating-linear-gradient(45deg, #f2ad4c48, rgba(0,0,0,0) 10% );
     }
 
-  .old-new {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-  }
-  .old-new h1 {
-    font-size: 2.2rem;
-  }
+    .old-new {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+    }
 
-  .ripples {
+    .old-new h1 {
+      font-size: 2.2rem;
+    }
+
+    .ripples {
       align-items: center;
       display: flex;
       flex-direction: column;
@@ -147,12 +131,6 @@
     .ripples-4 {
       background-image: repeating-radial-gradient(circle at 100% 0%,  #0058f031 , rgba(0,0,0,0) 5vh);
     }
-
-    .flex-center {
-      /* display: flex;
-      align-items: center;
-      justify-content: center; */
-    }
   </style>
 
 </head>
@@ -173,10 +151,7 @@
         <div grid-area="middle-third" class='centered-text intro'>
           <h1 animate-in="scale-fade-up">scale-fade-up</h1>
           <h1 animate-in="scale-fade-down">scale-fade-down</h1>
-          <h3 animate-in="scale-fade-up" animate-in-delay="600ms">New animation presets!</h3>
-          <br>
-          <br>
-          <h3 style='display: inline-block' animate-in="scale-fade-up" animate-in-delay="1000ms">Animation preset updates <br>Aug 2020</h3>
+          <h3 animate-in="scale-fade-up" animate-in-delay="600ms">New animation presets and updates.<br>Sept 2020</h3></h3>
         </div>
       </amp-story-grid-layer>  
     </amp-story-page>
@@ -404,16 +379,16 @@
           <h1>Preset updates</h1>
           <div style="display: inline-block">
             <br>
-            <h2>out of the box fresh</h2>
+            <h2>Out of the box fresh</h2>
             <br>
             <p>
-              Presets have been updated for a clean and sophisticated look without any configuration.
+              Our presets have been updated for a clean and sophisticated look without configuration.
               <br>
               <br>
-              We made them feel more natural by giving the animations a slight feel of mass.
+              We made the animations feel more natural by giving them a sense of mass.
               <br>
               <br>
-              The animations all land more softly. Giving a pleasing feeling to the eye.
+              The animations land softly. Giving a pleasant feeling to the eye.
             </p>
           </div>   
         </div>
@@ -423,8 +398,8 @@
     <amp-story-page id="fly-in-left-example" class="cool-grad-exp-2" class="cool-grad-exp-4">
       <amp-story-grid-layer template="fill">
         <div class="old-new">
-          <h1 animate-in="fly-in-left" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">fly-in-left old</h1>
           <h1 animate-in="fly-in-left" >fly-in-left new</h1>
+          <h1 animate-in="fly-in-left" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">fly-in-left old</h1>
         </div>
       </amp-story-grid-layer>      
     </amp-story-page>  
@@ -449,8 +424,8 @@
     <amp-story-page id="fly-in-right-example" class="cool-grad-exp-2" class="cool-grad-exp-4">
       <amp-story-grid-layer template="fill">
         <div class="old-new">
-          <h1 animate-in="fly-in-right" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">fly-in-right old</h1>
           <h1 animate-in="fly-in-right" >fly-in-right new</h1>
+          <h1 animate-in="fly-in-right" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">fly-in-right old</h1>
         </div>
       </amp-story-grid-layer>      
     </amp-story-page>  
@@ -475,8 +450,8 @@
     <amp-story-page id="fly-in-top-example" class="cool-grad-exp-2" class="cool-grad-exp-4">
       <amp-story-grid-layer template="fill">
         <div class="old-new">
-          <h1 animate-in="fly-in-top" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">fly-in-top old</h1>
           <h1 animate-in="fly-in-top" >fly-in-top new</h1>
+          <h1 animate-in="fly-in-top" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">fly-in-top old</h1>
         </div>
       </amp-story-grid-layer>      
     </amp-story-page>  
@@ -501,8 +476,8 @@
     <amp-story-page id="fly-in-bottom-example" class="cool-grad-exp-2" class="cool-grad-exp-4">
       <amp-story-grid-layer template="fill">
         <div class="old-new">
-          <h1 animate-in="fly-in-bottom" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">fly-in-bottom old</h1>
           <h1 animate-in="fly-in-bottom" >fly-in-bottom new</h1>
+          <h1 animate-in="fly-in-bottom" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">fly-in-bottom old</h1>
         </div>
       </amp-story-grid-layer>      
     </amp-story-page>  
@@ -527,8 +502,8 @@
     <amp-story-page id="rotate-in-left-example" class="cool-grad-exp-2" class="cool-grad-exp-4">
       <amp-story-grid-layer template="fill">
         <div class="old-new">
-          <h1 animate-in="rotate-in-left-old" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">rotate-in-left old</h1>
           <h1 animate-in="rotate-in-left" >rotate-in-left new</h1>
+          <h1 animate-in="rotate-in-left-old" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">rotate-in-left old</h1>
         </div>
       </amp-story-grid-layer>      
     </amp-story-page>  
@@ -553,8 +528,8 @@
     <amp-story-page id="rotate-in-right-example" class="cool-grad-exp-2" class="cool-grad-exp-4">
       <amp-story-grid-layer template="fill">
         <div class="old-new">
-          <h1 animate-in="rotate-in-right-old"  animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">rotate-in-right old</h1>
           <h1 animate-in="rotate-in-right" >rotate-in-right new</h1>
+          <h1 animate-in="rotate-in-right-old"  animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">rotate-in-right old</h1>
         </div>
       </amp-story-grid-layer>      
     </amp-story-page>  
@@ -579,8 +554,8 @@
     <amp-story-page id="twirl-in-example" class="cool-grad-exp-2" class="cool-grad-exp-4">
       <amp-story-grid-layer template="fill">
         <div class="old-new">
-          <h1 animate-in="twirl-in" animate-in-duration="400ms" animate-in-easing="cubic-bezier(.2,.75,.4,1)">twirl-in old</h1>
           <h1 animate-in="twirl-in" >twirl-in new</h1>
+          <h1 animate-in="twirl-in" animate-in-duration="400ms" animate-in-easing="cubic-bezier(.2,.75,.4,1)">twirl-in old</h1>
         </div>
       </amp-story-grid-layer>      
     </amp-story-page>  
@@ -608,8 +583,8 @@
     <amp-story-page id="whoosh-in-example" class="cool-grad-exp-2" class="cool-grad-exp-4">
       <amp-story-grid-layer template="fill">
         <div class="old-new">
-          <h1 animate-in="whoosh-in-left" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">whoosh-in-left old</h1>
           <h1 animate-in="whoosh-in-left" >whoosh-in-left new</h1>
+          <h1 animate-in="whoosh-in-left" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">whoosh-in-left old</h1>
         </div>
       </amp-story-grid-layer>      
     </amp-story-page>  
@@ -634,8 +609,8 @@
     <amp-story-page id="drop-example" class="cool-grad-exp-2" class="cool-grad-exp-4">
       <amp-story-grid-layer template="fill">
         <div class="old-new">
+          <h1 animate-in="drop">drop new</h1>
           <h1 animate-in="drop-old" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">drop old</h1>
-          <h1 animate-in="drop" >drop new</h1>
         </div>
       </amp-story-grid-layer>      
     </amp-story-page>  
@@ -649,7 +624,7 @@
             <br>
             <p animate-in="drop" animate-in-delay="600ms">
               <br>
-              <b>easing:</b> <strike>(0.0, 0.0, 0.2, 1)</strike> (0.4, 0.4, 0.0, 1)
+              <b><a href="https://github.com/ampproject/amphtml/blob/master/extensions/amp-story/1.0/animation-presets.js#L226-L277" target="_blank">New keyframes</a></b>
             </p>
           </div>   
         </div>
@@ -660,8 +635,8 @@
     <amp-story-page id="pulse-example" class="cool-grad-exp-2" class="cool-grad-exp-4">
       <amp-story-grid-layer template="fill">
         <div class="old-new">
-          <h1 animate-in="pulse" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.4, 0.0, 0.2, 1)">pulse old</h1>
           <h1 animate-in="pulse">pulse new</h1>
+          <h1 animate-in="pulse" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.4, 0.0, 0.2, 1)">pulse old</h1>
         </div>
       </amp-story-grid-layer>      
     </amp-story-page>     
@@ -686,8 +661,8 @@
     <amp-story-page id="fade-in-example" class="cool-grad-exp-2" class="cool-grad-exp-4">
       <amp-story-grid-layer template="fill">
         <div class="old-new">
-          <h1 animate-in="fade-in" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">fade-in old</h1>
           <h1 animate-in="fade-in">fade-in new</h1>
+          <h1 animate-in="fade-in" animate-in-duration="400ms" animate-in-easing="cubic-bezier(0.0, 0.0, 0.2, 1)">fade-in old</h1>
         </div>
       </amp-story-grid-layer>      
     </amp-story-page>     
@@ -714,6 +689,7 @@
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third" class='centered-text intro'>
           <h1 animate-in="scale-fade-up">Thank you!</h1>
+          <b>More details available <a href="https://docs.google.com/document/d/10kvOrUU7Re2hi6EL-KqtdlmcONxgfKZAJobHdJ56iYA/edit" target="_blank">here</a></b>
         </div>
       </amp-story-grid-layer>  
     </amp-story-page>
