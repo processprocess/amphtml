@@ -656,6 +656,8 @@ export class AmpStory360 extends AMP.BaseElement {
       .then(
         () => {
           this.renderer_ = new Renderer(this.canvas_);
+          this.setUpGlContextListeners_();
+
           this.renderer_.init();
           const img = this.checkImageReSize_(
             dev().assertElement(this.element.querySelector('img'))
@@ -706,6 +708,8 @@ export class AmpStory360 extends AMP.BaseElement {
       .then(
         () => {
           this.renderer_ = new Renderer(this.canvas_);
+          this.setUpGlContextListeners_();
+
           this.renderer_.init();
           this.renderer_.setImageOrientation(
             this.sceneHeading_,
@@ -732,6 +736,17 @@ export class AmpStory360 extends AMP.BaseElement {
           user().error(TAG, 'Failed to load the amp-video.');
         }
       );
+  }
+
+  /** @private */
+  setUpGlContextListeners_() {
+    this.renderer_.canvas.addEventListener('webglcontextlost', (e) =>
+      e.preventDefault()
+    );
+    this.renderer_.canvas.addEventListener('webglcontextrestored', () => {
+      console.log('web gl context restored');
+      this.renderer_.init();
+    });
   }
 
   /** @private */
