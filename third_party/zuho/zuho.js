@@ -109,19 +109,7 @@ export class Matrix {
 
 export class Renderer {
   constructor(canvas) {
-    const params = {
-      alpha: true,
-      depth: false,
-      stencil: false,
-      antialias: false,
-      premultipliedAlpha: true,
-    };
-    this.gl =
-      canvas.getContext('webgl', params) ||
-      canvas.getContext('experimental-webgl', params);
-
     this.canvas = canvas;
-    this.resize();
 
     this.rotation = null;
     this.scale = 1;
@@ -131,6 +119,20 @@ export class Renderer {
   }
 
   init() {
+    const params = {
+      alpha: true,
+      depth: false,
+      stencil: false,
+      antialias: false,
+      premultipliedAlpha: true,
+    };
+
+    this.gl =
+      this.canvas.getContext('webgl', params) ||
+      this.canvas.getContext('experimental-webgl', params);
+
+    this.resize();
+
     this.vertShader = this.gl.createShader(this.gl.VERTEX_SHADER);
     this.fragShaderFast = this.gl.createShader(this.gl.FRAGMENT_SHADER);
     this.fragShaderSlow = this.gl.createShader(this.gl.FRAGMENT_SHADER);

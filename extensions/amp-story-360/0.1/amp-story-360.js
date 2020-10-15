@@ -293,6 +293,8 @@ export class AmpStory360 extends AMP.BaseElement {
 
     /** @private {number} */
     this.headingOffset_ = 0;
+
+    this.lostGlContext_ = null;
   }
 
   /** @override */
@@ -409,6 +411,14 @@ export class AmpStory360 extends AMP.BaseElement {
       this.pause_();
       this.rewind_();
     }
+  }
+
+  /**
+   * @private
+   * @return {number} Distance from the active page.
+   */
+  getPageDistance_() {
+    return parseFloat(this.getPage_().getAttribute('distance'));
   }
 
   /**
@@ -646,6 +656,7 @@ export class AmpStory360 extends AMP.BaseElement {
    * @private
    */
   setupAmpImgRenderer_(ampImgEl) {
+    console.log(typeof this.getPageDistance_());
     const owners = Services.ownersForDoc(this.element);
     owners.setOwner(ampImgEl, this.element);
     owners.scheduleLayout(this.element, ampImgEl);
@@ -658,27 +669,30 @@ export class AmpStory360 extends AMP.BaseElement {
           this.renderer_ = new Renderer(this.canvas_);
           this.setUpGlContextListeners_();
 
-          this.renderer_.init();
-          const img = this.checkImageReSize_(
-            dev().assertElement(this.element.querySelector('img'))
-          );
-          this.renderer_.setImageOrientation(
-            this.sceneHeading_,
-            this.scenePitch_,
-            this.sceneRoll_
-          );
-          this.renderer_.setImage(img);
-          this.renderer_.resize();
-          if (this.orientations_.length < 1) {
-            return;
-          }
-          this.renderInitialPosition_();
-          this.isReady_ = true;
-          if (this.gyroscopeControls_) {
-            this.maybeSetGyroscopeDefaultHeading_();
-          }
-          if (this.isPlaying_) {
-            this.animate_();
+          if (this.getPageDistance_() < 3) {
+            this.renderer_.init();
+            console.log('called from init');
+            const img = this.checkImageReSize_(
+              dev().assertElement(this.element.querySelector('img'))
+            );
+            this.renderer_.setImageOrientation(
+              this.sceneHeading_,
+              this.scenePitch_,
+              this.sceneRoll_
+            );
+            this.renderer_.setImage(img);
+            this.renderer_.resize();
+            if (this.orientations_.length < 1) {
+              return;
+            }
+            this.renderInitialPosition_();
+            this.isReady_ = true;
+            if (this.gyroscopeControls_) {
+              this.maybeSetGyroscopeDefaultHeading_();
+            }
+            if (this.isPlaying_) {
+              this.animate_();
+            }
           }
         },
         () => {
@@ -710,26 +724,29 @@ export class AmpStory360 extends AMP.BaseElement {
           this.renderer_ = new Renderer(this.canvas_);
           this.setUpGlContextListeners_();
 
-          this.renderer_.init();
-          this.renderer_.setImageOrientation(
-            this.sceneHeading_,
-            this.scenePitch_,
-            this.sceneRoll_
-          );
-          this.renderer_.setImage(
-            dev().assertElement(this.ampVideoEl_.querySelector('video'))
-          );
-          this.renderer_.resize();
-          if (this.orientations_.length < 1) {
-            return;
-          }
-          this.renderInitialPosition_();
-          this.isReady_ = true;
-          if (this.gyroscopeControls_) {
-            this.maybeSetGyroscopeDefaultHeading_();
-          }
-          if (this.isPlaying_) {
-            this.animate_();
+          if (this.getPageDistance_() < 3) {
+            this.renderer_.init();
+
+            this.renderer_.setImageOrientation(
+              this.sceneHeading_,
+              this.scenePitch_,
+              this.sceneRoll_
+            );
+            this.renderer_.setImage(
+              dev().assertElement(this.ampVideoEl_.querySelector('video'))
+            );
+            this.renderer_.resize();
+            if (this.orientations_.length < 1) {
+              return;
+            }
+            this.renderInitialPosition_();
+            this.isReady_ = true;
+            if (this.gyroscopeControls_) {
+              this.maybeSetGyroscopeDefaultHeading_();
+            }
+            if (this.isPlaying_) {
+              this.animate_();
+            }
           }
         },
         () => {
@@ -747,6 +764,7 @@ export class AmpStory360 extends AMP.BaseElement {
       console.log('web gl context restored');
       this.renderer_.init();
     });
+    this.lostGlContext_ = this.renderer_.gl.getExtension('WEBGL_lose_context');
   }
 
   /** @private */
