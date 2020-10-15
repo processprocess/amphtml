@@ -656,6 +656,7 @@ export class AmpStory360 extends AMP.BaseElement {
       .then(
         () => {
           this.renderer_ = new Renderer(this.canvas_);
+          this.renderer_.init();
           const img = this.checkImageReSize_(
             dev().assertElement(this.element.querySelector('img'))
           );
@@ -705,6 +706,7 @@ export class AmpStory360 extends AMP.BaseElement {
       .then(
         () => {
           this.renderer_ = new Renderer(this.canvas_);
+          this.renderer_.init();
           this.renderer_.setImageOrientation(
             this.sceneHeading_,
             this.scenePitch_,

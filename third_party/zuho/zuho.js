@@ -105,7 +105,7 @@ export class Matrix {
     z[j * n + j] = +cos;
     return z;
   }
-};
+}
 
 export class Renderer {
   constructor(canvas) {
@@ -116,8 +116,9 @@ export class Renderer {
       antialias: false,
       premultipliedAlpha: true,
     };
-    const gl = this.gl = canvas.getContext('webgl', params) ||
-        canvas.getContext('experimental-webgl', params);
+    this.gl =
+      canvas.getContext('webgl', params) ||
+      canvas.getContext('experimental-webgl', params);
 
     this.canvas = canvas;
     this.resize();
@@ -126,34 +127,62 @@ export class Renderer {
     this.scale = 1;
     this.orientation = null;
 
-    this.vertShader = gl.createShader(gl.VERTEX_SHADER);
-    this.fragShaderFast = gl.createShader(gl.FRAGMENT_SHADER);
-    this.fragShaderSlow = gl.createShader(gl.FRAGMENT_SHADER);
-    this.progFast = gl.createProgram();
-    this.progSlow = gl.createProgram();
+    this.init();
+  }
+
+  init() {
+    this.vertShader = this.gl.createShader(this.gl.VERTEX_SHADER);
+    this.fragShaderFast = this.gl.createShader(this.gl.FRAGMENT_SHADER);
+    this.fragShaderSlow = this.gl.createShader(this.gl.FRAGMENT_SHADER);
+    this.progFast = this.gl.createProgram();
+    this.progSlow = this.gl.createProgram();
     this.compile_(this.vertShader, SHADERS.vertSource);
-    gl.attachShader(this.progFast, this.vertShader);
-    gl.attachShader(this.progFast, this.fragShaderFast);
-    gl.attachShader(this.progSlow, this.vertShader);
-    gl.attachShader(this.progSlow, this.fragShaderSlow);
+    this.gl.attachShader(this.progFast, this.vertShader);
+    this.gl.attachShader(this.progFast, this.fragShaderFast);
+    this.gl.attachShader(this.progSlow, this.vertShader);
+    this.gl.attachShader(this.progSlow, this.fragShaderSlow);
     this.setMapping();
     this.setCamera(Matrix.identity(3), 1.0);
 
-    this.vbo = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
-    const vertices =
-        new Float32Array([-1.0, -1.0, +1.0, -1.0, -1.0, +1.0, +1.0, +1.0]);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+    this.vbo = this.gl.createBuffer();
+    this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vbo);
+    const vertices = new Float32Array([
+      -1.0,
+      -1.0,
+      +1.0,
+      -1.0,
+      -1.0,
+      +1.0,
+      +1.0,
+      +1.0,
+    ]);
+    this.gl.bufferData(this.gl.ARRAY_BUFFER, vertices, this.gl.STATIC_DRAW);
 
-    this.tex = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, this.tex);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    this.tex = this.gl.createTexture();
+    this.gl.bindTexture(this.gl.TEXTURE_2D, this.tex);
+    this.gl.texParameteri(
+      this.gl.TEXTURE_2D,
+      this.gl.TEXTURE_MAG_FILTER,
+      this.gl.NEAREST
+    );
+    this.gl.texParameteri(
+      this.gl.TEXTURE_2D,
+      this.gl.TEXTURE_MIN_FILTER,
+      this.gl.NEAREST
+    );
+    this.gl.texParameteri(
+      this.gl.TEXTURE_2D,
+      this.gl.TEXTURE_WRAP_S,
+      this.gl.CLAMP_TO_EDGE
+    );
+    this.gl.texParameteri(
+      this.gl.TEXTURE_2D,
+      this.gl.TEXTURE_WRAP_T,
+      this.gl.CLAMP_TO_EDGE
+    );
 
-    gl.bindTexture(gl.TEXTURE_2D, null);
-    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+    this.gl.bindTexture(this.gl.TEXTURE_2D, null);
+    this.gl.bindBuffer(this.gl.ARRAY_BUFFER, null);
   }
 
   setImage(img) {
@@ -165,17 +194,18 @@ export class Renderer {
 
   setImageOrientation(heading = 0, pitch = 0, roll = 0) {
     const RAD = Math.PI / 180;
-    this.orientation =
-        this.euler_(RAD * heading, RAD * pitch, RAD * roll);
+    this.orientation = this.euler_(RAD * heading, RAD * pitch, RAD * roll);
   }
 
   setMapping(code = '') {
     this.compile_(
-        this.fragShaderFast,
-        SHADERS.fragSourceCommon + SHADERS.fragSourceFast + code);
+      this.fragShaderFast,
+      SHADERS.fragSourceCommon + SHADERS.fragSourceFast + code
+    );
     this.compile_(
-        this.fragShaderSlow,
-        SHADERS.fragSourceCommon + SHADERS.fragSourceSlow + code);
+      this.fragShaderSlow,
+      SHADERS.fragSourceCommon + SHADERS.fragSourceSlow + code
+    );
     this.link_(this.progFast);
     this.link_(this.progSlow);
   }
@@ -200,11 +230,14 @@ export class Renderer {
     const prog = fast ? this.progFast : this.progSlow;
     gl.useProgram(prog);
     const f =
-        this.scale / Math.sqrt(gl.drawingBufferWidth * gl.drawingBufferHeight);
+      this.scale / Math.sqrt(gl.drawingBufferWidth * gl.drawingBufferHeight);
     const sx = f * gl.drawingBufferWidth;
     const sy = f * gl.drawingBufferHeight;
     gl.uniformMatrix3fv(
-        gl.getUniformLocation(prog, 'uRot'), false, this.rotation);
+      gl.getUniformLocation(prog, 'uRot'),
+      false,
+      this.rotation
+    );
     gl.uniform2f(gl.getUniformLocation(prog, 'uScale'), sx, sy);
     gl.uniform1f(gl.getUniformLocation(prog, 'uPxSize'), 2.0 * f);
 
@@ -212,8 +245,10 @@ export class Renderer {
       this.orientation = Matrix.identity(3);
     }
     gl.uniformMatrix3fv(
-        gl.getUniformLocation(prog, 'uRot'), false,
-        Matrix.mul(3, this.rotation, this.orientation));
+      gl.getUniformLocation(prog, 'uRot'),
+      false,
+      Matrix.mul(3, this.rotation, this.orientation)
+    );
 
     gl.enableVertexAttribArray(0);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
@@ -254,13 +289,21 @@ export class Renderer {
   /** @private */
   euler_(heading, pitch, roll) {
     const te = Matrix.identity(3);
-    const x = -roll, y = -pitch, z = -heading;
+    const x = -roll,
+      y = -pitch,
+      z = heading;
 
-    const a = Math.cos(x), b = Math.sin(x);
-    const c = Math.cos(y), d = Math.sin(y);
-    const e = Math.cos(z), f = Math.sin(z);
+    const a = Math.cos(x),
+      b = Math.sin(x);
+    const c = Math.cos(y),
+      d = Math.sin(y);
+    const e = Math.cos(z),
+      f = Math.sin(z);
 
-    const ae = a * e, af = a * f, be = b * e, bf = b * f;
+    const ae = a * e,
+      af = a * f,
+      be = b * e,
+      bf = b * f;
 
     te[0] = c * e;
     te[3] = -c * f;
