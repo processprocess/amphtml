@@ -334,6 +334,14 @@ export class AnimationRunner {
     this.playback_(PlaybackActivity.START, this.getStartWaitPromise_());
   }
 
+  /** Reverses the animation. */
+  reverse() {
+    // if (this.hasStarted()) {
+    //   return;
+    // }
+    this.runner_.reverse();
+  }
+
   /**
    * @return {!Promise}
    * @private
@@ -566,7 +574,14 @@ export class AnimationManager {
 
   /** Starts all entrance animations for the page. */
   animateIn() {
+    console.log(this.getRunners_()[0]);
     this.getRunners_().forEach((runner) => runner.start());
+  }
+
+  /** Starts all entrance animations for the page. */
+  animateOut() {
+    // console.log(this.getRunners_());
+    this.getRunners_().forEach((runner) => runner.reverse());
   }
 
   /** Skips all entrance animations for the page. */

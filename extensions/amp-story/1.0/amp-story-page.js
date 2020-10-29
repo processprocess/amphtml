@@ -438,6 +438,16 @@ export class AmpStoryPage extends AMP.BaseElement {
       case PageState.NOT_ACTIVE:
         this.element.removeAttribute('active');
         this.pause_();
+        if (this.state_ === PageState.PLAYING) {
+          this.element.setAttribute(
+            'style',
+            'z-index: 2 !important; opacity: 0 !important; transition: opacity 1s !important'
+          );
+          setTimeout(() => {
+            this.element.style.zIndex = 0;
+          }, 1000);
+          this.animateOut_();
+        }
         this.state_ = state;
         break;
       case PageState.PLAYING:
@@ -473,6 +483,9 @@ export class AmpStoryPage extends AMP.BaseElement {
         break;
     }
   }
+
+  // Context managemenet PR ready for review
+  // Working on a prototype for animation transitions between pages,
 
   /**
    * @private
@@ -1179,6 +1192,17 @@ export class AmpStoryPage extends AMP.BaseElement {
       return;
     }
     this.animationManager_.animateIn();
+  }
+
+  /**
+   * Reverses animations for animateOut, if the animation manager is available.
+   * @private
+   */
+  animateOut_() {
+    if (!this.animationManager_) {
+      return;
+    }
+    this.animationManager_.animateOut();
   }
 
   /**
