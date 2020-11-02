@@ -574,14 +574,16 @@ export class AnimationManager {
 
   /** Starts all entrance animations for the page. */
   animateIn() {
-    console.log(this.getRunners_()[0]);
     this.getRunners_().forEach((runner) => runner.start());
   }
 
   /** Starts all entrance animations for the page. */
   animateOut() {
-    // console.log(this.getRunners_());
-    this.getRunners_().forEach((runner) => runner.reverse());
+    this.getRunners_().forEach((runner) => {
+      const effect = runner.runner_.players_[0].effect;
+      effect.setKeyframes(effect.getKeyframes().reverse());
+      runner.start();
+    });
   }
 
   /** Skips all entrance animations for the page. */
