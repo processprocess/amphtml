@@ -444,7 +444,7 @@ export class AmpStoryPage extends AMP.BaseElement {
             'z-index: 2 !important; opacity: 0 !important; transition: opacity 1s !important'
           );
           setTimeout(() => {
-            this.element.style.zIndex = 0;
+            this.element.removeAttribute('style');
           }, 1000);
           this.animateOut_();
         }
