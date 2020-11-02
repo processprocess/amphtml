@@ -52,54 +52,89 @@
     standalone>
 
     <amp-story-page id="pulse-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="fade-in" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/81/81_p.jpg?20200131124216></amp-img>
+      </amp-story-grid-layer>
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third">
-          <h1 animate-in="pulse">pulse</h1>
+          <h1 animate-in="fade-in">It's not an animate out.</h1>
+          <!-- <h1 animate-in="pulse">pulse</h1> -->
         </div>
       </amp-story-grid-layer>
     </amp-story-page>
+
+    <amp-story-page id="fade-in-page-2">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="fade-in" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/148/148_p.jpg?20200604074202></amp-img>
+      </amp-story-grid-layer>
+      <amp-story-grid-layer template="thirds">
+        <div grid-area="middle-third">
+          <h1 animate-in="fade-in">It's a cross fade.</h1>
+          <!-- <h1 animate-in="pulse">pulse</h1> -->
+        </div>
+      </amp-story-grid-layer>
+    </amp-story-page>    
 
     <amp-story-page id="fade-in-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="scale-fade-down" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/169/169_p.jpg?20201009080323></amp-img>
+      </amp-story-grid-layer>      
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third">
-          <h1 animate-in="fade-in">fade-in</h1>
+          <h1 animate-in="fade-in">That keeps content alive.</h1>
         </div>
       </amp-story-grid-layer>
     </amp-story-page>
 
-    <amp-story-page id="scale-fade-up-page">
+    <amp-story-page id="fade-in-page-25">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="fade-in" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/148/148_p.jpg?20200604074202></amp-img>
+      </amp-story-grid-layer>
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third">
-          <h1 animate-in="scale-fade-up">scale-fade-up</h1>
+          <h1 animate-in="fade-in">Using our existing animation API.</h1>
+          <!-- <h1 animate-in="pulse">pulse</h1> -->
+        </div>
+      </amp-story-grid-layer>
+    </amp-story-page>    
+
+    <amp-story-page id="scale-fade-up-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="scale-fade-down" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/128/128_p.jpg?20200522094228></amp-img>
+      </amp-story-grid-layer>        
+      <amp-story-grid-layer template="thirds">
+        <div grid-area="middle-third">
+          <h1 animate-in="scale-fade-up">Making it easy to learn.</h1>
         </div>
       </amp-story-grid-layer>
     </amp-story-page>
 
     <amp-story-page id="scale-fade-down-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="scale-fade-down" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/157/157_p.jpg?20200625113657></amp-img>
+      </amp-story-grid-layer>       
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third">
-          <h1 animate-in="scale-fade-down">scale-fade-down</h1>
-        </div>
-      </amp-story-grid-layer>
-    </amp-story-page>
-
-    <amp-story-page id="twirl-in-page">
-      <amp-story-grid-layer template="thirds">
-        <div grid-area="middle-third">
-          <h1 animate-in="twirl-in">twirl-in</h1>
+          <h1 animate-in="scale-fade-down">Easy to addopt.</h1>
         </div>
       </amp-story-grid-layer>
     </amp-story-page>
 
     <amp-story-page id="fly-in-left-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="fly-in-left" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/58/58_p.jpg?20191112092252></amp-img>
+      </amp-story-grid-layer>        
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third">
-          <h1 animate-in="fly-in-left">fly-in-left</h1>
+          <h1 animate-in="fly-in-left">And easy to scale.</h1>
         </div>
       </amp-story-grid-layer>
     </amp-story-page>
 
     <amp-story-page id="fly-in-right-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="fly-in-right" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/53/53_p.jpg?20191112092147></amp-img>
+      </amp-story-grid-layer>        
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third">
           <h1 animate-in="fly-in-right">fly-in-right</h1>
@@ -108,6 +143,9 @@
     </amp-story-page>
 
     <amp-story-page id="fly-in-top-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="fly-in-top" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/49/49_p.jpg?20191112092132></amp-img>
+      </amp-story-grid-layer>       
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third">
           <h1 animate-in="fly-in-top">fly-in-top</h1>
@@ -116,6 +154,9 @@
     </amp-story-page>
 
     <amp-story-page id="fly-in-bottom-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="fly-in-bottom" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/159/159_p.jpg?20200630102443></amp-img>
+      </amp-story-grid-layer>        
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third">
           <h1 animate-in="fly-in-bottom">fly-in-bottom</h1>
@@ -123,23 +164,10 @@
       </amp-story-grid-layer>
     </amp-story-page>
 
-    <amp-story-page id="rotate-in-left-page">
-      <amp-story-grid-layer template="thirds">
-        <div grid-area="middle-third">
-          <h1 animate-in="rotate-in-left">rotate-in-left</h1>
-        </div>
-      </amp-story-grid-layer>
-    </amp-story-page>
-
-    <amp-story-page id="rotate-in-right-page">
-      <amp-story-grid-layer template="thirds">
-        <div grid-area="middle-third">
-          <h1 animate-in="rotate-in-right">rotate-in-right</h1>
-        </div>
-      </amp-story-grid-layer>
-    </amp-story-page>
-
     <amp-story-page id="whoosh-in-left-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="whoosh-in-left" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/162/162_p.jpg?20200716020619></amp-img>
+      </amp-story-grid-layer>      
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third">
           <h1 animate-in="whoosh-in-left">whoosh-in-left</h1>
@@ -148,6 +176,9 @@
     </amp-story-page>
 
     <amp-story-page id="whoosh-in-right-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="whoosh-in-right" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/86/86_p.jpg?20200304092801></amp-img>
+      </amp-story-grid-layer>        
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third">
           <h1 animate-in="whoosh-in-right">whoosh-in-right</h1>
@@ -155,10 +186,44 @@
       </amp-story-grid-layer>
     </amp-story-page>
 
-    <amp-story-page id="drop-page">
+    <amp-story-page id="rotate-in-left-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="rotate-in-left" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/152/152_p.jpg?20200615105447></amp-img>
+      </amp-story-grid-layer>          
       <amp-story-grid-layer template="thirds">
         <div grid-area="middle-third">
-          <h1 animate-in="drop">drop-in</h1>
+          <h1 animate-in="rotate-in-left">rotate-in-left</h1>
+        </div>
+      </amp-story-grid-layer>
+    </amp-story-page>
+
+    <amp-story-page id="rotate-in-right-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="rotate-in-right" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/168/168_p.jpg?20200828010258></amp-img>
+      </amp-story-grid-layer>        
+      <amp-story-grid-layer template="thirds">
+        <div grid-area="middle-third">
+          <h1 animate-in="rotate-in-right">rotate-in-right</h1>
+        </div>
+      </amp-story-grid-layer>
+    </amp-story-page>
+
+    <amp-story-page id="twirl-in-page">
+      <amp-story-grid-layer template='fill'>
+        <amp-img animate-in="twirl-in" layout="fill" src=https://d1qfvrtlrku0v0.cloudfront.net/upload/images/51/51_p.jpg?20191112092139></amp-img>
+      </amp-story-grid-layer>         
+      <amp-story-grid-layer template="thirds">
+        <div grid-area="middle-third">
+          <h1 animate-in="twirl-in">twirl-in</h1>
+        </div>
+      </amp-story-grid-layer>
+    </amp-story-page>
+
+    <amp-story-page id="drop-page">      
+      <amp-story-grid-layer template="thirds">
+        <div grid-area="middle-third">
+          <h1>drop-in</h1>
+          <!-- <h1 animate-in="drop">drop-in</h1> -->
         </div>
       </amp-story-grid-layer>
     </amp-story-page>

@@ -439,13 +439,6 @@ export class AmpStoryPage extends AMP.BaseElement {
         this.element.removeAttribute('active');
         this.pause_();
         if (this.state_ === PageState.PLAYING) {
-          this.element.setAttribute(
-            'style',
-            'z-index: 2 !important; opacity: 0 !important; transition: opacity 1s !important'
-          );
-          setTimeout(() => {
-            this.element.removeAttribute('style');
-          }, 1000);
           this.animateOut_();
         }
         this.state_ = state;

@@ -334,14 +334,6 @@ export class AnimationRunner {
     this.playback_(PlaybackActivity.START, this.getStartWaitPromise_());
   }
 
-  /** Reverses the animation. */
-  reverse() {
-    // if (this.hasStarted()) {
-    //   return;
-    // }
-    this.runner_.reverse();
-  }
-
   /**
    * @return {!Promise}
    * @private
@@ -577,12 +569,21 @@ export class AnimationManager {
     this.getRunners_().forEach((runner) => runner.start());
   }
 
-  /** Starts all entrance animations for the page. */
+  /** Starts all exit animations for the page. */
   animateOut() {
     this.getRunners_().forEach((runner) => {
       const effect = runner.runner_.players_[0].effect;
-      effect.setKeyframes(effect.getKeyframes().reverse());
+      const OgKeyframes = effect.getKeyframes();
+      effect.setKeyframes([...OgKeyframes].reverse());
       runner.start();
+
+      const onFinishOut = () => {
+        console.log('done');
+        effect.setKeyframes(OgKeyframes);
+        runner.runner_.players_[0].removeEventListener('finish', onFinishOut);
+      };
+
+      runner.runner_.players_[0].addEventListener('finish', onFinishOut);
     });
   }
 

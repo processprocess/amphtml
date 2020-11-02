@@ -1442,7 +1442,15 @@ export class AmpStory extends AMP.BaseElement {
       // target page as fast as possible.
       () => {
         oldPage && oldPage.element.removeAttribute('active');
-
+        if (oldPage) {
+          oldPage.element.setAttribute(
+            'style',
+            'z-index: 2 !important; transition: opacity .6s !important; opacity: 0 !important;'
+          );
+          setTimeout(() => {
+            oldPage.element.removeAttribute('style');
+          }, 1000);
+        }
         if (
           this.storeService_.get(StateProperty.UI_STATE) ===
           UIType.DESKTOP_PANELS
