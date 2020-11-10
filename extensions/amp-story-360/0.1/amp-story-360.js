@@ -363,7 +363,7 @@ export class AmpStory360 extends AMP.BaseElement {
           this.isOnActivePage_ = currPageId === this.getPageId_();
           this.onPageNavigation_();
           this.maybeShowDiscoveryAnimation_();
-          this.maybeSetGyroscopeDefaultHeading_();
+          // this.maybeSetGyroscopeDefaultHeading_();
         });
 
         this.storeService_.subscribe(StateProperty.PAUSED_STATE, (isPaused) => {
@@ -477,11 +477,14 @@ export class AmpStory360 extends AMP.BaseElement {
       this.win.addEventListener('deviceorientation', (e) => {
         // Used to set default heading when navigating to this page.
         this.orientationAlpha_ = e.alpha;
-        if (this.isReady_ && this.isOnActivePage_) {
+        if (this.isReady_) {
           rafTimeout && this.win.cancelAnimationFrame(rafTimeout);
           rafTimeout = this.win.requestAnimationFrame(() =>
             this.onDeviceOrientation_(e)
           );
+        }
+        if (!this.isOnActivePage_) {
+          this.maybeSetGyroscopeDefaultHeading_();
         }
       });
       this.maybeShowDiscoveryAnimation_();
@@ -493,7 +496,7 @@ export class AmpStory360 extends AMP.BaseElement {
    * @private
    */
   maybeSetGyroscopeDefaultHeading_() {
-    if (this.isOnActivePage_ && this.gyroscopeControls_ && this.isReady_) {
+    if (this.gyroscopeControls_ && this.isReady_) {
       this.headingOffset_ =
         parseFloat(
           this.element.getAttribute('heading-end') ||
@@ -537,7 +540,9 @@ export class AmpStory360 extends AMP.BaseElement {
     rot = Matrix.mul(3, Matrix.rotation(3, 2, 1, deg2rad(e.beta)), rot);
     rot = Matrix.mul(3, Matrix.rotation(3, 0, 2, deg2rad(e.gamma)), rot);
     this.renderer_.setCamera(rot, 1);
-    this.renderer_.render(true);
+    if (this.isOnActivePage_) {
+      this.renderer_.render(true);
+    }
   }
 
   /**
@@ -669,11 +674,11 @@ export class AmpStory360 extends AMP.BaseElement {
           if (this.orientations_.length < 1) {
             return;
           }
-          this.renderInitialPosition_();
+          // this.renderInitialPosition_();
           this.isReady_ = true;
-          if (this.gyroscopeControls_) {
-            this.maybeSetGyroscopeDefaultHeading_();
-          }
+          // if (this.gyroscopeControls_) {
+          //   this.maybeSetGyroscopeDefaultHeading_();
+          // }
           if (this.isPlaying_) {
             this.animate_();
           }
@@ -717,11 +722,11 @@ export class AmpStory360 extends AMP.BaseElement {
           if (this.orientations_.length < 1) {
             return;
           }
-          this.renderInitialPosition_();
+          // this.renderInitialPosition_();
           this.isReady_ = true;
-          if (this.gyroscopeControls_) {
-            this.maybeSetGyroscopeDefaultHeading_();
-          }
+          // if (this.gyroscopeControls_) {
+          //   this.maybeSetGyroscopeDefaultHeading_();
+          // }
           if (this.isPlaying_) {
             this.animate_();
           }
