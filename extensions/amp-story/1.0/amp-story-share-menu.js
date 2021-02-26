@@ -36,6 +36,7 @@ import {dev, devAssert} from '../../../src/log';
 import {getAmpdoc} from '../../../src/service';
 import {getLocalizationService} from './amp-story-localization-service';
 import {htmlFor} from '../../../src/static-template';
+import {setModalAsClosed, setModalAsOpen} from '../../../src/modal';
 import {setStyles} from '../../../src/style';
 
 /** @const {string} Class to toggle the share menu. */
@@ -250,6 +251,13 @@ export class ShareMenu {
       this.close_();
     }
 
+    if (isOpen) {
+      setModalAsOpen(this.element_);
+      this.element_.setAttribute('aria-modal', 'true');
+    } else {
+      setModalAsClosed(this.element_);
+      this.element_.removeAttribute('aria-modal');
+    }
     if (!this.isSystemShareSupported_) {
       this.vsync_.mutate(() => {
         this.element_.classList.toggle(VISIBLE_CLASS, isOpen);
