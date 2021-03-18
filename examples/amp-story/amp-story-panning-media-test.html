@@ -1,0 +1,369 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="none">
+    <title>The Northern Sky Constellations</title>
+    <link rel="canonical" href="navigation.html">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+    <script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script>
+    <script async custom-element="amp-animation-polyfill" src="https://cdn.ampproject.org/v0/amp-animation-polyfill-0.1.js"></script>
+    <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    <script async custom-element="amp-story-panning-media" src="https://cdn.ampproject.org/v0/amp-story-panning-media-0.1.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&amp;display=swap" rel="stylesheet">
+    <style type="text/css" amp-custom>
+      amp-story {
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        font-size: calc(3.125 * var(--story-page-vw));
+      }
+      amp-story-page {
+        background-color: #151515;
+
+      }
+      .quiz-btn {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        border-radius: 27px;
+        border: 2px solid white;
+        font-weight: bold;
+        margin: auto auto 0 auto;
+        padding: 10px 20px;
+      }  
+      .quiz-btn svg {
+        margin-left: 10px;
+        width: 18px;
+        height: 18px;
+        fill: white;
+        stroke: white;
+      }    
+      .text-wrapper {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 20%;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.95);
+      }      
+      #cover .text-wrapper {
+        top: 55%;
+      }        
+      .ccert {
+        color: white;
+        font-size: 1.07em;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        line-height: 1.8em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .nunoz {
+        font-size: 2.84em;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        line-height: 1.2em;
+        margin-bottom: 17px;
+      }
+      .zlozi {
+        font-size: 1.07em;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        line-height: 1.8em;
+      }      
+      .body-text {
+        font-size: 14px;
+        padding: 0 20px;
+      }
+
+      .controls {
+        font-family: 'Poppins', sans-serif;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 11;
+        color: white;
+        padding: 10px;
+        margin: 20px;
+        font-size: 12px;
+        background-color: rgba(0, 0, 0, .5);
+        display: none;
+      }
+      .story-wrapper {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        left: 0;
+      }
+      label {
+        display: block;
+      }       
+      .vignette {
+        background: radial-gradient(100% 100% at 50% 40%, rgba(0, 0, 0, 0) 0.0%, rgba(0, 0, 0, 0.8) 100%)
+      }
+    </style>
+  </head>
+  <body>
+    <div class="controls">
+      amp-story-panning-media
+      <br>
+      attributes:
+      <label for="xVal" id="xLabel">x= </label>
+      <input type="range" val=50 min=-50 max=50 id="xInput">
+      <label for="yVal" id="yLabel">y= </label>
+      <input type="range" val=50 min=-50 max=50 id="yInput">
+      <label for="zoomVal" id="zoomLabel">zoom= </label>
+      <input type="range" step='.1' val=1 min=0 max=10 id="zoomInput">
+    </div>
+    <div class="story-wrapper">    
+      <amp-story
+          standalone
+          title="The Northern Sky Constellations"
+          publisher="AMP Story team"
+          publisher-logo-src="assets/logo.png"
+          poster-portrait-src="assets/poster.jpg">
+
+        <amp-story-page id="cover">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media layout="fill" y='-45%' zoom=.35>
+              <amp-img layout="fill" src="constellations.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>
+            <amp-story-panning-media style='opacity: .4' layout="fill" y='-45%' zoom=.01>
+              <amp-img layout="fill" src="stars-1.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>            
+            <amp-story-panning-media style='opacity: .4' layout="fill" y='-45%' zoom=.01>
+              <amp-img layout="fill" src="stars-2.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>            
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+            <div class='text-wrapper'>
+              <span class="ccert">the wonderful</span>
+              <span class="nunoz">Northern Sky Constellations</span>
+              <span >by the Web Story team</span>
+            </div>
+            <div class="quiz-btn">
+              <span>Start</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path></svg>
+            </div>
+          </amp-story-grid-layer> 
+        </amp-story-page>
+
+        <amp-story-page id="page-1">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media layout="fill" x='-3%' y='-28%' zoom=2>
+              <amp-img layout="fill" src="constellations.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='-3%' y='-28%' zoom=2.7>
+              <amp-img layout="fill" src="stars-1.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>     
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='-3%' y='-28%' zoom=3.3>
+              <amp-img layout="fill" src="stars-2.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>                     
+          </amp-story-grid-layer>        
+          <amp-story-grid-layer template="fill" class='vignette' animate-in="scale-fade-down"></amp-story-grid-layer>
+          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+            <div class='text-wrapper'>
+              <span class="ccert">The big bear</span>
+              <span class="nunoz">Ursa Major</span>
+              <span class="body-text">Its brightest stars form the Big Dipper asterism, one of the most recognizable shapes in the sky, also known as the Plough. </span>
+            </div>
+            <div class="quiz-btn">
+              <span>Next</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path></svg>
+            </div>
+          </amp-story-grid-layer> 
+        </amp-story-page>   
+        
+        <amp-story-page id="page-2">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media layout="fill" x='5%' y='-7%' zoom=3.5>
+              <amp-img layout="fill" src="constellations.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='5%' y='-7%' zoom=4>
+              <amp-img layout="fill" src="stars-1.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>     
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='5%' y='-7%' zoom=4.3>
+              <amp-img layout="fill" src="stars-2.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>               
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill" class='vignette'></amp-story-grid-layer>
+          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+            <div class='text-wrapper'>
+              <span class="ccert">The little bear</span>
+              <span class="nunoz">Ursa Minor</span>
+              <span class="body-text">Also known as the Little Dipper, it is notable for marking the location of the north celestial pole, the star known as Polaris.</span>
+            </div>
+            <div class="quiz-btn">
+              <span>Next</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path></svg>
+            </div>
+          </amp-story-grid-layer> 
+        </amp-story-page>  
+        
+        <amp-story-page id="page-3">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media layout="fill" x='29%' y='-14%' zoom=2.6>
+              <amp-img layout="fill" src="constellations.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='29%' y='-14%' zoom=3>
+              <amp-img layout="fill" src="stars-1.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>     
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='29%' y='-14%' zoom=3.3>
+              <amp-img layout="fill" src="stars-2.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>               
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill" class='vignette'></amp-story-grid-layer>
+          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+            <div class='text-wrapper'>
+              <span class="ccert">The warrior</span>
+              <span class="nunoz">Hercules</span>
+              <span class="body-text">The constellation itself has a long history, dating back to Sumerian times. Hercules is the fifth largest constellation.</span>
+            </div>
+            <div class="quiz-btn">
+              <span>Next</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path></svg>
+            </div>
+          </amp-story-grid-layer> 
+        </amp-story-page>  
+        
+        <amp-story-page id="page-4">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media layout="fill" x='-4%' y='12%' zoom=4.3>
+              <amp-img layout="fill" src="constellations.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='-4%' y='12%' zoom=4.7>
+              <amp-img layout="fill" src="stars-1.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>     
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='-4%' y='12%' zoom=5.2>
+              <amp-img layout="fill" src="stars-2.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>               
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill" class='vignette'></amp-story-grid-layer>
+          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+            <div class='text-wrapper'>
+              <span class="ccert">The queen</span>
+              <span class="nunoz">Cassiopeia</span>
+              <span class="body-text">Named after Cassiopeia, the boastful queen of Greek mythology. It is Nicknamed the W constellation for it's zigzag formation.</span>
+            </div>
+            <div class="quiz-btn">
+              <span>Next</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path></svg>
+            </div>
+          </amp-story-grid-layer> 
+        </amp-story-page>   
+        
+        <amp-story-page id="page-5">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media layout="fill" x='-18%' y='11%' zoom=2.7>
+              <amp-img layout="fill" src="constellations.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='-18%' y='11%' zoom=3>
+              <amp-img layout="fill" src="stars-1.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>     
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='-18%' y='11%' zoom=3.3>
+              <amp-img layout="fill" src="stars-2.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>               
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill" class='vignette'></amp-story-grid-layer>
+          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+            <div class='text-wrapper'>
+              <span class="ccert">The hero</span>
+              <span class="nunoz">Perseus</span>
+              <span class="body-text">Perseus contains several interesting deep sky objects such as Messier 34, the Double Cluster and the California Nebula.</span>
+            </div>
+            <div class="quiz-btn">
+              <span>Next</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path></svg>
+            </div>
+          </amp-story-grid-layer> 
+        </amp-story-page>      
+        
+        <amp-story-page id="end-page">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media layout="fill" x='0' y='-31%' zoom=0.5>
+              <amp-img layout="fill" src="constellations.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='0' y='-31%' zoom=0.01>
+              <amp-img layout="fill" src="stars-1.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>     
+            <amp-story-panning-media style='opacity: .4' layout="fill" x='0' y='-31%' zoom=0.01>
+              <amp-img layout="fill" src="stars-2.png" width="2048" height="2048"></amp-img>
+            </amp-story-panning-media>               
+          </amp-story-grid-layer>
+          <!-- <amp-story-grid-layer template="fill" class='vignette'></amp-story-grid-layer> -->
+          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+            <div class='text-wrapper'>
+              <span class="nunoz">Do You Like it?</span>
+              <span class="body-text">This story shows the capabilities of the new amp-story-panning-media component, now you can use it too!</span>
+            </div>
+            <div class="quiz-btn">
+              <span>Learn More</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path></svg>
+            </div>
+          </amp-story-grid-layer> 
+        </amp-story-page>              
+
+      </amp-story>
+    </div>
+    <script>
+
+      // let activePanningMedia
+      
+      // function updateLabelsFromActivePage() {
+      //   setTimeout(() => {
+      //     activePanningMedia = document.querySelector('amp-story-page[active]').querySelector('amp-story-panning-media');
+      //     xInput.value = parseInt(activePanningMedia.getAttribute('x'));
+      //     xLabel.textContent = 'x: ' + xInput.value + '%';
+      //     yInput.value = parseInt(activePanningMedia.getAttribute('y'));
+      //     yLabel.textContent = 'y: ' + yInput.value + '%';
+      //     zoomInput.value = parseFloat(activePanningMedia.getAttribute('zoom')) || 1;
+      //     zoomLabel.textContent = 'zoom: ' + zoomInput.value;
+      //   }, 100)
+      // }
+      // setTimeout(() => {
+      //   updateLabelsFromActivePage()
+      // }, 400)
+  
+      // document.querySelector('.story-wrapper').addEventListener('click', () => {
+      //   updateLabelsFromActivePage()
+      // }, true) 
+  
+      // xInput.addEventListener('input', (e) => {
+      //   const {value} = e.target;
+      //   activePanningMedia.setAttribute('x', value + '%');
+      //   xInput.value = parseInt(activePanningMedia.getAttribute('x'));
+      //   xLabel.textContent = 'x: ' + xInput.value + '%';
+      //   updateActivePanningMedia()
+      // })
+  
+      // yInput.addEventListener('input', (e) => {
+      //   const {value} = e.target;
+      //   activePanningMedia.setAttribute('y', value + '%');
+      //   yInput.value = parseInt(activePanningMedia.getAttribute('y'));
+      //   yLabel.textContent = 'y: ' + yInput.value + '%';
+      //   updateActivePanningMedia()
+      // })    
+  
+      // zoomInput.addEventListener('input', (e) => {
+      //   const {value} = e.target;
+      //   activePanningMedia.setAttribute('zoom', value);
+      //   zoomInput.value = parseFloat(activePanningMedia.getAttribute('zoom'));
+      //   zoomLabel.textContent = 'zoom: ' + zoomInput.value;
+      //   updateActivePanningMedia()
+      // })    
+  
+      // function updateActivePanningMedia() {
+      //   activePanningMedia.getImpl().then(impl => {
+      //     console.log(impl)
+      //     impl.setAnimateTo_()
+      //     impl.animate_()
+      //   })
+      // }
+    </script>       
+  </body>
+</html>
