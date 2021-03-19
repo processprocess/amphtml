@@ -17,6 +17,7 @@
 import {
   Action,
   StateProperty,
+  UIType,
 } from '../../../extensions/amp-story/1.0/amp-story-store-service';
 import {CSS} from '../../../build/amp-story-panning-media-0.1.css';
 import {CommonSignals} from '../../../src/common-signals';
@@ -34,7 +35,7 @@ const TAG = 'AMP_STORY_PANNING_MEDIA';
 const DURATION_MS = 1000;
 
 /** @const {number}  */
-const DISTANCE_TO_CENTER_EDGE = 50;
+const DISTANCE_TO_CENTER_EDGE_PERCENT = 50;
 
 /**
  * A small number used to calculate zooming out to 0.
@@ -68,7 +69,7 @@ export let panningMediaPositionDef;
  *   bottom: float,
  * }}
  */
-export let panningMediaMaxBoundsDef;
+export let panningMediaMaxBoundsPercentDef;
 
 export class AmpStoryPanningMedia extends AMP.BaseElement {
   /** @param {!AmpElement} element */
@@ -83,9 +84,6 @@ export class AmpStoryPanningMedia extends AMP.BaseElement {
 
     /** @private {?panningMediaPositionDef} Position to animate to. */
     this.animateTo_ = {};
-
-    /** @private {?panningMediaMaxBoundsDef} Max distances to keep image in viewport. */
-    this.maxBounds_ = {};
 
     /** @private {?{width: number, height: number}} */
     this.pageSize_ = null;
@@ -103,7 +101,10 @@ export class AmpStoryPanningMedia extends AMP.BaseElement {
     this.isOnActivePage_ = false;
 
     /** @private {?number} Distance from active page. */
-    this.distance_ = null;
+    this.pageDistance_ = null;
+
+    /** @private {number} Max distance from active page to animate. Either 0 or 1. */
+    this.maxDistanceToAnimate_ = 1;
 
     /** @private {?string} */
     this.groupId_ = null;
@@ -161,7 +162,7 @@ export class AmpStoryPanningMedia extends AMP.BaseElement {
       StateProperty.CURRENT_PAGE_ID,
       (currPageId) => {
         this.isOnActivePage_ = currPageId === this.getPageId_();
-        this.onPageNavigation_();
+        this.animate_();
       },
       true /** callToInitialize */
     );
@@ -170,10 +171,17 @@ export class AmpStoryPanningMedia extends AMP.BaseElement {
       (panningMediaState) => this.onPanningMediaStateChange_(panningMediaState),
       true /** callToInitialize */
     );
+    this.storeService_.subscribe(
+      StateProperty.UI_STATE,
+      (uiState) => {
+        this.maxDistanceToAnimate_ = uiState === UIType.DESKTOP_PANELS ? 0 : 1;
+      },
+      true /* callToInitialize */
+    );
     // Mutation observer for distance attribute
     const config = {attributes: true, attributeFilter: ['distance']};
     const callback = (mutationsList) => {
-      this.distance_ = parseInt(
+      this.pageDistance_ = parseInt(
         mutationsList[0].target.getAttribute('distance'),
         10
       );
@@ -189,37 +197,36 @@ export class AmpStoryPanningMedia extends AMP.BaseElement {
     const zoom = parseFloat(this.element_.getAttribute('zoom') || 1);
     const lockBounds = this.element_.hasAttribute('lock-bounds');
 
-    if (!lockBounds) {
-      this.animateTo_ = {x, y, zoom};
-    } else {
+    if (lockBounds) {
       // Zoom must be set to calculate maxBounds.
       this.animateTo_.zoom = zoom < 1 ? 1 : zoom;
-
-      this.setMaxBounds_();
-
+      const maxBounds = this.getMaxBounds_();
       this.animateTo_.x =
-        x > 0
-          ? Math.min(this.maxBounds_.left, x)
-          : Math.max(this.maxBounds_.right, x);
-
+        x > 0 ? Math.min(maxBounds.left, x) : Math.max(maxBounds.right, x);
       this.animateTo_.y =
-        y > 0
-          ? Math.min(this.maxBounds_.top, y)
-          : Math.max(-this.maxBounds_.bottom, y);
+        y > 0 ? Math.min(maxBounds.top, y) : Math.max(-maxBounds.bottom, y);
+    } else {
+      this.animateTo_ = {x, y, zoom};
     }
   }
 
   /**
    * Calculates max distances to keep image in viewport.
-   * This is only set if lock-bounds, left, right, top or bottom are specified.
    * @private
+   * @return {panningMediaMaxBoundsPercentDef}
    */
-  setMaxBounds_() {
+  getMaxBounds_() {
     // Calculations to clamp image to edge of container.
     const {width: containerWidth, height: containerHeight} = this.pageSize_;
 
     const ampImgWidth = this.ampImgEl_.getAttribute('width');
     const ampImgHeight = this.ampImgEl_.getAttribute('height');
+    if (!ampImgWidth || !ampImgHeight) {
+      user().error(
+        TAG,
+        '"lock-bounds" requires "width" and "height" to be set on the amp-img child.'
+      );
+    }
     // TODO(#31515): When aspect ratio is portrait, containerWidth will be used for this.
     const percentScaled = containerHeight / ampImgHeight;
     const scaledImageWidth = percentScaled * ampImgWidth;
@@ -230,17 +237,12 @@ export class AmpStoryPanningMedia extends AMP.BaseElement {
     const heightFraction =
       1 - containerHeight / (scaledImageHeight * this.animateTo_.zoom);
 
-    this.maxBounds_ = {
-      left: DISTANCE_TO_CENTER_EDGE * widthFraction,
-      right: -DISTANCE_TO_CENTER_EDGE * widthFraction,
-      top: DISTANCE_TO_CENTER_EDGE * heightFraction,
-      bottom: -DISTANCE_TO_CENTER_EDGE * heightFraction,
+    return {
+      left: DISTANCE_TO_CENTER_EDGE_PERCENT * widthFraction,
+      right: -DISTANCE_TO_CENTER_EDGE_PERCENT * widthFraction,
+      top: DISTANCE_TO_CENTER_EDGE_PERCENT * heightFraction,
+      bottom: -DISTANCE_TO_CENTER_EDGE_PERCENT * heightFraction,
     };
-  }
-
-  /** @private */
-  onPageNavigation_() {
-    this.animate_();
   }
 
   /**
@@ -301,7 +303,7 @@ export class AmpStoryPanningMedia extends AMP.BaseElement {
    */
   onPanningMediaStateChange_(panningMediaState) {
     if (
-      this.distance_ <= 1 &&
+      this.pageDistance_ <= this.maxDistanceToAnimate_ &&
       panningMediaState[this.groupId_] &&
       // Prevent update if value is same as previous value.
       // This happens when 2 or more components are on the same page.
