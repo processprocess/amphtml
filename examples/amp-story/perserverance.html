@@ -1,0 +1,171 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="none">
+    <title>QA Story</title>
+    <link rel="canonical" href="navigation.html">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+    <script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script>
+    <script async custom-element="amp-story-360" src="https://cdn.ampproject.org/v0/amp-story-360-0.1.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <style amp-custom>
+      .text-wrapper {
+        background: linear-gradient(0, rgba(0deg, 0, 0, 0.6), 10%, transparent);
+        display: none;
+      }
+      h3 {
+        font-family: 'Poppins', sans-serif;
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        color: white;
+      }
+      .controls {
+        font-family: 'Poppins', sans-serif;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 11;
+        color: white;
+        padding: 10px;
+        margin: 20px;
+        font-size: 12px;
+        background-color: rgba(0, 0, 0, .5);
+      }
+      .story-wrapper {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        left: 0;
+      }
+      label {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="controls">
+      amp-story-panning-media
+      <br>
+      <br>
+      attributes:
+      <br>
+      <br>
+      <label for="xVal" id="xLabel">x= </label>
+      <input type="range" val=50 min=-50 max=50 id="xInput">
+      <label for="yVal" id="yLabel">y= </label>
+      <input type="range" val=50 min=-50 max=50 id="yInput">
+      <label for="zoomVal" id="zoomLabel">zoom= </label>
+      <input type="range" step='.1' val=1 min=0 max=10 id="zoomInput">
+      <!-- <label for="lockBoundsVal" id="lockBoundsLabel">lock bounds</label>
+      <input type="checkbox" id="lockBoundsInput"> -->
+    </div>
+    <div class="story-wrapper">
+      <amp-story
+          standalone
+          title="QA Story"
+          publisher="AMP Story team"
+          publisher-logo-src="assets/logo.png"
+          poster-portrait-src="assets/poster.jpg">
+
+        <amp-story-page id="page1">
+          <!-- <amp-story-grid-layer template="fill">
+            <amp-story-360 layout="fill" heading-start="0" pitch-start="0" controls="gyroscope">
+              <amp-img src="pano.png" width="4096" height="2048"></amp-img>
+            </amp-story-360>
+          </amp-story-grid-layer> -->
+
+          <amp-story-grid-layer template="fill">
+            <amp-story-360 layout="fill"  heading-start="100" pitch-start="-30">
+            <!-- <amp-story-360 layout="fill"  heading-start="0" pitch-start="-30"  heading-end="90" pitch-end="0" duration=10s controls="gyroscope"> -->
+              <!-- Credits: NASA/JPL-Caltech/MSSS/ASU -->
+              <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-small.jpg" width="4096" height="2048"></amp-img>
+            </amp-story-360>
+          </amp-story-grid-layer>
+
+          <!-- <amp-story-grid-layer template="fill">
+            <amp-story-360 layout="fill"  heading-start="160"  heading-end="90" duration=10s controls="gyroscope">
+              <amp-img src="360_downstairs.png" width="4096" height="2048"></amp-img>
+            </amp-story-360>
+          </amp-story-grid-layer> -->
+
+          <!-- <amp-story-grid-layer template="fill" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer i-amphtml-story-grid-template-fill i-amphtml-built i-amphtml-layout" i-amphtml-layout="container">
+            <amp-story-360 layout="fill" controls="gyroscope" heading-start="90"  heading-end="180" class="i-amphtml-element i-amphtml-layout-fill i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout i-amphtml-story-360-loaded" i-amphtml-layout="fill">
+              <amp-img src="./https://wsdemos.web.app/homewarrior/360_downstairs.png" layout="fill" alt="360 image of find the cat" class="i-amphtml-element i-amphtml-layout-fill i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" i-amphtml-layout="fill" style="--loader-delay-offset:166ms !important;">
+              <img decoding="async" alt="360 image of find the cat" src="./https://wsdemos.web.app/homewarrior/360_downstairs.png" class="i-amphtml-fill-content i-amphtml-replaced-content"></amp-img>
+            <div class="i-amphtml-fill-content i-amphtml-replaced-content"><canvas role="img" aria-label="360 image of find the cat" width="986" height="1644"></canvas></div></amp-story-360>
+          </amp-story-grid-layer> -->
+        </amp-story-page>
+
+      </amp-story>
+    </div>
+    <script>
+      let activePanningMedia
+
+      function updateLabelsFromActivePage() {
+        setTimeout(() => {
+          activePanningMedia = document.querySelector('amp-story-page[active]').querySelector('amp-story-360');
+          xInput.value = parseInt(activePanningMedia.getAttribute('heading-end'));
+          xLabel.textContent = 'heading-end: "' + xInput.value;
+          yInput.value = parseInt(activePanningMedia.getAttribute('pitch-end'));
+          yLabel.textContent = 'pitch-end: "' + yInput.value;          
+          // yInput.value = parseInt(activePanningMedia.getAttribute('y'));
+          // yLabel.textContent = 'y: "' + yInput.value + '%"';
+          // zoomInput.value = parseFloat(activePanningMedia.getAttribute('zoom')) || 1;
+          // zoomLabel.textContent = 'zoom= "' + zoomInput.value + '"';
+        }, 100)
+      }      
+      
+      // set on load
+      setTimeout(() => {
+        updateLabelsFromActivePage()
+      }, 400)
+            
+      document.querySelector('.story-wrapper').addEventListener('click', () => {
+        updateLabelsFromActivePage()
+      }, true) 
+      
+      xInput.addEventListener('input', (e) => {
+        const {value} = e.target;
+        activePanningMedia.setAttribute('heading-start', value);
+        xInput.value = parseInt(activePanningMedia.getAttribute('heading-start'));
+        xLabel.textContent = 'heading-start= "' + xInput.value;
+        updateActivePanningMedia()
+      })
+
+      yInput.addEventListener('input', (e) => {
+        const {value} = e.target;
+        activePanningMedia.setAttribute('pitch-start', value);
+        yInput.value = parseInt(activePanningMedia.getAttribute('pitch-start'));
+        yLabel.textContent = 'pitch-start= "' + yInput.value;
+        updateActivePanningMedia()
+      })      
+
+      function updateActivePanningMedia() {
+      activePanningMedia.getImpl().then(impl => {
+        // impl.sceneHeading_ = activePanningMedia.getAttribute('heading-start')
+        // impl.scenePitch_ = activePanningMedia.getAttribute('pitch-start')
+        // impl.sceneRoll_ = activePanningMedia.getAttribute('zoom-start')
+        const e = {
+          alpha: parseFloat(activePanningMedia.getAttribute('heading-start')) * -1 - 90,
+          beta: parseFloat(activePanningMedia.getAttribute('pitch-start')) * -1 - 90,
+          gamma: 0,
+        }
+        impl.onDeviceOrientation_(e)
+        // impl.renderer_.setImageOrientation(
+        //   activePanningMedia.getAttribute('heading-start'),
+        //   activePanningMedia.getAttribute('pitch-start'),
+        //   activePanningMedia.getAttribute('scene-roll')
+          // );
+        // impl.renderer_.render(true)
+      })
+    }      
+    </script>
+  </body>
+</html>
