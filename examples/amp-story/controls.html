@@ -1,0 +1,313 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <title>amp-story-panning-media example</title>
+    <link rel="canonical" href="example.html">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+    <script async custom-element="amp-story-panning-media" src="https://cdn.ampproject.org/v0/amp-story-panning-media-0.1.js"></script>
+    <style amp-custom>
+      .text-wrapper {
+        background: linear-gradient(0, rgba(0deg, 0, 0, 0.6), 10%, transparent);
+        display: none;
+      }
+      h3 {
+        font-family: 'Poppins', sans-serif;
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        color: white;
+      }
+      .controls {
+        font-family: 'Poppins', sans-serif;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 11;
+        color: white;
+        padding: 10px;
+        margin: 20px;
+        font-size: 12px;
+        background-color: rgba(0, 0, 0, .5);
+      }
+      .story-wrapper {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        left: 0;
+      }
+      label {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="controls">
+      amp-story-panning-media
+      <br>
+      <br>
+      attributes:
+      <br>
+      <br>
+      <label for="xVal" id="xLabel">x= </label>
+      <input type="range" val=50 min=-50 max=50 id="xInput">
+      <label for="yVal" id="yLabel">y= </label>
+      <input type="range" val=50 min=-50 max=50 id="yInput">
+      <label for="zoomVal" id="zoomLabel">zoom= </label>
+      <input type="range" step='.1' val=1 min=0 max=10 id="zoomInput">
+      <!-- <label for="lockBoundsVal" id="lockBoundsLabel">lock bounds</label>
+      <input type="checkbox" id="lockBoundsInput"> -->
+    </div>
+    <div class="story-wrapper">
+    <amp-story
+        standalone
+        title="Demo Story"
+        publisher="AMP Story"
+        publisher-logo-src="example.com/logo.png"
+        poster-portrait-src="example.com/poster.jpg">
+
+        <!-- coordinates example -->
+        <amp-story-page id="painting-1">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media
+              layout="fill"
+            >
+              <amp-img layout="fill" width="4000" height="3059" src="conservatory.jpg"></amp-img>
+            </amp-story-panning-media>
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill">
+            <div class="text-wrapper">
+              <h3>
+                Default
+              </h3>
+            </div>
+          </amp-story-grid-layer>
+        </amp-story-page>
+
+        <amp-story-page id="painting-2">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media
+              layout="fill"
+              x="-50%"
+              y="-50%"
+            >
+              <amp-img layout="fill" width="4000" height="3059" src="conservatory.jpg"></amp-img>
+            </amp-story-panning-media>
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill">
+            <div class="text-wrapper">
+              <h3>
+                x="-50%" y="-50%"
+              </h3>
+            </div>
+          </amp-story-grid-layer>
+        </amp-story-page>     
+        
+        <amp-story-page id="painting-3">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media
+              layout="fill"
+              y="-50%"
+            >
+              <amp-img layout="fill" width="4000" height="3059" src="conservatory.jpg"></amp-img>
+            </amp-story-panning-media>
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill">
+            <div class="text-wrapper">
+              <h3>
+                y="-50%"
+              </h3>
+            </div>
+          </amp-story-grid-layer>
+        </amp-story-page> 
+
+        <amp-story-page id="painting-4">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media
+              layout="fill"
+              x="50%"
+              y="-50%"
+            >
+              <amp-img layout="fill" width="4000" height="3059" src="conservatory.jpg"></amp-img>
+            </amp-story-panning-media>
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill">
+            <div class="text-wrapper">
+              <h3>
+                x="50%" y="-50%"
+              </h3>
+            </div>
+          </amp-story-grid-layer>
+        </amp-story-page>  
+
+        <amp-story-page id="painting-5">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media
+              layout="fill"
+              x="50%"
+            >
+              <amp-img layout="fill" width="4000" height="3059" src="conservatory.jpg"></amp-img>
+            </amp-story-panning-media>
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill">
+            <div class="text-wrapper">
+              <h3>
+                x="50%"
+              </h3>
+            </div>
+          </amp-story-grid-layer>
+        </amp-story-page>  
+
+        <amp-story-page id="painting-6">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media
+              layout="fill"
+              x="50%"
+              y="50%"
+            >
+              <amp-img layout="fill" width="4000" height="3059" src="conservatory.jpg"></amp-img>
+            </amp-story-panning-media>
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill">
+            <div class="text-wrapper">
+              <h3>
+                x="50%" y="50%"
+              </h3>
+            </div>
+          </amp-story-grid-layer>
+        </amp-story-page>      
+
+        <amp-story-page id="painting-7">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media
+              layout="fill"
+              y="50%"
+            >
+              <amp-img layout="fill" width="4000" height="3059" src="conservatory.jpg"></amp-img>
+            </amp-story-panning-media>
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill">
+            <div class="text-wrapper">
+              <h3>
+                y="50%"
+              </h3>
+            </div>
+          </amp-story-grid-layer>
+        </amp-story-page> 
+
+        <amp-story-page id="painting-8">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media
+              layout="fill"
+              x="-50%"
+              y="50%"
+            >
+              <amp-img layout="fill" width="4000" height="3059" src="conservatory.jpg"></amp-img>
+            </amp-story-panning-media>
+          </amp-story-grid-layer>
+          <amp-story-grid-layer template="fill">
+            <div class="text-wrapper">
+              <h3>
+                x="-50%" y="50%"
+              </h3>
+            </div>
+          </amp-story-grid-layer>
+        </amp-story-page>   
+
+        <amp-story-page id="painting-9">
+          <amp-story-grid-layer template="fill">
+            <amp-story-panning-media
+              layout="fill"
+              x="-50%"
+              y="50%"
+              zoom="2"
+            >
+            <amp-img layout="fill" width="4000" height="3059" src="conservatory.jpg"></amp-img>
+          </amp-story-panning-media>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="fill">
+          <div class="text-wrapper">
+            <h3>
+              x="-50%" y="50%" zoom="2"
+            </h3>
+          </div>
+        </amp-story-grid-layer>
+      </amp-story-page>
+     
+    </amp-story>
+  </div>
+  <script>
+
+    let activePanningMedia
+    
+    function updateLabelsFromActivePage() {
+      setTimeout(() => {
+        activePanningMedia = document.querySelector('amp-story-page[active]').querySelector('amp-story-panning-media');
+        xInput.value = parseInt(activePanningMedia.getAttribute('x'));
+        xLabel.textContent = 'x: "' + xInput.value + '%"';
+        yInput.value = parseInt(activePanningMedia.getAttribute('y'));
+        yLabel.textContent = 'y: "' + yInput.value + '%"';
+        zoomInput.value = parseFloat(activePanningMedia.getAttribute('zoom')) || 1;
+        zoomLabel.textContent = 'zoom= "' + zoomInput.value + '"';
+        // lockBoundsInput.checked = activePanningMedia.hasAttribute('lock-bounds')
+      }, 100)
+    }
+    
+    // set on load
+    setTimeout(() => {
+      updateLabelsFromActivePage()
+    }, 400)
+
+    document.querySelector('.story-wrapper').addEventListener('click', () => {
+      updateLabelsFromActivePage()
+    }, true) 
+
+    xInput.addEventListener('input', (e) => {
+      const {value} = e.target;
+      activePanningMedia.setAttribute('x', value + '%');
+      xInput.value = parseInt(activePanningMedia.getAttribute('x'));
+      xLabel.textContent = 'x= "' + xInput.value + '%"';
+      updateActivePanningMedia()
+    })
+
+    yInput.addEventListener('input', (e) => {
+      const {value} = e.target;
+      activePanningMedia.setAttribute('y', value + '%');
+      yInput.value = parseInt(activePanningMedia.getAttribute('y'));
+      yLabel.textContent = 'y= "' + yInput.value + '%"';
+      updateActivePanningMedia()
+    })    
+
+    zoomInput.addEventListener('input', (e) => {
+      const {value} = e.target;
+      activePanningMedia.setAttribute('zoom', value);
+      zoomInput.value = parseFloat(activePanningMedia.getAttribute('zoom'));
+      zoomLabel.textContent = 'zoom= "' + zoomInput.value + '"';
+      updateActivePanningMedia()
+    })    
+
+    // lockBoundsInput.addEventListener('click', (e) => {
+    //   const {checked} = e.target;
+    //   if(checked) {
+    //     activePanningMedia.setAttribute('lock-bounds', '');
+    //   } else {
+    //     activePanningMedia.removeAttribute('lock-bounds');
+    //   }
+    //   updateActivePanningMedia()
+    // })    
+
+    function updateActivePanningMedia() {
+      activePanningMedia.getImpl().then(impl => {
+        impl.setAnimateTo_()
+        impl.animate_()
+      })
+    }
+  </script>    
+  </body>
+</html>
