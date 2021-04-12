@@ -117,35 +117,39 @@
           </amp-story-grid-layer> -->
         </amp-story-page>
 
-        <!-- <amp-story-page id="page2">
+        <amp-story-page id="page2">
           <amp-story-grid-layer template="fill">
-            <amp-story-360 layout="fill" heading-start="100" heading-end="140" duration="3s"> -->
+            <amp-story-360 layout="fill" heading-start="100" heading-end="140" duration="3s">
 
             <!-- <amp-story-360 layout="fill"  heading-start="0" pitch-start="-30"  heading-end="90" pitch-end="0" duration=10s controls="gyroscope"> -->
               <!-- Credits: NASA/JPL-Caltech/MSSS/ASU -->
               
-              <!-- <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-small.jpg" width="4096" height="2048"></amp-img>
+              <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-small.jpg" width="4096" height="2048"></amp-img>
             </amp-story-360>
           </amp-story-grid-layer>
-        </amp-story-page>         -->
+        </amp-story-page>        
 
       </amp-story>
     </div>
     <script>
-      let activePanningMedia
+      let activeComponent
 
       const attributeControls = Array.from(document.querySelectorAll('input'));
 
-      function updateLabelsFromActivePage() {
-        setTimeout(() => {
-          activePanningMedia = document.querySelector('amp-story-page[active]').querySelector('amp-story-360');
-          attributeControls.forEach(el => {
+      function updateLabels() {
+        attributeControls.forEach(el => {
             const attr = el.getAttribute('attr');
             const label = document.getElementById(el.getAttribute('label'));
             const append = el.getAttribute('append') || '';
-            el.value = parseFloat(activePanningMedia.getAttribute(attr));
+            el.value = parseFloat(activeComponent.getAttribute(attr));
             label.textContent = `${attr}: ${el.value}${append}`;
           })
+      }
+
+      function updateLabelsFromActivePage() {
+        setTimeout(() => {
+          activeComponent = document.querySelector('amp-story-page[active]').querySelector('amp-story-360');
+          updateLabels();
         }, 100)
       }      
       
@@ -163,41 +167,23 @@
         const {value} = e.target;
         const attr = el.getAttribute('attr');
         const append = el.getAttribute('append') || '';
-        activePanningMedia.setAttribute(attr, value + append);
-        el.value = parseFloat(activePanningMedia.getAttribute(attr));
-        const label = document.getElementById(el.getAttribute('label'));
-        label.textContent = `${attr}: ${el.value}${append}`;
-        updateActivePanningMedia()
+        activeComponent.setAttribute(attr, value + append);
+        updateLabels();
+        updateActiveComponent()
       })
 
         el.addEventListener('change', () => {
-          activePanningMedia.getImpl().then(impl => {
+          activeComponent.getImpl().then(impl => {
             impl.play_()
           })
         })
       })
 
-      function updateActivePanningMedia() {
-      activePanningMedia.getImpl().then(impl => {
-        impl.resetOrientations();
-        // const e = {
-        //   alpha: parseFloat(activePanningMedia.getAttribute('heading-start')) * -1 - 90,
-        //   beta: parseFloat(activePanningMedia.getAttribute('pitch-start')) * -1 - 90,
-        //   gamma: 0,
-        // }
-        // impl.onDeviceOrientation_(e)
-
-        // impl.sceneHeading_ = activePanningMedia.getAttribute('heading-start')
-        // impl.scenePitch_ = activePanningMedia.getAttribute('pitch-start')
-        // impl.sceneRoll_ = activePanningMedia.getAttribute('zoom-start')
-        // impl.renderer_.setImageOrientation(
-        //   activePanningMedia.getAttribute('heading-start'),
-        //   activePanningMedia.getAttribute('pitch-start'),
-        //   activePanningMedia.getAttribute('scene-roll')
-          // );
-        // impl.renderer_.render(true)
-      })
-    }      
+      function updateActiveComponent() {
+        activeComponent.getImpl().then(impl => {
+          impl.resetOrientations();
+        })
+      }
     </script>
   </body>
 </html>
