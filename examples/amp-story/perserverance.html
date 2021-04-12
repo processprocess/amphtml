@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="robots" content="none">
-    <title>QA Story</title>
+    <title>Perserverance 360</title>
     <link rel="canonical" href="navigation.html">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
@@ -57,19 +57,33 @@
       attributes:
       <br>
       <br>
-      <label for="xVal" id="xLabel">x= </label>
-      <input type="range" val=50 min=-50 max=50 id="xInput">
-      <label for="yVal" id="yLabel">y= </label>
+      <label id="headingStartLabel">heading-start: </label>
+      <input type="range" val=0 min=-180 max=180 attr=heading-start label=headingStartLabel>
+      <label id="headingEndLabel">heading-end: </label>
+      <input type="range" val=0 min=-180 max=180 attr=heading-end label=headingEndLabel>
+
+      <label id="pitchStartLabel">pitch-start: </label>
+      <input type="range" val=0 min=-90 max=90 attr=pitch-start label=pitchStartLabel>
+      <label id="pitchEndLabel">pitch-end: </label>
+      <input type="range" val=0 min=-90 max=90 attr=pitch-end label=pitchEndLabel>
+
+      <label id="zoomStartLabel">zoom-start: </label>
+      <input type="range" val=0 min=1 max=4 step=.1 attr=zoom-start label=zoomStartLabel>
+      <label id="zoomEndLabel">zoom-end: </label>
+      <input type="range" val=0 min=1 max=4 step=.1 attr=zoom-end label=zoomEndLabel>      
+
+      <label id="durationLabel">duration: </label>
+      <input type="range" val=0 min=1 max=4 attr=duration label=durationLabel append='s'>
+
+      <!-- <label for="yVal" id="yLabel">y= </label>
       <input type="range" val=50 min=-50 max=50 id="yInput">
       <label for="zoomVal" id="zoomLabel">zoom= </label>
-      <input type="range" step='.1' val=1 min=0 max=10 id="zoomInput">
-      <!-- <label for="lockBoundsVal" id="lockBoundsLabel">lock bounds</label>
-      <input type="checkbox" id="lockBoundsInput"> -->
+      <input type="range" step='.1' val=1 min=0 max=10 id="zoomInput"> -->
     </div>
     <div class="story-wrapper">
       <amp-story
           standalone
-          title="QA Story"
+          title="Perserverance 360"
           publisher="AMP Story team"
           publisher-logo-src="assets/logo.png"
           poster-portrait-src="assets/poster.jpg">
@@ -82,7 +96,7 @@
           </amp-story-grid-layer> -->
 
           <amp-story-grid-layer template="fill">
-            <amp-story-360 layout="fill"  heading-start="100" pitch-start="-30">
+            <amp-story-360 layout="fill" heading-start="100" heading-end="140" pitch-start="10" pitch-end="0" zoom-start="1" zoom-end="2" duration="2s">
             <!-- <amp-story-360 layout="fill"  heading-start="0" pitch-start="-30"  heading-end="90" pitch-end="0" duration=10s controls="gyroscope"> -->
               <!-- Credits: NASA/JPL-Caltech/MSSS/ASU -->
               <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-small.jpg" width="4096" height="2048"></amp-img>
@@ -103,22 +117,35 @@
           </amp-story-grid-layer> -->
         </amp-story-page>
 
+        <!-- <amp-story-page id="page2">
+          <amp-story-grid-layer template="fill">
+            <amp-story-360 layout="fill" heading-start="100" heading-end="140" duration="3s"> -->
+
+            <!-- <amp-story-360 layout="fill"  heading-start="0" pitch-start="-30"  heading-end="90" pitch-end="0" duration=10s controls="gyroscope"> -->
+              <!-- Credits: NASA/JPL-Caltech/MSSS/ASU -->
+              
+              <!-- <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-small.jpg" width="4096" height="2048"></amp-img>
+            </amp-story-360>
+          </amp-story-grid-layer>
+        </amp-story-page>         -->
+
       </amp-story>
     </div>
     <script>
       let activePanningMedia
 
+      const attributeControls = Array.from(document.querySelectorAll('input'));
+
       function updateLabelsFromActivePage() {
         setTimeout(() => {
           activePanningMedia = document.querySelector('amp-story-page[active]').querySelector('amp-story-360');
-          xInput.value = parseInt(activePanningMedia.getAttribute('heading-end'));
-          xLabel.textContent = 'heading-end: "' + xInput.value;
-          yInput.value = parseInt(activePanningMedia.getAttribute('pitch-end'));
-          yLabel.textContent = 'pitch-end: "' + yInput.value;          
-          // yInput.value = parseInt(activePanningMedia.getAttribute('y'));
-          // yLabel.textContent = 'y: "' + yInput.value + '%"';
-          // zoomInput.value = parseFloat(activePanningMedia.getAttribute('zoom')) || 1;
-          // zoomLabel.textContent = 'zoom= "' + zoomInput.value + '"';
+          attributeControls.forEach(el => {
+            const attr = el.getAttribute('attr');
+            const label = document.getElementById(el.getAttribute('label'));
+            const append = el.getAttribute('append') || '';
+            el.value = parseFloat(activePanningMedia.getAttribute(attr));
+            label.textContent = `${attr}: ${el.value}${append}`;
+          })
         }, 100)
       }      
       
@@ -126,38 +153,43 @@
       setTimeout(() => {
         updateLabelsFromActivePage()
       }, 400)
-            
+
       document.querySelector('.story-wrapper').addEventListener('click', () => {
         updateLabelsFromActivePage()
       }, true) 
-      
-      xInput.addEventListener('input', (e) => {
+
+      attributeControls.forEach(el => {
+        el.addEventListener('input', (e) => {
         const {value} = e.target;
-        activePanningMedia.setAttribute('heading-start', value);
-        xInput.value = parseInt(activePanningMedia.getAttribute('heading-start'));
-        xLabel.textContent = 'heading-start= "' + xInput.value;
+        const attr = el.getAttribute('attr');
+        const append = el.getAttribute('append') || '';
+        activePanningMedia.setAttribute(attr, value + append);
+        el.value = parseFloat(activePanningMedia.getAttribute(attr));
+        const label = document.getElementById(el.getAttribute('label'));
+        label.textContent = `${attr}: ${el.value}${append}`;
         updateActivePanningMedia()
       })
 
-      yInput.addEventListener('input', (e) => {
-        const {value} = e.target;
-        activePanningMedia.setAttribute('pitch-start', value);
-        yInput.value = parseInt(activePanningMedia.getAttribute('pitch-start'));
-        yLabel.textContent = 'pitch-start= "' + yInput.value;
-        updateActivePanningMedia()
-      })      
+        el.addEventListener('change', () => {
+          activePanningMedia.getImpl().then(impl => {
+            impl.play_()
+          })
+        })
+      })
 
       function updateActivePanningMedia() {
       activePanningMedia.getImpl().then(impl => {
+        impl.resetOrientations();
+        // const e = {
+        //   alpha: parseFloat(activePanningMedia.getAttribute('heading-start')) * -1 - 90,
+        //   beta: parseFloat(activePanningMedia.getAttribute('pitch-start')) * -1 - 90,
+        //   gamma: 0,
+        // }
+        // impl.onDeviceOrientation_(e)
+
         // impl.sceneHeading_ = activePanningMedia.getAttribute('heading-start')
         // impl.scenePitch_ = activePanningMedia.getAttribute('pitch-start')
         // impl.sceneRoll_ = activePanningMedia.getAttribute('zoom-start')
-        const e = {
-          alpha: parseFloat(activePanningMedia.getAttribute('heading-start')) * -1 - 90,
-          beta: parseFloat(activePanningMedia.getAttribute('pitch-start')) * -1 - 90,
-          gamma: 0,
-        }
-        impl.onDeviceOrientation_(e)
         // impl.renderer_.setImageOrientation(
         //   activePanningMedia.getAttribute('heading-start'),
         //   activePanningMedia.getAttribute('pitch-start'),

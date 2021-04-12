@@ -308,6 +308,50 @@ export class AmpStory360 extends AMP.BaseElement {
     this.rot_ = null;
   }
 
+  resetOrientations() {
+    this.orientations_ = [];
+    this.animation_ = null;
+    this.isPlaying_ = false;
+
+    const attr = (name) => this.element.getAttribute(name);
+    const attrAsFloat = (name, fallbackValue = 0) => {
+      return parseFloat(attr(name) || fallbackValue);
+    };
+
+    if (attr('duration')) {
+      this.duration_ = timeStrToMillis(attr('duration')) || 0;
+    }
+
+    const startHeading = attrAsFloat('heading-start');
+    const startPitch = attrAsFloat('pitch-start');
+    const startZoom = attrAsFloat('zoom-start', 1);
+    this.orientations_.push(
+      CameraOrientation.fromDegrees(startHeading, startPitch, startZoom)
+    );
+
+    if (
+      attr('heading-end') !== undefined ||
+      attr('pitch-end') !== undefined ||
+      attr('zoom-end') !== undefined
+    ) {
+      const endHeading = attrAsFloat('heading-end', startHeading);
+      const endPitch = attrAsFloat('pitch-end', startPitch);
+      const endZoom = attrAsFloat('zoom-end', startZoom);
+      this.orientations_.push(
+        CameraOrientation.fromDegrees(endHeading, endPitch, endZoom)
+      );
+    }
+
+    if (this.orientations_.length < 1) {
+      return;
+    }
+    this.renderInitialPosition_();
+    // this.isReady_ = true;
+    // if (this.isPlaying_) {
+
+    // }
+  }
+
   /** @override */
   buildCallback() {
     const attr = (name) => this.element.getAttribute(name);
