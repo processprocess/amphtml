@@ -1,3 +1,6 @@
+<!-- Data and content from:
+https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df45eeae4a0a1d0d27e85b -->
+
 <!doctype html>
 <html ⚡>
   <head>
@@ -68,9 +71,9 @@
       <input type="range" val=0 min=-90 max=90 attr=pitch-end label=pitchEndLabel>
 
       <label id="zoomStartLabel">zoom-start: </label>
-      <input type="range" val=0 min=1 max=4 step=.1 attr=zoom-start label=zoomStartLabel>
+      <input type="range" val=1 min=1 max=6 step=.1 attr=zoom-start label=zoomStartLabel>
       <label id="zoomEndLabel">zoom-end: </label>
-      <input type="range" val=0 min=1 max=4 step=.1 attr=zoom-end label=zoomEndLabel>      
+      <input type="range" val=1 min=1 max=6 step=.1 attr=zoom-end label=zoomEndLabel>      
 
       <label id="durationLabel">duration: </label>
       <input type="range" val=0 min=0 max=4 attr=duration label=durationLabel append='s'>
@@ -89,41 +92,20 @@
           poster-portrait-src="assets/poster.jpg">
 
         <amp-story-page id="page1">
-          <!-- <amp-story-grid-layer template="fill">
-            <amp-story-360 layout="fill" heading-start="0" pitch-start="0" controls="gyroscope">
-              <amp-img src="pano.png" width="4096" height="2048"></amp-img>
-            </amp-story-360>
-          </amp-story-grid-layer> -->
-
           <amp-story-grid-layer template="fill">
-            <amp-story-360 layout="fill" heading-start="100" heading-end="140" pitch-start="10" pitch-end="0" zoom-start="1" zoom-end="2" duration="2s">
-            <!-- <amp-story-360 layout="fill"  heading-start="0" pitch-start="-30"  heading-end="90" pitch-end="0" duration=10s controls="gyroscope"> -->
+            <amp-story-360 layout="fill" heading-start="4" pitch-start="-7" zoom-start="3">
               <!-- Credits: NASA/JPL-Caltech/MSSS/ASU -->
               <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-small.jpg" width="4096" height="2048"></amp-img>
+              <!-- <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-medium.jpg" width="8007" height="3455"></amp-img> -->
             </amp-story-360>
           </amp-story-grid-layer>
-
-          <!-- <amp-story-grid-layer template="fill">
-            <amp-story-360 layout="fill"  heading-start="160"  heading-end="90" duration=10s controls="gyroscope">
-              <amp-img src="360_downstairs.png" width="4096" height="2048"></amp-img>
-            </amp-story-360>
-          </amp-story-grid-layer> -->
-
-          <!-- <amp-story-grid-layer template="fill" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer i-amphtml-story-grid-template-fill i-amphtml-built i-amphtml-layout" i-amphtml-layout="container">
-            <amp-story-360 layout="fill" controls="gyroscope" heading-start="90"  heading-end="180" class="i-amphtml-element i-amphtml-layout-fill i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout i-amphtml-story-360-loaded" i-amphtml-layout="fill">
-              <amp-img src="./https://wsdemos.web.app/homewarrior/360_downstairs.png" layout="fill" alt="360 image of find the cat" class="i-amphtml-element i-amphtml-layout-fill i-amphtml-layout-size-defined i-amphtml-built i-amphtml-layout" i-amphtml-layout="fill" style="--loader-delay-offset:166ms !important;">
-              <img decoding="async" alt="360 image of find the cat" src="./https://wsdemos.web.app/homewarrior/360_downstairs.png" class="i-amphtml-fill-content i-amphtml-replaced-content"></amp-img>
-            <div class="i-amphtml-fill-content i-amphtml-replaced-content"><canvas role="img" aria-label="360 image of find the cat" width="986" height="1644"></canvas></div></amp-story-360>
-          </amp-story-grid-layer> -->
         </amp-story-page>
 
         <amp-story-page id="page2">
           <amp-story-grid-layer template="fill">
             <amp-story-360 layout="fill" heading-start="100" heading-end="140" duration="3s">
-
             <!-- <amp-story-360 layout="fill"  heading-start="0" pitch-start="-30"  heading-end="90" pitch-end="0" duration=10s controls="gyroscope"> -->
               <!-- Credits: NASA/JPL-Caltech/MSSS/ASU -->
-              
               <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-small.jpg" width="4096" height="2048"></amp-img>
             </amp-story-360>
           </amp-story-grid-layer>
