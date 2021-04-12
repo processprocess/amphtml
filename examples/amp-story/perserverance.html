@@ -14,18 +14,82 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
     <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
     <script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script>
     <script async custom-element="amp-story-360" src="https://cdn.ampproject.org/v0/amp-story-360-0.1.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&amp;display=swap" rel="stylesheet">
     <style amp-custom>
-      .text-wrapper {
-        background: linear-gradient(0, rgba(0deg, 0, 0, 0.6), 10%, transparent);
-        display: none;
-      }
-      h3 {
-        font-family: 'Poppins', sans-serif;
-        position: absolute;
-        bottom: 40px;
-        left: 40px;
+      amp-story {
         color: white;
+        font-family: 'Poppins', sans-serif;
+        font-size: calc(3.125 * var(--story-page-vw));
+      }
+      amp-story-page {
+        background-color: #151515;
+      }
+      amp-story-360:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, black, transparent);
+      }
+      .vignette {
+        background: radial-gradient(118.22% 50.45% at 50% 34.93%, rgba(0, 0, 0, 0) 25.52%, rgba(0, 0, 0, 0.96) 100%);
+      }      
+      .btn {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        border-radius: 27px;
+        border: 1px solid rgba(255, 255, 255, .25);
+        font-weight: 600;
+        padding: 10px 20px;
+        margin: 0 auto;
+        margin-top: 16px;
+      }  
+      #cover .btn,
+      #end-page .btn {
+        margin-top: 46px;
+      }
+      .btn svg {
+        margin-left: 10px;
+        width: 18px;
+        height: 18px;
+        fill: white;
+        stroke: white;
+      }
+      .content-wrapper {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: auto;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.95);
+      }      
+      .ccert {
+        color: white;
+        font-size: 1.07em;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        line-height: 1.8em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .nunoz {
+        font-size: 2.84em;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        line-height: 1.2em;
+        margin-bottom: 17px;
+      }
+      .zlozi {
+        font-size: 1.07em;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        line-height: 1.8em;
+      }      
+      .body-text {
+        font-size: 14px;
+        padding: 0 20px;
       }
       .controls {
         font-family: 'Poppins', sans-serif;
@@ -77,11 +141,6 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
 
       <label id="durationLabel">duration: </label>
       <input type="range" val=0 min=0 max=4 attr=duration label=durationLabel append='s'>
-
-      <!-- <label for="yVal" id="yLabel">y= </label>
-      <input type="range" val=50 min=-50 max=50 id="yInput">
-      <label for="zoomVal" id="zoomLabel">zoom= </label>
-      <input type="range" step='.1' val=1 min=0 max=10 id="zoomInput"> -->
     </div>
     <div class="story-wrapper">
       <amp-story
@@ -99,6 +158,17 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
               <!-- <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-medium.jpg" width="8007" height="3455"></amp-img> -->
             </amp-story-360>
           </amp-story-grid-layer>
+          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+            <div class='content-wrapper'>
+              <span class="ccert">Communication</span>
+              <span class="nunoz">UHF Antenna</span>
+              <span class="body-text">The Ultra-High Frequency Antenna transmits data to Earth using the Mars orbiters overhead.</span>
+              <div class="btn">
+                <span>Next</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path></svg>
+              </div>
+            </div>
+          </amp-story-grid-layer>           
         </amp-story-page>
 
         <amp-story-page id="page2">
