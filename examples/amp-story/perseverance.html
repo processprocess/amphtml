@@ -6,7 +6,7 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
   <head>
     <meta charset="utf-8">
     <meta name="robots" content="none">
-    <title>Perserverance 360</title>
+    <title>perseverance 360</title>
     <link rel="canonical" href="navigation.html">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
@@ -64,6 +64,11 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
         flex-direction: column;
         margin-top: auto;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.95);
+        display: flex-end;
+        bottom: 50px;
+        position: absolute;
+        left: 0px;
+        padding: 0 20px;
       }      
       .ccert {
         color: white;
@@ -94,8 +99,17 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
       a {
         color: white;
         text-decoration: none;
-      }
-      .controls {
+      }      
+      a.btn {
+        color: black;
+        background-color: white;
+        text-shadow: none;
+      }   
+      a.btn svg {
+        fill: black;
+        stroke: black;
+      }            
+      /* .controls {
         font-family: 'Poppins', sans-serif;
         position: absolute;
         top: 0;
@@ -117,11 +131,11 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
       }
       label {
         display: block;
-      }
+      } */
     </style>
   </head>
   <body>
-    <div class="controls">
+    <!-- <div class="controls">
       amp-story-360
       <br>
       <br>
@@ -146,10 +160,10 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
       <label id="durationLabel">duration: </label>
       <input type="range" val=0 min=0 max=4 attr=duration label=durationLabel append='s'>
     </div>
-    <div class="story-wrapper">
+    <div class="story-wrapper"> -->
       <amp-story
           standalone
-          title="Perserverance 360"
+          title="Perseverance 360"
           publisher="AMP Story team"
           publisher-logo-src="assets/logo.png"
           poster-portrait-src="assets/poster.jpg">
@@ -161,7 +175,7 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
                 <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-medium.jpg" width="4096" height="2048"></amp-img>
               </amp-story-360>                    
             </amp-story-grid-layer>
-            <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+            <amp-story-grid-layer template="vertical">
               <div class='content-wrapper'>
                 <span class="ccert">amp-story-360 demo</span>
                 <span class="nunoz">Perserverence instruments</span>
@@ -181,7 +195,7 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
                 <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-medium.jpg" width="4096" height="2048"></amp-img>
               </amp-story-360>
             </amp-story-grid-layer>
-            <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+            <amp-story-grid-layer template="vertical">
               <div class='content-wrapper'>
                 <span class="ccert">Communication</span>
                 <span class="nunoz">High-Gain Antenna</span>
@@ -201,7 +215,7 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
                 <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-medium.jpg" width="4096" height="2048"></amp-img>
               </amp-story-360>
             </amp-story-grid-layer>
-            <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+            <amp-story-grid-layer template="vertical">
               <div class='content-wrapper'>
                 <span class="ccert">Communication</span>
                 <span class="nunoz">Low-Gain Antenna</span>
@@ -221,7 +235,7 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
               <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-medium.jpg" width="4096" height="2048"></amp-img>
             </amp-story-360>
           </amp-story-grid-layer>
-          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+          <amp-story-grid-layer template="vertical">
             <div class='content-wrapper'>
               <span class="ccert">Communication</span>
               <span class="nunoz">UHF Antenna</span>
@@ -241,7 +255,7 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
               <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-medium.jpg" width="4096" height="2048"></amp-img>
             </amp-story-360>
           </amp-story-grid-layer>
-          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+          <amp-story-grid-layer template="vertical">
             <div class='content-wrapper'>
               <span class="ccert">Camera</span>
               <span class="nunoz">Mastcam-Z Calibration Target
@@ -262,7 +276,7 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
               <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-medium.jpg" width="4096" height="2048"></amp-img>
             </amp-story-360>
           </amp-story-grid-layer>
-          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+          <amp-story-grid-layer template="vertical">
             <div class='content-wrapper'>
               <span class="ccert">Camera</span>
               <span class="nunoz">"Up-Look" Camera
@@ -283,24 +297,23 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
               <amp-img src="img/PIA2464-Perseverance_Sol3_Mastcam-Z_panorama-medium.jpg" width="4096" height="2048"></amp-img>
             </amp-story-360>
           </amp-story-grid-layer>
-          <amp-story-grid-layer template="center" class="i-amphtml-element i-amphtml-layout-container i-amphtml-story-layer undefined i-amphtml-layout" i-amphtml-layout="container">
+          <amp-story-grid-layer template="vertical">
             <div class='content-wrapper'>
               <span class="ccert">Gyroscope</span>
-              <span class="nunoz">Explore Using device's Gyroscope
-              </span>
+              <span class="nunoz">Explore Using Gyroscope</span>
               <span class="body-text">Using your devices gyroscope, the 360 image can be explore.</span>
               <a class="btn" href="https://amp.dev/documentation/components/amp-story-360/?format=stories">
                 <!-- <amp-story-page-attachment data-text="Learn more" href="https://amp.dev/documentation/components/amp-story-360/?format=stories" layout="nodisplay"></amp-story-page-attachment> -->
                 <span>Learn More</span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path></svg>
-              </div>
-            </a>
+              </a>
+            </div>
           </amp-story-grid-layer>           
         </amp-story-page>
 
       </amp-story>
-    </div>
-    <script>
+    <!-- </div> -->
+    <!-- <script>
       let activeComponent
 
       const attributeControls = Array.from(document.querySelectorAll('input'));
@@ -353,6 +366,6 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
           impl.resetOrientations();
         })
       }
-    </script>
+    </script> -->
   </body>
 </html>
