@@ -94,8 +94,8 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
       a {
         color: white;
         text-decoration: none;
-      }      
-      /* .controls {
+      }
+      .controls {
         font-family: 'Poppins', sans-serif;
         position: absolute;
         top: 0;
@@ -117,11 +117,11 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
       }
       label {
         display: block;
-      } */
+      }
     </style>
   </head>
   <body>
-    <!-- <div class="controls">
+    <div class="controls">
       amp-story-360
       <br>
       <br>
@@ -146,7 +146,7 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
       <label id="durationLabel">duration: </label>
       <input type="range" val=0 min=0 max=4 attr=duration label=durationLabel append='s'>
     </div>
-    <div class="story-wrapper"> -->
+    <div class="story-wrapper">
       <amp-story
           standalone
           title="Perserverance 360"
@@ -299,8 +299,8 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
         </amp-story-page>
 
       </amp-story>
-    <!-- </div> -->
-    <!-- <script>
+    </div>
+    <script>
       let activeComponent
 
       const attributeControls = Array.from(document.querySelectorAll('input'));
@@ -353,6 +353,6 @@ https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df
           impl.resetOrientations();
         })
       }
-    </script> -->
+    </script>
   </body>
 </html>
