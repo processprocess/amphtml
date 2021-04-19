@@ -308,6 +308,22 @@
         impl.animate_()
       })
     }
+
+    // DRAG AND DROP
+    document.body.addEventListener('dragover', (e) => e.preventDefault())
+    document.body.addEventListener('dragenter', (e) => e.preventDefault())
+    document.body.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.addEventListener('loadend', (e) => {
+        Array.from(document.querySelectorAll('img')).forEach(imgEl => {
+          imgEl.src = e.target.result
+        })
+      })
+    });
+
   </script>    
   </body>
 </html>
