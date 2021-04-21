@@ -26,6 +26,9 @@
   transform: translate3d(0, 100%, 0) !important;
   transition: transform 0.25s cubic-bezier(0.4, 0.0, 1, 1), visibility 0s linear 0.4s !important;
   visibility: hidden !important;
+  
+  /* transform: translate3d(0, 0%, 0) !important;
+  visibility: visible !important; */
 }
 
 .amp-story-draggable-drawer-root[hidden] {
