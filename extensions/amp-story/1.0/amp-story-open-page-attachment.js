@@ -204,20 +204,29 @@ const renderOutlinkPageAttachmentUI = (
   ctaLabelEl.textContent = openLabel;
   openAttachmentEl.setAttribute('aria-label', openLabel);
 
+  const ctaImgEl = win.document.createElement('div');
+  ctaImgEl.classList.add('i-amphtml-story-outlink-page-attachment-img');
+  setImportantStyles(ctaImgEl, {
+    'background-image': `url(https://www.google.com/s2/favicons?domain=${new URLSearchParams(
+      window.location.search
+    ).get('faviconURL')}&sz=64)`,
+  });
+  chipEl.prepend(ctaImgEl);
+
   // Set image.
-  const openImgAttr = attachmentEl.getAttribute('cta-image');
-  if (openImgAttr && openImgAttr !== 'none') {
-    const ctaImgEl = win.document.createElement('div');
-    ctaImgEl.classList.add('i-amphtml-story-outlink-page-attachment-img');
-    setImportantStyles(ctaImgEl, {
-      'background-image': 'url(' + openImgAttr + ')',
-    });
-    chipEl.prepend(ctaImgEl);
-  } else if (!openImgAttr) {
-    // Attach link icon SVG by default.
-    const linkImage = buildOpenAttachmentElementLinkIcon(attachmentEl);
-    chipEl.prepend(linkImage);
-  }
+  // const openImgAttr = attachmentEl.getAttribute('cta-image');
+  // if (openImgAttr && openImgAttr !== 'none') {
+  // const ctaImgEl = win.document.createElement('div');
+  // ctaImgEl.classList.add('i-amphtml-story-outlink-page-attachment-img');
+  // setImportantStyles(ctaImgEl, {
+  //   'background-image': 'url(' + openImgAttr + ')',
+  // });
+  // chipEl.prepend(ctaImgEl);
+  // } else if (!openImgAttr) {
+  //   // Attach link icon SVG by default.
+  //   const linkImage = buildOpenAttachmentElementLinkIcon(attachmentEl);
+  //   chipEl.prepend(linkImage);
+  // }
 
   return openAttachmentEl;
 };

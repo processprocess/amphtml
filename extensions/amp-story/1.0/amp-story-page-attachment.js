@@ -220,17 +220,24 @@ export class AmpStoryPageAttachment extends DraggableDrawer {
     const overlayEls = htmlRefs(link);
     const {remoteImgEl, openStringEl, urlStringEl} = overlayEls;
 
+    setImportantStyles(remoteImgEl, {
+      'background-image': `url(https://www.google.com/s2/favicons?domain=${new URLSearchParams(
+        window.location.search
+      ).get('faviconURL')}&sz=64)`,
+    });
+
     // Set image.
-    const openImgAttr = this.element.getAttribute('cta-image');
-    if (openImgAttr) {
-      setImportantStyles(remoteImgEl, {
-        'background-image': 'url(' + openImgAttr + ')',
-      });
-    } else {
-      // Attach link icon SVG by default.
-      const linkIcon = buildOpenAttachmentElementLinkIcon(link);
-      remoteImgEl.appendChild(linkIcon);
-    }
+    // const openImgAttr = this.element.getAttribute('cta-image');
+    // if (openImgAttr) {
+    //   setImportantStyles(remoteImgEl, {
+    //     'background-image':
+    //       'url(https://www.google.com/s2/favicons?domain=forbes.com&sz=64)',
+    //   });
+    // } else {
+    //   // Attach link icon SVG by default.
+    //   const linkIcon = buildOpenAttachmentElementLinkIcon(link);
+    //   remoteImgEl.appendChild(linkIcon);
+    // }
 
     // Set url prevew text.
     const localizationService = getLocalizationService(devAssert(this.element));
