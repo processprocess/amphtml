@@ -76,6 +76,24 @@
           <a href="https://linkinattachment.com">Link in page attachment</a>
         </amp-story-page-attachment>
       </amp-story-page>
+
+      <amp-story-page id="outlink-default-test">
+        <amp-story-grid-layer template="fill">
+          <amp-img layout="fill" src="/examples/visual-tests/amp-story/img/cat2.jpg"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="center">
+          <p>
+            <span data-text-background-color="crimson">Default outlink CTA.</span></br></br>
+            <span data-text-background-color="#00A3AB">Enable experiment by pasting AMP.toggleExperiment('amp-story-page-attachment-ui-v2', true) in console and refreshing.</span>
+          </p>
+        </amp-story-grid-layer>
+        <amp-story-page-attachment
+          data-title="Link Description"
+          href="https://www.google.com"
+          layout="nodisplay">
+        </amp-story-page-attachment>
+      </amp-story-page>
+
       <amp-story-page id="inline-default-dark-theme">
         <amp-story-grid-layer template="fill">
           <amp-img layout="fill" src="/examples/visual-tests/amp-story/img/cat1.jpg"></amp-img>
