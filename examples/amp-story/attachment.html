@@ -7,6 +7,7 @@
     <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Georgia|Open+Sans|Roboto' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <script async custom-element="amp-story-interactive" src="https://cdn.ampproject.org/v0/amp-story-interactive-0.1.js"></script>
     <title>Attachments</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link rel="canonical" href="index.html">
@@ -185,6 +186,19 @@
             <span data-text-background-color="crimson">Outlink CTA: logo & custom text.</span></br></br>
             <span data-text-background-color="#00A3AB">Enable experiment by pasting AMP.toggleExperiment('amp-story-page-attachment-ui-v2', true) in console and refreshing.</span>
           </p>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="center">
+          <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+            <amp-story-interactive-binary-poll
+            endpoint="https://webstoriesinteractivity-beta.web.app/api/v1"
+            id="life-on-mars"
+            theme="dark"
+            option-1-text="😃"
+            option-2-text="🤔"
+            option-1-confetti="👽"
+            option-2-confetti="🪨">
+          </amp-story-interactive-binary-poll>     
+        </div>
         </amp-story-grid-layer>
         <amp-story-page-attachment
           data-title="Link Description"
