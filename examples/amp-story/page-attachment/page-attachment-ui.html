@@ -90,6 +90,7 @@
           <div class="config-text" style="color: black">
             <span>Outlink Page Attachment</span>
             <span>Default <br>Dark Theme UI</span>
+            <span>theme="dark"</span>
           </div>
         </amp-story-grid-layer>        
         <amp-story-page-attachment
@@ -106,7 +107,7 @@
           <div class="config-text" style="color: black">
             <span>Outlink Page Attachment</span>
             <span>Custom Theme UI: <br>Text</span>
-            <span>cta-accent-color="#247C3C" <br>cta-accent-element="text"</span>
+            <span>theme="custom" <br>cta-accent-color="#247C3C" <br>cta-accent-element="text"</span>
           </div>
         </amp-story-grid-layer>
         <amp-story-page-attachment
@@ -125,7 +126,7 @@
           <div class="config-text" style="color: black">
             <span>Outlink Page Attachment</span>
             <span>Custom Theme UI: <br>Text</span>
-            <span>cta-accent-color="#A7FFBF" <br>cta-accent-element="text"</span>
+            <span>theme="custom" <br>cta-accent-color="#A7FFBF" <br>cta-accent-element="text"</span>
             <span>(background auto sets for contrast)</span>
           </div>
         </amp-story-grid-layer>        
@@ -145,7 +146,7 @@
           <div class="config-text" style="color: black">
             <span>Outlink Page Attachment</span>
             <span>Custom Theme UI: <br>Background</span>
-            <span>cta-accent-color="#0047FF" <br>cta-accent-element="background"</span>
+            <span>theme="custom" <br>cta-accent-color="#0047FF" <br>cta-accent-element="background"</span>
           </div>
         </amp-story-grid-layer>
         <amp-story-page-attachment
@@ -164,7 +165,7 @@
           <div class="config-text" style="color: black">
             <span>Outlink Page Attachment</span>
             <span>Custom Theme UI: <br>Background</span>
-            <span>cta-accent-color="#B6D3FF" <br>cta-accent-element="background"</span>
+            <span>theme="custom" <br>cta-accent-color="#B6D3FF" <br>cta-accent-element="background"</span>
             <span>(text color auto sets for contrast)</span>
           </div>
         </amp-story-grid-layer>        
@@ -329,11 +330,30 @@
         </amp-story-page-attachment>
       </amp-story-page>      
 
+      <amp-story-page id="inline-light-theme-2-image-no-text" style="background-color: #2400FF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text">
+            <span>Inline Page Attachment</span>
+            <span>Light Theme UI: <br>No Text</span>
+            <span>cta-text="none" <br>cta-img="url" </br>cta-img-2="url"</span>
+          </div>        
+        </amp-story-grid-layer>
+        <amp-story-page-attachment
+          layout="nodisplay"
+          cta-text="none"
+          cta-image='noimage'
+          cta-image-2='noimage'
+          >
+          test content
+        </amp-story-page-attachment>
+      </amp-story-page>
+
       <amp-story-page id="inline-dark-theme" style="background-color: #93BEFF">
         <amp-story-grid-layer template="fill">
           <div class="config-text" style="color: black">
             <span>Inline Page Attachment</span>
             <span>Default <br>Dark Theme UI</span>
+            <span>theme="dark"</span>
           </div>
         </amp-story-grid-layer>           
         <amp-story-page-attachment
@@ -350,7 +370,7 @@
           <div class="config-text" style="color: black">
             <span>Inline Page Attachment</span>
             <span>Dark Theme UI:<br>One Image</span>
-            <span>cta-img="url"</span>
+            <span>theme="dark" <br>cta-img="url"</span>
           </div>        
         </amp-story-grid-layer>           
         <amp-story-page-attachment
@@ -368,7 +388,7 @@
           <div class="config-text" style="color: black">
             <span>Inline Page Attachment</span>
             <span>Dark Theme UI: <br>Two Images</span>
-            <span>cta-img="url" </br>cta-img-2="url"</span>
+            <span>theme="dark" <br>cta-img="url" </br>cta-img-2="url"</span>
           </div>        
         </amp-story-grid-layer>        
         <amp-story-page-attachment
@@ -381,6 +401,25 @@
           test content
         </amp-story-page-attachment>
       </amp-story-page>
+
+      <amp-story-page id="inline-dark-theme-2-image-no-text" style="background-color: #93BEFF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text" style="color: black">
+            <span>Inline Page Attachment</span>
+            <span>Dark Theme UI: <br>No Text</span>
+            <span>cta-text="none" <br>theme="dark" <br>cta-img="url" </br>cta-img-2="url"</span>
+          </div>        
+        </amp-story-grid-layer>        
+        <amp-story-page-attachment
+          layout="nodisplay"
+          cta-text="none"
+          theme="dark"
+          cta-image="noimage"
+          cta-image-2="noimage"
+          >
+          test content
+        </amp-story-page-attachment>
+      </amp-story-page>      
 
       <amp-story-page id="inline-light-theme-example-sushi-saito" style="background-color: #2400FF">
         <amp-story-grid-layer template="fill">
