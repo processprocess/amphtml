@@ -367,6 +367,8 @@ export class AmpStory extends AMP.BaseElement {
   buildCallback() {
     this.viewer_ = Services.viewerForDoc(this.element);
 
+    AMP.toggleExperiment('amp-story-page-attachment-ui-v2', true);
+
     this.viewerMessagingHandler_ = this.viewer_.isEmbedded()
       ? new AmpStoryViewerMessagingHandler(this.win, this.viewer_)
       : null;

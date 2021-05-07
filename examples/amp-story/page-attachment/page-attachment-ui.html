@@ -10,7 +10,13 @@
     <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@600&family=Nunito:wght@200;600;900&family=Roboto+Condensed:ital,wght@1,700&family=Roboto:ital,wght@0,300;0,500;0,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
     <!-- Import other AMP Extensions here -->
+    <script async custom-element="amp-story-interactive" src="https://cdn.ampproject.org/v0/amp-story-interactive-0.1.js"></script>
     <style amp-custom>
       amp-story-page-attachment {
         width: 50vw;
@@ -21,6 +27,35 @@
         width: 100%;
         bottom: 120px;
       }
+      .config-text {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+      }
+      .config-text >:nth-child(1) {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 100;
+        position: absolute;
+        top: 4rem;
+        font-size: .9rem;
+      }
+      .config-text >:nth-child(2) {
+        font-family: 'Noto Sans', sans-serif;
+        font-size: 1.9rem;
+        margin-bottom: 1.1rem;
+      }
+      .config-text >:nth-child(3) {
+        font-family: 'Roboto Mono', monospace;
+        line-height: 2rem;
+      }
+      .config-text >:nth-child(4) {
+        font-family: 'Roboto Mono', monospace;
+        font-size: .7rem;
+        /* margin-top: .1rem; */
+      }      
     </style>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
     <link rel="canonical" href=".">
@@ -36,6 +71,12 @@
                poster-landscape-src="poster-landscape.png">
 
       <amp-story-page id="outlink-light-theme" style="background-color: #2400FF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text">
+            <span>Outlink Page Attachment</span>
+            <span>Default <br>Light Theme UI</span>
+          </div>
+        </amp-story-grid-layer>
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -45,6 +86,12 @@
       </amp-story-page>
 
       <amp-story-page id="outlink-dark-theme" style="background-color: #93BEFF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text" style="color: black">
+            <span>Outlink Page Attachment</span>
+            <span>Default <br>Dark Theme UI</span>
+          </div>
+        </amp-story-grid-layer>        
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -55,6 +102,13 @@
       </amp-story-page>
 
       <amp-story-page id="outlink-custom-theme-text" style="background-color: #47B982">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text" style="color: black">
+            <span>Outlink Page Attachment</span>
+            <span>Custom Theme UI: <br>Text</span>
+            <span>cta-accent-color="#247C3C" <br>cta-accent-element="text"</span>
+          </div>
+        </amp-story-grid-layer>
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -67,6 +121,14 @@
       </amp-story-page>
 
       <amp-story-page id="outlink-custom-theme-text-auto-contrast" style="background-color: #47B982">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text" style="color: black">
+            <span>Outlink Page Attachment</span>
+            <span>Custom Theme UI: <br>Text</span>
+            <span>cta-accent-color="#A7FFBF" <br>cta-accent-element="text"</span>
+            <span>(background auto sets for contrast)</span>
+          </div>
+        </amp-story-grid-layer>        
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -79,6 +141,13 @@
       </amp-story-page>
 
       <amp-story-page id="outlink-custom-background-text" style="background-color: #93BEFF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text" style="color: black">
+            <span>Outlink Page Attachment</span>
+            <span>Custom Theme UI: <br>Background</span>
+            <span>cta-accent-color="#0047FF" <br>cta-accent-element="background"</span>
+          </div>
+        </amp-story-grid-layer>
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -91,6 +160,14 @@
       </amp-story-page>
 
       <amp-story-page id="outlink-custom-background-text-auto-contrast" style="background-color: #93BEFF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text" style="color: black">
+            <span>Outlink Page Attachment</span>
+            <span>Custom Theme UI: <br>Background</span>
+            <span>cta-accent-color="#B6D3FF" <br>cta-accent-element="background"</span>
+            <span>(text color auto sets for contrast)</span>
+          </div>
+        </amp-story-grid-layer>        
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -103,11 +180,36 @@
       </amp-story-page>
 
       <amp-story-page id="outlink-example-light-theme" style="background-color: #000">
+        <amp-story-grid-layer template="fill">
+          <amp-img layout="fill" src="mars/mars-cover.png"></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="center">
+          <div style="color: white; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <span style="font-family: 'Playfair Display', sans-serif; font-size: 2.6rem; line-height: 2.8rem; display: block; margin-bottom: 1.8rem;">NASA’s Perseverance Drives on Mars’ Terrain for First Time</span>
+            <div style="display: flex; align-items: center; width: 100%;">
+              <span style="height: 1px; background-color: rgba(255, 255, 255, .25); align-items: center; flex-grow: 1;"></span>
+              <span style="font-family: 'Nunito sans', sans-serif; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.1rem; margin: 0 16px;">MAR 5, 2021</span>
+              <span style="height: 1px; background-color: rgba(255, 255, 255, .25); align-items: center; flex-grow: 1;"></span>
+            </div>
+            <span style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.8rem; display: block; margin-top: 1.2rem; margin-bottom: 1rem;">Life on Mars?</span>
+            <amp-story-interactive-binary-poll
+              style="display: inline-block;"
+              endpoint="https://webstoriesinteractivity-beta.web.app/api/v1"
+              id="life-on-mars"
+              theme="dark"
+              option-1-text="😃"
+              option-2-text="🤔"
+              option-1-confetti="👽"
+              option-2-confetti="🪨">
+            </amp-story-interactive-binary-poll>          
+          </div>
+        </amp-story-grid-layer>
         <amp-story-page-attachment
-          layout="nodisplay"
+          data-title="Discover More"
           data-cta-text="Discover More"
-          href="https://www.google.com"
-          >
+          href="https://www.nasa.gov/press-release/nasa-s-perseverance-drives-on-mars-terrain-for-first-time"
+          cta-image="mars/nasa-icon.jpg"
+          layout="nodisplay">
         </amp-story-page-attachment>
       </amp-story-page>
 
@@ -153,14 +255,14 @@
         </amp-story-page-attachment>
       </amp-story-page>
       
-      <amp-story-page id="outlink-example-custom-background" style="background-color: #93BEFF">
+      <amp-story-page id="outlink-example-custom-background" style="background-color: #7687F5">
         <amp-story-grid-layer template="fill">
-          <amp-img layout="fill" src="reading/reading-cover.png" ></amp-img>
+          <div style="background-image: url(reading/reading-cover.png); background-size: contain; background-repeat: no-repeat; background-position: center; transform: translate(37.2px, 145.7px) scale(0.91);"></div>
         </amp-story-grid-layer>
-        <amp-story-grid-layer template="fill">
-          <div>
-            <span>The <br>Plant <br>Quiz</span>
-            <span>How much do you know <br>about the plants</span>
+        <amp-story-grid-layer template="vertical">
+          <div style="font-family: 'Montserrat', sans-serif;">
+            <span style="font-weight: 700; display: block; font-size: 2.8rem; line-height: 2.9rem; margin-bottom: 0.9rem;">Spark a <br>Passion for <br>Reading</span>
+            <span style="font-weight: 500; font-size: 1rem;">Charlie Taylor</span>
           </div>
           </amp-story-grid-layer>
         <amp-story-page-attachment
@@ -178,6 +280,12 @@
       <!-- INLINE EXAMPLES -->
 
       <amp-story-page id="inline-light-theme" style="background-color: #2400FF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text">
+            <span>Inline Page Attachment</span>
+            <span>Default <br>Light Theme UI</span>
+          </div>
+        </amp-story-grid-layer>        
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -187,6 +295,13 @@
       </amp-story-page>
 
       <amp-story-page id="inline-light-theme-1-image" style="background-color: #2400FF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text">
+            <span>Inline Page Attachment</span>
+            <span>Light Theme UI:<br>One Image</span>
+            <span>cta-img="url"</span>
+          </div>
+        </amp-story-grid-layer>          
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -197,6 +312,13 @@
       </amp-story-page>
 
       <amp-story-page id="inline-light-theme-2-image" style="background-color: #2400FF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text">
+            <span>Inline Page Attachment</span>
+            <span>Light Theme UI: <br>Two Images</span>
+            <span>cta-img="url" </br>cta-img-2="url"</span>
+          </div>        
+        </amp-story-grid-layer>
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -208,6 +330,12 @@
       </amp-story-page>      
 
       <amp-story-page id="inline-dark-theme" style="background-color: #93BEFF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text" style="color: black">
+            <span>Inline Page Attachment</span>
+            <span>Default <br>Dark Theme UI</span>
+          </div>
+        </amp-story-grid-layer>           
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -218,6 +346,13 @@
       </amp-story-page>
 
       <amp-story-page id="inline-dark-theme-1-image" style="background-color: #93BEFF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text" style="color: black">
+            <span>Inline Page Attachment</span>
+            <span>Dark Theme UI:<br>One Image</span>
+            <span>cta-img="url"</span>
+          </div>        
+        </amp-story-grid-layer>           
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -229,6 +364,13 @@
       </amp-story-page>
 
       <amp-story-page id="inline-dark-theme-2-image" style="background-color: #93BEFF">
+        <amp-story-grid-layer template="fill">
+          <div class="config-text" style="color: black">
+            <span>Inline Page Attachment</span>
+            <span>Dark Theme UI: <br>Two Images</span>
+            <span>cta-img="url" </br>cta-img-2="url"</span>
+          </div>        
+        </amp-story-grid-layer>        
         <amp-story-page-attachment
           layout="nodisplay"
           data-cta-text="Call To Action"
@@ -305,17 +447,6 @@
       </amp-story-page>      
 
       <amp-story-page id="inline-light-theme-example-1-image" style="background-color: #F3D4D3">
-        <amp-story-page-attachment
-        layout="nodisplay"
-        data-cta-text="Explore Editors's Picks"
-        data-title="Editors's Picks"    
-        cta-image="editors-picks/editors-picks-1.png"
-        >
-
-        </amp-story-page-attachment>
-      </amp-story-page>
-
-      <amp-story-page id="inline-light-theme-example-2-image" style="background-color: #F3D4D3">
         <amp-story-grid-layer template="fill">
           <div style="background-color: #D97F73; max-width: 84%; margin-left: auto;"></div>
           <div>
@@ -324,19 +455,18 @@
         </amp-story-grid-layer>        
         <amp-story-grid-layer template="fill">
           <div style="display: flex; align-items: center; justify-content: center;">
-            <div style="background-color: #F3D4D3; color: #FD484C; width: 275px; box-shadow: 11px 11px 60px #FF5E5E; bottom: 126px; margin-right: 60px; margin-top: 60px; padding: 35px 20px">
-              <span style="font-family: 'Poppins', sans-serif; font-size: 26px; line-height: 26px; letter-spacing: 1px; font-weight: 800; display: block; margin-bottom: 10px">Elevate Your Home's Style with Decorative Accessories</span>
-              <span style="font-family: 'Poppins', sans-serif; font-size: 16px; line-height: 18px; font-weight: 400;">Make a bold statement in every room with decorative accessories.</span>
+            <div style="background-color: #F3D4D3; color: #FD484C; box-shadow: 11px 11px 60px #FF5E5E; bottom: 126px; margin-right: 3rem; margin-top: 7rem; padding: 35px 20px">
+              <span style="font-family: 'Poppins', sans-serif; font-size: 1.7rem; line-height: 1.7rem; letter-spacing: .01rem; font-weight: 800; display: block; margin-bottom: 10px; text-transform: uppercase">Elevate <br>Your Home's <br>Style with <br>Decorative <br>Accessories</span>
+              <span style="font-family: 'Poppins', sans-serif; font-size: 0.95rem; line-height: 1rem;">Make a bold statement in <br>every room with decorative <br>accessories.</span>
             </div>
           </div>
         </amp-story-grid-layer>
         <amp-story-page-attachment
-        layout="nodisplay"
-        data-cta-text="Explore Editors's Picks"
-        data-title="Editors's Picks"    
-        cta-image="editors-picks/editors-picks-1.png"
-        cta-image-2="editors-picks/editors-picks-2.png"
-        >
+          layout="nodisplay"
+          data-cta-text="Explore Editors's Picks"
+          data-title="Editors's Picks"    
+          cta-image="editors-picks/editors-picks-1.jpg"
+          >
           <div style="margin: 20px;">
             <span style="font-family: 'Poppins', sans-serif; font-size: 30px; line-height: 28px; letter-spacing: .5px; font-weight: 600; margin: 20px 20px 20px 20px; color: #FD484C; display: inline-block;">
               Editors' Picks for Decorative Accessories
@@ -357,7 +487,101 @@
             </div>            
           </div>
         </amp-story-page-attachment>
-      </amp-story-page>      
+      </amp-story-page>     
+
+      <amp-story-page id="inline-light-theme-example-2-image" style="background-color: #F3D4D3">
+        <amp-story-grid-layer template="fill">
+          <div style="background-color: #D97F73; max-width: 84%; margin-left: auto;"></div>
+          <div>
+            <div style="background-image: url(editors-picks/editors-picks-top.png); background-size: cover; background-position: center bottom; width: 100%; height: 50%"></div>
+          </div>
+        </amp-story-grid-layer>        
+        <amp-story-grid-layer template="fill">
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <div style="background-color: #F3D4D3; color: #FD484C; box-shadow: 11px 11px 60px #FF5E5E; bottom: 126px; margin-right: 3rem; margin-top: 7rem; padding: 35px 20px">
+              <span style="font-family: 'Poppins', sans-serif; font-size: 1.7rem; line-height: 1.7rem; letter-spacing: .01rem; font-weight: 800; display: block; margin-bottom: 10px; text-transform: uppercase">Elevate <br>Your Home's <br>Style with <br>Decorative <br>Accessories</span>
+              <span style="font-family: 'Poppins', sans-serif; font-size: 0.95rem; line-height: 1rem;">Make a bold statement in <br>every room with decorative <br>accessories.</span>
+            </div>
+          </div>
+        </amp-story-grid-layer>
+        <amp-story-page-attachment
+          layout="nodisplay"
+          data-cta-text="Explore Editors's Picks"
+          data-title="Editors's Picks"    
+          cta-image="editors-picks/editors-picks-1.jpg"
+          cta-image-2="editors-picks/editors-picks-2.jpg"
+          >
+          <div style="margin: 20px;">
+            <span style="font-family: 'Poppins', sans-serif; font-size: 30px; line-height: 28px; letter-spacing: .5px; font-weight: 600; margin: 20px 20px 20px 20px; color: #FD484C; display: inline-block;">
+              Editors' Picks for Decorative Accessories
+            </span>
+            <div style="display: flex; justify-content: center; margin-bottom: 20px">
+              <amp-img layout="fixed" height="168" width="168" src="editors-picks/editors-picks-attachment-chair.png"></amp-img>
+              <div style="font-family: 'Poppins', sans-serif; font-size: 20px; line-height: 20px; letter-spacing: .5px; padding: 30px; background-color: #8ADEA6; border-radius: 20px; width: 168px; height: 168px; box-sizing: border-box; margin-top: 30px; margin-left: -16px;">
+                <span style="font-weight: 600; display: block; margin-bottom: 24px">Colorful Accent Chair</span>
+                <span style="font-weight: 300; display: block;">$200</span>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: center; margin-bottom: 20px">
+              <div style="font-family: 'Poppins', sans-serif; font-size: 20px; line-height: 20px; letter-spacing: .5px; padding: 30px; background-color: #D9F8FF; border-radius: 20px; width: 168px; height: 168px; box-sizing: border-box;">
+                <span style="font-weight: 600; display: block; margin-bottom: 24px">Colorful Portable Fan</span>
+                <span style="font-weight: 300; display: block;">$32</span>
+              </div>
+              <amp-img style="margin-top: 30px; margin-left: -16px;" layout="fixed" height="168" width="168" src="editors-picks/editors-picks-attachment-fan.png"></amp-img>
+            </div>            
+          </div>
+        </amp-story-page-attachment>
+      </amp-story-page>  
+      
+      <amp-story-page id="inline-light-theme-example-2-image-no-text" style="background-color: #F3D4D3">
+        <amp-story-grid-layer template="fill">
+          <div style="background-color: #D97F73; max-width: 84%; margin-left: auto;"></div>
+          <div>
+            <div style="background-image: url(editors-picks/editors-picks-top.png); background-size: cover; background-position: center bottom; width: 100%; height: 50%"></div>
+          </div>
+        </amp-story-grid-layer>        
+        <amp-story-grid-layer template="fill">
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <div style="background-color: #F3D4D3; color: #FD484C; box-shadow: 11px 11px 60px #FF5E5E; bottom: 126px; margin-right: 3rem; margin-top: 7rem; padding: 35px 20px">
+              <span style="font-family: 'Poppins', sans-serif; font-size: 1.7rem; line-height: 1.7rem; letter-spacing: .01rem; font-weight: 800; display: block; margin-bottom: 10px; text-transform: uppercase">Elevate <br>Your Home's <br>Style with <br>Decorative <br>Accessories</span>
+              <span style="font-family: 'Poppins', sans-serif; font-size: 0.95rem; line-height: 1rem;">Make a bold statement in <br>every room with decorative <br>accessories.</span>
+              <div style="margin-top: 2rem; display: flex; justify-content: space-between;">
+                <span style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1.2rem; line-height: 1.2rem; letter-spacing: .02rem; display: block;">SWIPE UP <br>TO EXPLORE <br>EDITOR'S PICK</span>
+                <svg style="fill:#FD484C; width: 11px; height: 54px" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 11 54">
+                  <path d="M10.3,5.7L6,1.5C5.9,1.3,5.7,1.2,5.5,1.2S5.1,1.3,5,1.5L0.7,5.7l1.1,1.1l3-3V54h1.5V3.9l2.9,2.9L10.3,5.7z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </amp-story-grid-layer>
+        <amp-story-page-attachment
+          layout="nodisplay"
+          data-cta-text="none"
+          data-title="Editors's Picks"    
+          cta-image="editors-picks/editors-picks-1.jpg"
+          cta-image-2="editors-picks/editors-picks-2.jpg"
+          >
+          <div style="margin: 20px;">
+            <span style="font-family: 'Poppins', sans-serif; font-size: 30px; line-height: 28px; letter-spacing: .5px; font-weight: 600; margin: 20px 20px 20px 20px; color: #FD484C; display: inline-block;">
+              Editors' Picks for Decorative Accessories
+            </span>
+            <div style="display: flex; justify-content: center; margin-bottom: 20px">
+              <amp-img layout="fixed" height="168" width="168" src="editors-picks/editors-picks-attachment-chair.png"></amp-img>
+              <div style="font-family: 'Poppins', sans-serif; font-size: 20px; line-height: 20px; letter-spacing: .5px; padding: 30px; background-color: #8ADEA6; border-radius: 20px; width: 168px; height: 168px; box-sizing: border-box; margin-top: 30px; margin-left: -16px;">
+                <span style="font-weight: 600; display: block; margin-bottom: 24px">Colorful Accent Chair</span>
+                <span style="font-weight: 300; display: block;">$200</span>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: center; margin-bottom: 20px">
+              <div style="font-family: 'Poppins', sans-serif; font-size: 20px; line-height: 20px; letter-spacing: .5px; padding: 30px; background-color: #D9F8FF; border-radius: 20px; width: 168px; height: 168px; box-sizing: border-box;">
+                <span style="font-weight: 600; display: block; margin-bottom: 24px">Colorful Portable Fan</span>
+                <span style="font-weight: 300; display: block;">$32</span>
+              </div>
+              <amp-img style="margin-top: 30px; margin-left: -16px;" layout="fixed" height="168" width="168" src="editors-picks/editors-picks-attachment-fan.png"></amp-img>
+            </div>            
+          </div>
+        </amp-story-page-attachment>
+      </amp-story-page>        
 
       <amp-story-page id="inline-dark-theme-example" style="background-color: #ABCCE3">
         <amp-story-grid-layer aspect-ratio="1:2" template="fill">
@@ -413,6 +637,67 @@
         </amp-story-page-attachment>
       </amp-story-page>
 
+      <amp-story-page id="inline-dark-theme-example-2-images" style="background-color: #FFF">
+        <amp-story-grid-layer template="fill">
+          <amp-img layout="fill" src="nan-jing/nan-jing-cover.png" ></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="fill">
+          <div style="text-align: center; margin-top: 24.1rem;">
+            <span style="font-family: 'Inter', sans-serif; display: block; color: white; background: black; display: inline-block; border-radius: 1rem; padding: 0.2rem 0.55rem; font-size: 0.7rem; margin-bottom: 1rem;">No. 3</span>
+            <span style="font-family: 'Archivo Black', sans-serif; display: block; font-size: 2.9rem; line-height: 2.9rem; letter-spacing: -0.1rem;">NAN JING <br>CHINA</span>
+          </div>
+        </amp-story-grid-layer>
+        <amp-story-page-attachment
+          layout="nodisplay"
+          data-cta-text="Explore Top Landmarks"
+          data-title="Top Landmarks"
+          cta-image="nan-jing/nan-jing-cta-1.png"
+          cta-image-2="nan-jing/nan-jing-cta-2.png"
+          theme="dark"
+          >
+          <div style="font-family: 'Poppins', sans-serif; margin: 20px">
+            <span style="font-weight: bold; font-size: 20px; display: block; line-height: 24px; margin-bottom: 10px;">The Nanjing <br>International Youth <br>Cultural Center</span>
+            <span style="font-weight: 500; font-size: 10px; line-height: 3px; letter-spacing: .25px;">
+              <span style="display: block">China, Jiangsu, Nanjing, Jianye District,</span>
+              <span>Yangzijiang Ave, 金沙西街9号</span>
+            </span>
+            <amp-img style="margin-top: 16px; margin-bottom: 18px" 10px layout="responsive" width="320" height="235" src="nan-jing/nan-jing-photo-collage.png"></amp-img>
+            <span style="font-weight: 300; font-size: 14px; line-height: 20px; letter-spacing: .25px;">This is one of Zaha Hadid’s iconic architecture pieces in Nanjing, China - the Nanjing International Youth Cultural Center. Her architecture is a feast for me as a designer and photographer and this place was number one attraction to visit in the city.</span>
+          </div>
+        </amp-story-page-attachment>
+      </amp-story-page>
+      
+      <amp-story-page id="inline-dark-theme-example-2-images-no-text" style="background-color: #FFF">
+        <amp-story-grid-layer template="fill">
+          <amp-img layout="fill" src="nan-jing/nan-jing-cover.png" ></amp-img>
+        </amp-story-grid-layer>
+        <amp-story-grid-layer template="fill">
+          <div style="text-align: center; margin-top: 22rem;">
+            <span style="font-family: 'Inter', sans-serif; display: block; color: white; background: black; display: inline-block; border-radius: 1rem; padding: 0.2rem 0.55rem; font-size: 0.7rem; margin-bottom: 1rem;">No. 3</span>
+            <span style="font-family: 'Archivo Black', sans-serif; display: block; font-size: 2.9rem; line-height: 2.9rem; letter-spacing: -0.1rem;">NAN JING <br>CHINA</span>
+            <span style="font-family: 'Poppins', sans-serif; display: block; font-size: 1rem; line-height: 1.3rem; letter-spacing: 0.03rem; font-weight: 600; margin-top: 1rem;">SWIPE UP TO EXPLORE <br>TOP LANDMARKS</span>
+          </div>
+        </amp-story-grid-layer>
+        <amp-story-page-attachment
+          layout="nodisplay"
+          data-cta-text="none"
+          data-title="Top Landmarks"
+          cta-image="nan-jing/nan-jing-cta-1.png"
+          cta-image-2="nan-jing/nan-jing-cta-2.png"
+          theme="dark"
+          >
+          <div style="font-family: 'Poppins', sans-serif; margin: 20px">
+            <span style="font-weight: bold; font-size: 20px; display: block; line-height: 24px; margin-bottom: 10px;">The Nanjing <br>International Youth <br>Cultural Center</span>
+            <span style="font-weight: 500; font-size: 10px; line-height: 3px; letter-spacing: .25px;">
+              <span style="display: block">China, Jiangsu, Nanjing, Jianye District,</span>
+              <span>Yangzijiang Ave, 金沙西街9号</span>
+            </span>
+            <amp-img style="margin-top: 16px; margin-bottom: 18px" 10px layout="responsive" width="320" height="235" src="nan-jing/nan-jing-photo-collage.png"></amp-img>
+            <span style="font-weight: 300; font-size: 14px; line-height: 20px; letter-spacing: .25px;">This is one of Zaha Hadid’s iconic architecture pieces in Nanjing, China - the Nanjing International Youth Cultural Center. Her architecture is a feast for me as a designer and photographer and this place was number one attraction to visit in the city.</span>
+          </div>
+        </amp-story-page-attachment>
+      </amp-story-page>        
+
       <amp-story-page id="inline-light-theme-short-content" style="background-color: #000">
         <amp-story-grid-layer template="fill">
           <amp-img layout="fill" src="golden-gate/golden-gate-cover.png"></amp-img>
@@ -422,7 +707,6 @@
             <span style="font-family: 'Roboto Condensed', sans-serif; color: white; font-size: 4.4rem; letter-spacing: -0.1rem; line-height: 3.5rem; font-weight: 700; -webkit-text-stroke: 1px white; display: block; margin-bottom: 0.5rem;">GOLDEN <br>GATE <br>BRIDGE</span>
             <span style="font-family: 'Roboto', sans-serif; font-style: italic; color: #FF6A56; text-transform: uppercase; font-size: 0.92rem;">Once called "the bridge <br>that couldn't be built."</span>
           </div>
-          
         </amp-story-grid-layer>
         <amp-story-page-attachment
           layout="nodisplay"

@@ -113,12 +113,37 @@ async function transformCssString(contents, opt_filename) {
  *    processing
  */
 async function jsifyCssAsync(filename) {
-  const {contents, hash: filehash} = await batchedRead(filename);
+  // const {contents, hash: filehash} = await batchedRead(filename);
+  const {contents, hash: filehash} = await referencedBatchedRead(filename);
   const hash = md5(filehash, await getEnvironmentHash());
   const result = await transformCss(contents, hash, filename);
 
   result.warnings.forEach((warn) => log(red(warn)));
   return result.css + '\n/*# sourceURL=/' + filename + '*/';
+}
+
+async function referencedBatchedRead(filename) {
+  const {contents, hash} = await batchedRead(filename);
+  const hashes = [hash];
+  for (const referencedFilename of collectCssFilenames(
+    path.dirname(filename),
+    contents
+  )) {
+    const {hash} = await referencedBatchedRead(referencedFilename);
+    hashes.push(hash);
+  }
+  return {contents, hash: md5(...hashes)};
+}
+
+function* collectCssFilenames(dirname, contents) {
+  const regex = /['"]([^'"]+\.css)['"]/g;
+  let match;
+
+  while ((match = regex.exec(contents)) !== null) {
+    // eslint-disable-next-line no-unused-vars
+    const [unusedFullMatch, filepath] = match;
+    yield path.resolve(dirname, filepath);
+  }
 }
 
 /**
