@@ -54,11 +54,13 @@ import {Services} from '../../../src/services';
 import {VideoEvents, delegateAutoplay} from '../../../src/video-interface';
 import {
   addAttributesToElement,
-  closestAncestorElementBySelector,
   iterateCursor,
-  scopedQuerySelectorAll,
   whenUpgradedToCustomElement,
 } from '../../../src/dom';
+import {
+  closestAncestorElementBySelector,
+  scopedQuerySelectorAll,
+} from '../../../src/core/dom/query';
 import {createShadowRootWithStyle, setTextBackgroundColor} from './utils';
 import {debounce} from '../../../src/core/types/function';
 import {dev} from '../../../src/log';
@@ -76,10 +78,11 @@ import {isPageAttachmentUiV2ExperimentOn} from './amp-story-page-attachment-ui-v
 import {isPrerenderActivePage} from './prerender-active-page';
 import {listen, listenOnce} from '../../../src/event-helper';
 import {CSS as pageAttachmentCSS} from '../../../build/amp-story-open-page-attachment-0.1.css';
-import {prefersReducedMotion} from '../../../src/utils/media-query-props';
+import {prefersReducedMotion} from '../../../src/core/dom/media-query-props';
 import {px, toggle} from '../../../src/style';
 import {renderPageAttachmentUI} from './amp-story-open-page-attachment';
 import {renderPageDescription} from './semantic-render';
+
 import {toArray} from '../../../src/core/types/array';
 import {upgradeBackgroundAudio} from './audio';
 
