@@ -24,3 +24,9 @@
     width: auto !important; 
     border-radius: 10px !important;
 }
+
+.i-amphtml-story-system-layer {
+  top: 74px !important;
+  width: calc((100vh - 148px) * .595) !important;
+  margin: 0 auto !important;
+}
