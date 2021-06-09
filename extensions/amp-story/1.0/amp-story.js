@@ -1830,6 +1830,7 @@ export class AmpStory extends AMP.BaseElement {
       case UIType.DESKTOP_ONE_PANEL:
         this.setDesktopPositionAttributes_(this.activePage_);
         this.vsync_.mutate(() => {
+          // this.element.setAttribute('desktop', '');
           this.element.removeAttribute('desktop');
           this.element.classList.add('i-amphtml-story-desktop-one-panel');
           this.element.classList.remove('i-amphtml-story-desktop-fullbleed');
