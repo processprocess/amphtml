@@ -450,8 +450,14 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  flex-direction: row-reverse !important;
+  flex-direction: row-revers !important;
 }
+
+/* .i-amphtml-story-desktop-one-panel.i-amphtml-story-system-layer {
+  top: 74px !important;
+  width: calc((100vh - 148px) * .595) !important;
+  margin: 0 auto !important;
+} */
 
 .i-amphtml-animate-progress li {
   transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
