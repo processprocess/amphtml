@@ -21,25 +21,37 @@
 }
 
 .story-player-iframe {
-  height: 100%;
+  /* height: 100%;
   width: 100%;
   flex: 0 0 100%;
   border: 0;
   opacity: 0;
   transition: opacity 500ms ease;
-  position: absolute;
+  position: absolute; */
+
+  /* margin: auto auto !important; */
+  aspect-ratio: 69 / 116 !important;
+  height: calc(100% - 148px)!important;
+  width: auto !important; 
+  border-radius: 10px !important;
+  border: none !important;
 }
 
 .i-amphtml-story-player-main-container {
   height: 100%;
-  position: relative;
+  /* position: relative; */
   overflow: hidden;
   transform-style: preserve-3d;
+  background: black;
+
+  display: flex;
+  align-items: center;
 }
 
 .i-amphtml-story-player-loaded .story-player-iframe {
   opacity: 1;
   transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
 }
 
 .i-amphtml-story-player-no-navigation-transition .story-player-iframe {
@@ -48,17 +60,20 @@
 
 .i-amphtml-story-player-main-container iframe:nth-of-type(1),
 .i-amphtml-story-player-main-container .story-player-iframe[i-amphtml-iframe-position="0"] {
-  transform: translate3d(0, 0, 1px);
+  /* transform: translate3d(0, 0, 1px); */
+  transform: translateX(calc(50vw - 50%))!important;
 }
 
 .i-amphtml-story-player-main-container iframe:nth-of-type(2),
 .i-amphtml-story-player-main-container iframe:nth-of-type(3),
 .i-amphtml-story-player-main-container .story-player-iframe[i-amphtml-iframe-position="1"] {
-  transform: translate3d(100%, 0, 0);
+  /* transform: translate3d(100%, 0, 0); */
+  transform: translateX(calc(50vw + 50%)) scale(.6)!important;
 }
 
 .i-amphtml-story-player-main-container .story-player-iframe[i-amphtml-iframe-position="-1"] {
-  transform: translate3d(-100%, 0, 0);
+  /* transform: translate3d(-100%, 0, 0); */
+  transform: translateX(calc(50vw - 150%)) scale(.6)!important;
 }
 
 /* TODO(#30031): delete this once new custom UI API is ready. */

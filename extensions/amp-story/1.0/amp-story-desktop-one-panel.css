@@ -19,3 +19,11 @@
 
 .i-amphtml-story-desktop-one-panel {
 }
+
+.i-amphtml-story-desktop-one-panel amp-story-page {
+  margin: auto auto !important;
+  aspect-ratio: 69 / 116 !important;
+  height: calc(100vh - 148px)!important;
+  width: auto !important; 
+  border-radius: 10px !important;
+}
