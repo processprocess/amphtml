@@ -453,6 +453,25 @@
   flex-direction: row-reverse !important;
 }
 
+.i-amphtml-story-desktop-one-panel.i-amphtml-story-system-layer {
+  --i-amphtml-story-page-large-desktop-ratio: 69 / 116;
+  --i-amphtml-story-page-small-desktop-ratio: 3 / 4;
+  --i-amphtml-story-page-large-desktop-max-page-height: 752px;
+  margin: auto !important;
+  margin-top: max(74px, calc(50vh - var(--i-amphtml-story-page-large-desktop-max-page-height) / 2)) !important;
+  width: calc((100vh - 148px) * var(--i-amphtml-story-page-large-desktop-ratio)) !important;
+  max-width: calc(var(--i-amphtml-story-page-large-desktop-max-page-height) * var(--i-amphtml-story-page-large-desktop-ratio)) !important;
+  border-radius: 10px 10px 0 0 !important;
+}
+
+@media(max-height: 756px) {
+  .i-amphtml-story-desktop-one-panel.i-amphtml-story-system-layer {
+    width: calc(100vh * var(--i-amphtml-story-page-small-desktop-ratio)) !important;
+    max-width: calc(100vh * var(--i-amphtml-story-page-small-desktop-ratio)) !important;
+    margin-top: 0 !important;
+  }
+}
+
 .i-amphtml-animate-progress li {
   transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
 }
