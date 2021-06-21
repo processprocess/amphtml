@@ -353,6 +353,9 @@ export class AmpStory extends AMP.BaseElement {
 
     /** @private {?LiveStoryManager} */
     this.liveStoryManager_ = null;
+
+    /** @private {?Object} */
+    this.backgroundBlur_ = null;
   }
 
   /** @override */
@@ -1524,6 +1527,8 @@ export class AmpStory extends AMP.BaseElement {
           index: storePageIndex,
         });
 
+        this.setBackgroundBlurImage_(targetPage.element);
+
         // If first navigation.
         if (!oldPage) {
           this.registerAndPreloadBackgroundAudio_();
@@ -1841,6 +1846,7 @@ export class AmpStory extends AMP.BaseElement {
         break;
       case UIType.DESKTOP_ONE_PANEL:
         this.setDesktopPositionAttributes_(this.activePage_);
+        this.setBackgroundBlurImage_();
         this.vsync_.mutate(() => {
           this.element.removeAttribute('desktop');
           this.element.classList.add('i-amphtml-story-desktop-one-panel');
@@ -1894,6 +1900,104 @@ export class AmpStory extends AMP.BaseElement {
           });
         break;
     }
+  }
+
+  /**
+   * Creates the blur container if it does not exist.
+   * Sets the blurred image.
+   * @return {!UIType}
+   * @private
+   */
+  setBackgroundBlurImage_(targetPage) {
+    if (!this.backgroundBlur_) {
+      const canvas = this.win.document.createElement('canvas');
+      canvas.width = 10;
+      canvas.height = 10;
+      canvas.classList.add('i-amphtml-story-background-blur-image');
+      const context = canvas.getContext('2d');
+
+      this.backgroundBlur_ = {canvas, context, oldImg: ''};
+      this.vsync_.mutate(() => {
+        this.element.appendChild(canvas);
+      });
+    }
+    const {canvas, context} = this.backgroundBlur_;
+    const {width, height} = canvas;
+
+    if (targetPage) {
+      const img1 = this.getBackgroundElement_(targetPage);
+      if (!this.backgroundBlur_.oldImg || !img1) {
+        context.drawImage(img1, 0, 0, width, height);
+        context.fillStyle = 'rgba(0,0,0,.6)';
+        context.fillRect(0, 0, height, width);
+        this.backgroundBlur_.oldImg = img1;
+      } else {
+        let frames = 20;
+        let frame = 0;
+        const animate = () => {
+          const deg = 1 - Math.pow(1 - frame / frames, 2);
+          context.save();
+          context.clearRect(0, 0, width, height);
+          context.drawImage(this.backgroundBlur_.oldImg, 0, 0, width, height);
+          context.globalAlpha = deg;
+          context.drawImage(img1, 0, 0, width, height);
+          context.restore();
+          context.fillStyle = 'rgba(0,0,0,.6)';
+          context.fillRect(0, 0, height, width);
+          if (frame < frames) {
+            frame++;
+            requestAnimationFrame(animate);
+          } else {
+            this.backgroundBlur_.oldImg = img1;
+          }
+        };
+        animate();
+      }
+    }
+  }
+
+  /**
+   * Get the URL of the given page's background resource.
+   * @param {!Element} pageElement
+   * @return {?string} The URL of the background resource
+   */
+  getBackgroundElement_(pageElement) {
+    let fillElement = pageElement.querySelector(
+      '[template="fill"]:not(.i-amphtml-hidden-by-media-query) img'
+    );
+
+    if (!fillElement) {
+      return null;
+    }
+
+    fillElement = dev().assertElement(fillElement);
+
+    const fillPosterElement = fillElement.querySelector(
+      '[poster]:not(.i-amphtml-hidden-by-media-query) img'
+    );
+
+    const srcElement = fillElement.querySelector(
+      '[src]:not(.i-amphtml-hidden-by-media-query)'
+    );
+
+    const src = srcElement ? srcElement.getAttribute('src') : '';
+
+    return fillElement || src;
+  }
+
+  /**
+   * Update the background with new background image URL.
+   * @param {string} color
+   * @param {?string} url
+   * @param {boolean=} initial
+   */
+  setBackground(color, element, initial = false) {
+    if (color) {
+      this.ctx_.fillStyle = color;
+      this.ctx_.fillRect(0, 0, this.canvas_.width, this.canvas_.height);
+    }
+    if (!element) return;
+    this.ctx_.drawImage(element, 0, 0, this.canvas_.width, this.canvas_.height);
   }
 
   /**

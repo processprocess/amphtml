@@ -24,6 +24,7 @@
 @import './amp-story-user-overridable.css';
 @import './amp-story-vertical.css';
 @import './pagination-buttons.css';
+@import './amp-story-background-blur.css';
 
 /** Common */
 amp-story, amp-story-page, amp-story-cta-layer {
