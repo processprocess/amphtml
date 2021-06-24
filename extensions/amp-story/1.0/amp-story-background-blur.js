@@ -20,6 +20,9 @@ import {user} from '../../../src/log';
 /** @const {number} */
 const CANVAS_SIZE = 3;
 
+/** @const {Array<number>} */
+const CANVAS_DIMENSION = [0, 0, CANVAS_SIZE, CANVAS_SIZE];
+
 /** @const {number} */
 const DURATION_MS = 200;
 
@@ -37,10 +40,14 @@ export class backgroundBlur {
 
     /** @private @const {!Element} */
     this.canvas_ = null;
+
+    /** @private @const {!Element} */
+    this.offScreenCanvas_ = null;
   }
 
   /**
    * Setup canvas and attach it to the document.
+   * Setup off screen canvas to draw first frame of video.
    */
   attach() {
     this.canvas_ = this.win_.document.createElement('canvas');
@@ -53,6 +60,9 @@ export class backgroundBlur {
       top: 0,
     });
     this.element_.appendChild(this.canvas_);
+
+    this.offScreenCanvas_ = this.win_.document.createElement('canvas');
+    this.offScreenCanvas_.width = this.offScreenCanvas_.height = CANVAS_SIZE;
   }
 
   /**
@@ -81,6 +91,12 @@ export class backgroundBlur {
    */
   animate_(fillElement) {
     const context = this.canvas_.getContext('2d');
+    const offScreenCtx = this.offScreenCanvas_.getContext('2d');
+
+    offScreenCtx.clearRect(...CANVAS_DIMENSION);
+    // Draw the first frame of the video as a reference so we don't get a different video frame.
+    offScreenCtx.drawImage(fillElement, ...CANVAS_DIMENSION);
+
     let startTime;
     const nextFrame = (currTime) => {
       if (!startTime) {
@@ -91,9 +107,9 @@ export class backgroundBlur {
         const easing = 1 - Math.pow(1 - elapsed / DURATION_MS, 2);
         context.globalAlpha = easing;
         if (fillElement) {
-          context.drawImage(fillElement, 0, 0, CANVAS_SIZE, CANVAS_SIZE);
+          context.drawImage(fillElement, ...CANVAS_DIMENSION);
         } else {
-          context.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+          context.fillRect(...CANVAS_DIMENSION);
         }
         requestAnimationFrame(nextFrame);
       }
@@ -108,8 +124,9 @@ export class backgroundBlur {
    * @return {?Element} An img element with template=fill or null.
    */
   getBackgroundElement_(pageElement) {
-    return pageElement.querySelector(
-      '[template="fill"]:not(.i-amphtml-hidden-by-media-query) img'
-    );
+    const getSize = (el) => el.offsetWidth * el.offsetHeight;
+    return Array.from(pageElement.querySelectorAll('img, video')).sort(
+      (firstEl, secondEl) => getSize(secondEl) - getSize(firstEl)
+    )[0];
   }
 }
