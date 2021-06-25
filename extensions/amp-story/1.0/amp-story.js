@@ -460,6 +460,12 @@ export class AmpStory extends AMP.BaseElement {
       });
     }
 
+    if (pageId) {
+      setTimeout(() => {
+        this.removePageHashUrl_(pageId);
+      }, 2000);
+    }
+
     if (this.maybeLoadStoryDevTools_()) {
       return;
     }
@@ -805,19 +811,7 @@ export class AmpStory extends AMP.BaseElement {
         return;
       }
       this.switchTo_(maybePageId, NavigationDirection.NEXT);
-      // Removes the page 'hash' parameter from the URL.
-      let href = this.win.location.href.replace(
-        new RegExp(`page=${maybePageId}&?`),
-        ''
-      );
-      if (endsWith(href, '#')) {
-        href = href.slice(0, -1);
-      }
-      this.win.history.replaceState(
-        (this.win.history && getState(this.win.history)) || {} /** data */,
-        this.win.document.title /** title */,
-        href /** URL */
-      );
+      this.removePageHashUrl_(maybePageId);
     });
 
     // Listen for class mutations on the <body> element.
@@ -1106,6 +1100,26 @@ export class AmpStory extends AMP.BaseElement {
 
     const firstPageEl = this.element.querySelector('amp-story-page');
     return firstPageEl ? firstPageEl.id : null;
+  }
+
+  /**
+   * Removes the page 'hash' parameter from the URL.
+   * @param {?string} pageId
+   * @private
+   */
+  removePageHashUrl_(pageId) {
+    let href = this.win.location.href.replace(
+      new RegExp(`page=${pageId}&?`),
+      ''
+    );
+    if (endsWith(href, '#')) {
+      href = href.slice(0, -1);
+    }
+    this.win.history.replaceState(
+      (this.win.history && getState(this.win.history)) || {} /** data */,
+      this.win.document.title /** title */,
+      href /** URL */
+    );
   }
 
   /**
