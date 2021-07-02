@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-.i-amphtml-story-interactive-img-container {
+ .i-amphtml-story-interactive-img-container {
   --i-amphtml-interactive-img-option-size: 7.5em !important;
   --i-amphtml-interactive-img-option-margin: 1em !important;
 
@@ -31,31 +31,24 @@
   overflow: hidden !important;
   box-shadow: var(--i-amphtml-interactive-component-shadow) !important;
   flex-wrap: wrap !important;
+  padding: var(--i-amphtml-interactive-img-option-margin) !important;
+  gap: var(--i-amphtml-interactive-img-option-margin) !important;
 }
 
 .i-amphtml-story-interactive-img-option {
   width: var(--i-amphtml-interactive-img-option-size) !important;
   height: var(--i-amphtml-interactive-img-option-size) !important;
   position: relative !important;
-  margin-top: var(--i-amphtml-interactive-img-option-margin) !important;
-  margin-right: var(--i-amphtml-interactive-img-option-margin) !important;
   padding: 0 !important;
   background: none !important;
   border: none !important;
   font-size: inherit !important;
 }
 
-.i-amphtml-story-interactive-img-option:nth-child(odd) {
-  margin-left: var(--i-amphtml-interactive-img-option-margin) !important;
-}
-
-.i-amphtml-story-interactive-img-option:last-child {
-  margin-bottom: var(--i-amphtml-interactive-img-option-margin) !important;
-}
-
+/* When there are 3 options, override the gap on the second row. */
 .i-amphtml-story-interactive-img-option:nth-child(3):last-child {
-  margin-top: 0 !important;
-}
+  margin-top: calc(var(--i-amphtml-interactive-img-option-margin) * -1) !important;
+} 
 
 .i-amphtml-story-interactive-img-option-img {
   border-radius: 50% !important;
