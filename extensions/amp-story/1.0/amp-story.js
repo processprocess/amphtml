@@ -44,6 +44,7 @@ import {
 } from './story-analytics';
 import {AmpEvents} from '#core/constants/amp-events';
 import {AmpStoryAccess} from './amp-story-access';
+import {AmpStoryBackground} from './background';
 import {AmpStoryConsent} from './amp-story-consent';
 import {AmpStoryCtaLayer} from './amp-story-cta-layer';
 import {AmpStoryEmbeddedComponent} from './amp-story-embedded-component';
@@ -355,6 +356,9 @@ export class AmpStory extends AMP.BaseElement {
 
     /** @private {?BackgroundBlur} */
     this.backgroundBlur_ = null;
+
+    /** @private {?AmpStoryBackground} */
+    this.background_ = null;
   }
 
   /** @override */
@@ -1533,6 +1537,8 @@ export class AmpStory extends AMP.BaseElement {
         if (!oldPage) {
           this.registerAndPreloadBackgroundAudio_();
         }
+
+        this.updateBackground_(targetPage.element, /* initial */ !oldPage);
       },
       // Third and last step contains all the actions that can be delayed after
       // the navigation happened, like preloading the following pages, or
@@ -1845,12 +1851,45 @@ export class AmpStory extends AMP.BaseElement {
           this.element.classList.remove('i-amphtml-story-desktop-fullbleed');
           this.element.classList.remove('i-amphtml-story-desktop-one-panel');
         });
+        if (localStorage.getItem('canvas-blur-active') === 'true') {
+          if (!this.backgroundBlur_) {
+            this.backgroundBlur_ = new BackgroundBlur(this.win, this.element);
+            this.backgroundBlur_.attach();
+          }
+        } else {
+          if (!this.background_) {
+            this.background_ = new AmpStoryBackground(this.win, this.element);
+            this.background_.attach();
+          }
+          if (this.activePage_) {
+            this.updateBackground_(
+              this.activePage_.element,
+              /* initial */ true
+            );
+          }
+        }
+        if (this.activePage_) {
+          this.updateBackground_(this.activePage_.element, /* initial */ true);
+        }
         break;
       case UIType.DESKTOP_ONE_PANEL:
         this.setDesktopPositionAttributes_(this.activePage_);
-        if (!this.backgroundBlur_) {
-          this.backgroundBlur_ = new BackgroundBlur(this.win, this.element);
-          this.backgroundBlur_.attach();
+        if (localStorage.getItem('canvas-blur-active') === 'true') {
+          if (!this.backgroundBlur_) {
+            this.backgroundBlur_ = new BackgroundBlur(this.win, this.element);
+            this.backgroundBlur_.attach();
+          }
+        } else {
+          if (!this.background_) {
+            this.background_ = new AmpStoryBackground(this.win, this.element);
+            this.background_.attach();
+          }
+          if (this.activePage_) {
+            this.updateBackground_(
+              this.activePage_.element,
+              /* initial */ true
+            );
+          }
         }
         this.vsync_.mutate(() => {
           this.element.removeAttribute('desktop');
@@ -2132,6 +2171,64 @@ export class AmpStory extends AMP.BaseElement {
         });
       }
     }
+  }
+
+  /**
+   * Get the URL of the given page's background resource.
+   * @param {!Element} pageElement
+   * @return {?string} The URL of the background resource
+   */
+  getBackgroundUrl_(pageElement) {
+    let fillElement = pageElement.querySelector(
+      '[template="fill"]:not(.i-amphtml-hidden-by-media-query)'
+    );
+
+    if (!fillElement) {
+      return null;
+    }
+
+    fillElement = dev().assertElement(fillElement);
+
+    const fillPosterElement = fillElement.querySelector(
+      '[poster]:not(.i-amphtml-hidden-by-media-query)'
+    );
+
+    const srcElement = fillElement.querySelector(
+      '[src]:not(.i-amphtml-hidden-by-media-query)'
+    );
+
+    const fillPoster = fillPosterElement
+      ? fillPosterElement.getAttribute('poster')
+      : '';
+    const src = srcElement ? srcElement.getAttribute('src') : '';
+
+    return fillPoster || src;
+  }
+
+  /**
+   * Update the background to the specified page's background.
+   * @param {!Element} pageElement
+   * @param {boolean=} initial
+   */
+  updateBackground_(pageElement, initial = false) {
+    if (!this.background_) {
+      return;
+    }
+
+    this.getVsync().run(
+      {
+        measure: (state) => {
+          state.url = this.getBackgroundUrl_(pageElement);
+          state.color = computedStyle(this.win, pageElement).getPropertyValue(
+            'background-color'
+          );
+        },
+        mutate: (state) => {
+          this.background_.setBackground(state.color, state.url, initial);
+        },
+      },
+      {}
+    );
   }
 
   /**

@@ -23,6 +23,14 @@
         line-height: 1.174;
         text-transform: uppercase;
       }
+      .toggle-wrapper {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10000;
+      
+      }  
     </style>
   </head>
 
@@ -56,18 +64,53 @@
       </amp-story-page>
 
       <amp-story-page id="page-2">
+        <amp-story-grid-layer template="fill">
+            <amp-img src="https://images.unsplash.com/photo-1484151709479-3996843263cf?dpr=2&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
+                width="900" height="1600">
+            </amp-img>
+        </amp-story-grid-layer>
         <amp-story-grid-layer template="vertical">
-          <h1>Second Page</h1>
-          <p>This is the second page of this story.</p>
+          <h3>Hello, amp-story!</h3>
+        </amp-story-grid-layer>
+    </amp-story-page>
+
+    <amp-story-page id="page-3">
+      <amp-story-grid-layer template="fill">
+        <amp-img src="https://images.unsplash.com/photo-1440658172029-9d9e5cdc127c?dpr=2&auto=format&fit=crop&w=568&h=344&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
+          width="900" height="1600">
+        </amp-img>
+      </amp-story-grid-layer>
+    </amp-story-page>      
+
+      <amp-story-page id="page-4">
+        <amp-story-grid-layer template="vertical">
+          <p>No image page</p>
         </amp-story-grid-layer>
       </amp-story-page>
 
-      <amp-story-page id="page-3">
-        <amp-story-grid-layer template="vertical">
-          <h1>Third Page</h1>
-          <p>This is the third page of this story.</p>
+
+      <amp-story-page id="page-5">
+        <amp-story-grid-layer template="fill">
+          <amp-img src="https://images.unsplash.com/photo-1440658172029-9d9e5cdc127c?dpr=2&auto=format&fit=crop&w=568&h=344&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
+            width="900" height="1600">
+          </amp-img>
         </amp-story-grid-layer>
-      </amp-story-page>
+      </amp-story-page>        
     </amp-story>
+    <!-- For toggling demo. -->
+    <div class="toggle-wrapper">
+    <button id="blurToggle" onclick="
+      const isActive = localStorage.getItem('canvas-blur-active') === `true`;
+      localStorage.setItem('canvas-blur-active', !isActive);
+      location.reload();
+    "></button>    
+    </div>
   </body>
+  <script>
+    // Indicate whether experiment is on.
+    document.addEventListener('ampstory:load', () => {
+      AMP.toggleExperiment('amp-story-desktop-one-panel', true)
+      blurToggle.innerHTML = "canvas-blur-active: " + localStorage.getItem('canvas-blur-active');
+    });
+  </script>  
 </html>
