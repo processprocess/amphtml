@@ -184,6 +184,9 @@ const LOG_TYPE = {
   DEV: 'amp-story-player-dev',
 };
 
+/** @const {boolean} */
+export const DESKTOP_PANEL_PLAYER_EXPERIMENT_ACTIVE = true;
+
 /**
  * Note that this is a vanilla JavaScript class and should not depend on AMP
  * services, as v0.js is not expected to be loaded in this context.
@@ -462,11 +465,34 @@ export class AmpStoryPlayer {
         ? shadowContainer
         : shadowContainer.attachShadow({mode: 'open'});
 
+    if (DESKTOP_PANEL_PLAYER_EXPERIMENT_ACTIVE) {
+      this.buildDesktopStoryControlUI_(containerToUse);
+    }
+
     // Inject default styles
     const styleEl = this.doc_.createElement('style');
     styleEl.textContent = cssText;
     containerToUse.appendChild(styleEl);
     containerToUse.insertBefore(this.rootEl_, containerToUse.firstElementChild);
+  }
+
+  /**
+   * Builds desktop "previous" and "next" story UI.
+   * @param {!Element} containerToUse
+   * @private
+   */
+  buildDesktopStoryControlUI_(containerToUse) {
+    const prevButton = this.doc_.createElement('button');
+    prevButton.classList.add('i-amphtml-story-player-desktop-panel-prev');
+    prevButton.addEventListener('click', () => this.previous_());
+    containerToUse.appendChild(prevButton);
+    prevButton.innerText = 'prev';
+
+    const nextButton = this.doc_.createElement('button');
+    nextButton.classList.add('i-amphtml-story-player-desktop-panel-next');
+    nextButton.addEventListener('click', () => this.next_());
+    containerToUse.appendChild(nextButton);
+    nextButton.innerText = 'next';
   }
 
   /**
