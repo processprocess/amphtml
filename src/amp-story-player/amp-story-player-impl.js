@@ -107,6 +107,7 @@ const STORY_STATE_TYPE = {
 /** @enum {string} */
 const STORY_MESSAGE_STATE_TYPE = {
   PAGE_ATTACHMENT_STATE: 'PAGE_ATTACHMENT_STATE',
+  UI_STATE: 'UI_STATE',
   MUTED_STATE: 'MUTED_STATE',
   CURRENT_PAGE_ID: 'CURRENT_PAGE_ID',
   STORY_PROGRESS: 'STORY_PROGRESS',
@@ -195,6 +196,18 @@ const DESKTOP_PANEL_STORY_PLAYER_EXP_ON = true;
  * @private @const {string}
  */
 const DESKTOP_ONE_PANEL_ASPECT_RATIO_THRESHOLD = 3 / 4;
+
+/**
+ * Different UI experiences to display the story.
+ * @const @enum {number}
+ */
+export const UIType = {
+  MOBILE: 0,
+  DESKTOP_PANELS: 1, // Default desktop UI displaying previous and next pages.
+  DESKTOP_FULLBLEED: 2, // Desktop UI if landscape mode is enabled.
+  DESKTOP_ONE_PANEL: 4, // Desktop UI with one panel and space around story.
+  VERTICAL: 3, // Vertical scrolling versions, for search engine bots indexing.
+};
 
 /**
  * Note that this is a vanilla JavaScript class and should not depend on AMP
@@ -636,6 +649,11 @@ export class AmpStoryPlayer {
             dict({'state': STORY_MESSAGE_STATE_TYPE.MUTED_STATE})
           );
 
+          messaging.sendRequest(
+            'onDocumentState',
+            dict({'state': STORY_MESSAGE_STATE_TYPE.UI_STATE})
+          );
+
           messaging.registerHandler('documentStateUpdate', (event, data) => {
             this.onDocumentStateUpdate_(
               /** @type {!DocumentStateTypeDef} */ (data),
@@ -943,6 +961,35 @@ export class AmpStoryPlayer {
 
     this.signalNavigation_(navigation);
     this.maybeFetchMoreStories_(remaining);
+    this.getUiState_();
+  }
+
+  /**
+   * Shows or hides one panel UI.
+   * @private
+   */
+  getUiState_() {
+    const story = this.stories_[this.currentIdx_];
+
+    story.messagingPromise.then((messaging) => {
+      messaging
+        .sendRequest(
+          'getDocumentState',
+          {state: STORY_MESSAGE_STATE_TYPE.UI_STATE},
+          true
+        )
+        .then((event) => {
+          this.onUiStateUpdate_(event.value);
+        });
+    });
+  }
+
+  onUiStateUpdate_(uiTypeNumber) {
+    console.log('onUiStateUpdate_');
+    const isFullBleedDesktop =
+      uiTypeNumber === UIType.DESKTOP_FULLBLEED ||
+      uiTypeNumber === UIType.MOBILE;
+    this.rootEl_.classList.toggle('full-bleed', isFullBleedDesktop);
   }
 
   /**
@@ -1495,6 +1542,9 @@ export class AmpStoryPlayer {
         break;
       case STORY_MESSAGE_STATE_TYPE.MUTED_STATE:
         this.onMutedStateUpdate_(/** @type {string} */ (data.value));
+        break;
+      case STORY_MESSAGE_STATE_TYPE.UI_STATE:
+        this.onUiStateUpdate_(/** @type {number} */ (data.value));
         break;
       case AMP_STORY_PLAYER_EVENT:
         this.onPlayerEvent_(/** @type {string} */ (data.value));

@@ -141,6 +141,11 @@
     cursor: initial;
   }
 
+  .full-bleed .i-amphtml-story-player-desktop-panel-prev,
+  .full-bleed .i-amphtml-story-player-desktop-panel-next {
+    opacity: 0;
+    pointer-events: none;
+  }
 
   .i-amphtml-story-player-desktop-panel-prev {
     margin-inline-start: calc(var(--i-amphtml-story-player-desktop-panel-button-margin));
