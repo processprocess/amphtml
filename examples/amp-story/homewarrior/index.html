@@ -288,6 +288,12 @@
     amp-story-page-attachment a {
       color: #818FD4;
     }
+    #expToggle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+      }    
     </style>
   </head>
   <body>
@@ -689,6 +695,16 @@
           </div>
         </amp-story-page-attachment>
       </amp-story-page>
-    </amp-story>
+    <!-- For toggling experiment in demos without copy pasting into inspector. -->
+    <button id="expToggle" onclick="
+      AMP.toggleExperiment('amp-story-desktop-one-panel');
+      location.reload();
+    ">Toggle amp-story-desktop-one-panel experiment</button>
+    <script>
+      // Indicate whether experiment is on.
+      document.addEventListener('ampstory:load', () => {
+        expToggle.innerHTML = "amp-story-desktop-one-panel active: " + AMP.isExperimentOn('amp-story-desktop-one-panel');
+      });
+    </script>
   </body>
 </html>
