@@ -424,6 +424,8 @@ export class AmpStoryPlayer {
         title: (element.textContent && element.textContent.trim()) || null,
         posterImage:
           element.getAttribute('data-poster-portrait-src') || posterImgSrc,
+        logo: element.getAttribute('data-publisher-logo-src'),
+        publisher: element.getAttribute('data-publisher'),
       });
 
       this.initializeAndAddStory_(story);
@@ -551,7 +553,6 @@ export class AmpStoryPlayer {
     applySandbox(iframeEl);
     this.addSandboxFlags_(iframeEl);
     this.initializeLoadingListeners_(iframeEl);
-
     story.iframe = iframeEl;
   }
 
@@ -720,9 +721,165 @@ export class AmpStoryPlayer {
       this.visibleDeferred_.resolve()
     );
 
+    new this.win_.ResizeObserver((e) => {
+      const {width, height} = e[0].contentRect;
+      this.onPlayerResize_(width, height);
+    }).observe(this.element_);
+
     this.render_();
 
     this.element_.isLaidOut_ = true;
+
+    const cards = [];
+
+    this.cardWrapper_ = this.doc_.createElement('div');
+    this.cardWrapper_.classList.add('card-container');
+    this.rootEl_.appendChild(this.cardWrapper_);
+    this.stories_.forEach((story) => {
+      const card = this.doc_.createElement('div');
+      card.classList.add('card');
+      card.style.backgroundImage = `url(${story.posterImage})`;
+      story.card = card;
+      this.cardWrapper_.appendChild(card);
+      cards.push(card);
+    });
+
+    let activeCard = null;
+    let dragging = false;
+    let dragStartX = 0;
+    let deltaX = 0;
+
+    let windowCenter = this.cardWrapper_.offsetWidth / 2;
+    let cardWidth = 0;
+    let cardMargin = 0;
+
+    const update = (card) => {
+      setActiveCard(card);
+      setDistance();
+    };
+
+    const setActiveCard = (card) => {
+      activeCard = card;
+
+      const activeStoryCard = this.stories_.find(
+        (story) => story.card === card
+      );
+
+      this.currentIdx_ = activeStoryCard.idx;
+
+      this.render_();
+      this.onNavigation_();
+    };
+
+    const setDistance = () => {
+      const activeCardIndex = cards.indexOf(activeCard);
+      cards.forEach((card, i) => {
+        const offset = (i - activeCardIndex) * (cardWidth + cardMargin) * 2;
+        const isActiveCard = card === activeCard;
+        card.toggleAttribute('active', isActiveCard);
+        let scale = isActiveCard ? 1 : 0.6;
+        if (dragging) {
+          const cardDistance = getCardDistance(card);
+          scale = map(cardDistance, 0, cardWidth + cardMargin, 1, 0.6, true);
+        }
+        card.style.transform = `translateX(${
+          windowCenter - cardWidth + offset + deltaX
+        }px) scale(${scale})`;
+      });
+    };
+    const initialCard = cards[0];
+
+    update(initialCard);
+
+    this.cardWrapper_.addEventListener('click', (e) => {
+      const clickedCard = e.target.closest('.card');
+      if (!clickedCard) return;
+      update(clickedCard);
+    });
+
+    this.cardWrapper_.addEventListener('touchstart', (e) => {
+      const touchedCard = e.touches[0].target.closest('.card');
+      if (!touchedCard) return;
+      dragging = true;
+      dragStartX = e.touches[0].clientX;
+      this.cardWrapper_.classList.toggle('dragging', dragging);
+    });
+
+    this.cardWrapper_.addEventListener('touchmove', (e) => {
+      if (!dragging) return;
+      deltaX = e.touches[0].clientX - dragStartX;
+      setDistance();
+    });
+
+    this.cardWrapper_.addEventListener('touchend', (e) => {
+      dragging = false;
+      dragStartX = 0;
+      deltaX = 0;
+      this.cardWrapper_.classList.toggle('dragging', dragging);
+      const cardsSorted = [...cards].sort(
+        (cardA, cardB) => getCardDistance(cardA) - getCardDistance(cardB)
+      )[0];
+      update(cardsSorted);
+    });
+
+    const onResize = () => {
+      windowCenter = this.cardWrapper_.offsetWidth / 2;
+      cardWidth = cards[0].offsetWidth / 2;
+      cardMargin = cardWidth * 0.005;
+      setDistance();
+    };
+
+    onResize();
+
+    function getCardDistance(card) {
+      const cardRect = card.getBoundingClientRect();
+      return Math.abs(windowCenter - cardRect.left - cardRect.width / 2);
+    }
+
+    window.addEventListener('resize', () => onResize());
+
+    // utils
+
+    function map(num, in_min, in_max, out_min, out_max, clamp = false) {
+      if (clamp && num > in_max) {
+        num = in_max;
+      }
+      return (
+        ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+      );
+    }
+  }
+
+  /**
+   * @param {number} width
+   * @param {number} height
+   * @private
+   */
+  onPlayerResize_(width, height) {
+    const DESKTOP_ONE_PANEL_ASPECT_RATIO_THRESHOLD = 3 / 4;
+    const isDesktopOnePanel =
+      width / height > DESKTOP_ONE_PANEL_ASPECT_RATIO_THRESHOLD;
+
+    this.rootEl_.classList.toggle(
+      'i-amphtml-story-player-desktop-panel',
+      isDesktopOnePanel
+    );
+
+    if (isDesktopOnePanel) {
+      setStyles(this.rootEl_, {
+        '--i-amphtml-story-player-height': `${height}px`,
+      });
+
+      this.rootEl_.classList.toggle(
+        'i-amphtml-story-player-desktop-panel-medium',
+        height < 756
+      );
+
+      this.rootEl_.classList.toggle(
+        'i-amphtml-story-player-desktop-panel-small',
+        height < 538
+      );
+    }
   }
 
   /**
@@ -1137,7 +1294,12 @@ export class AmpStoryPlayer {
    * @private
    */
   appendToDom_(story) {
-    this.rootEl_.appendChild(story.iframe);
+    if (!this.iframeContainer_) {
+      this.iframeContainer_ = this.doc_.createElement('div');
+      this.rootEl_.appendChild(this.iframeContainer_);
+      this.iframeContainer_.classList.add('iframe-container');
+    }
+    this.iframeContainer_.appendChild(story.iframe);
     this.setUpMessagingForStory_(story);
     story.connectedDeferred.resolve();
   }
